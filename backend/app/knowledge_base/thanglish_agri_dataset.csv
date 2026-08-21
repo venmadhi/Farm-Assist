@@ -1,0 +1,73 @@
+original_text,normalized_text,language,intent,crop,topic
+ente nellinu entha valam venam,എന്റെ നെല്ലിന് എന്ത് വളം വേണം,THANGLISH,FERTILIZER_RECOMMENDATION,paddy,fertilizer
+paddykk eth fertilizer aanu nallath,പാടത്തിന് ഏത് വളം നല്ലതാണ്,THANGLISH,FERTILIZER_RECOMMENDATION,paddy,fertilizer
+ente nellinu ippo entha valam kodukkanam,എന്റെ നെല്ലിന് ഇപ്പോൾ എന്ത് വളം കൊടുക്കണം,THANGLISH,FERTILIZER_RECOMMENDATION,paddy,fertilizer
+എന്റെ നെല്ലിന് ഏത് വളമാണ് വേണ്ടത്,എന്റെ നെല്ലിന് ഏത് വളമാണ് വേണ്ടത്,MALAYALAM,FERTILIZER_RECOMMENDATION,paddy,fertilizer
+what fertilizer is suitable for paddy,What fertilizer is suitable for paddy,ENGLISH,FERTILIZER_RECOMMENDATION,paddy,fertilizer
+എന്റെ മണ്ണിൽ പൊട്ടാസ്യം കുറവാണ് എന്ത് ചെയ്യണം,എന്റെ മണ്ണിൽ പൊട്ടാസ്യം കുറവാണ് എന്ത് ചെയ്യണം,MALAYALAM,FERTILIZER_RECOMMENDATION,general,soil_health
+vazhakku veetil undakkunna organic fertilizer enthokke aanu,വാഴയ്ക്ക് വീട്ടിൽ ഉണ്ടാക്കുന്ന ജൈവ വളം എന്തൊക്കെയാണ്,THANGLISH,FERTILIZER_RECOMMENDATION,banana,fertilizer
+soil test cheythappo potassium kuravanu kandathu enthu cheyyanam,സോയിൽ ടെസ്റ്റ് ചെയ്തപ്പോൾ പൊട്ടാസ്യം കുറവാണ് കണ്ടത് എന്ത് ചെയ്യണം,THANGLISH,FERTILIZER_RECOMMENDATION,general,soil_health
+മണ്ണിലെ അസിഡിറ്റി കുറയ്ക്കാൻ എന്തുചെയ്യണം,മണ്ണിലെ അസിഡിറ്റി കുറയ്ക്കാൻ എന്തുചെയ്യണം,MALAYALAM,FERTILIZER_RECOMMENDATION,general,soil_health
+soil acidity kurakkan entha cheyya,മണ്ണിലെ അസിഡിറ്റി കുറയ്ക്കാൻ എന്താണ് ചെയ്യുക,THANGLISH,FERTILIZER_RECOMMENDATION,general,soil_health
+potassium low aanu entha cheyya,potassium kuravu aanu entha cheyya,THANGLISH,FERTILIZER_RECOMMENDATION,general,soil_health
+ente soilil nitrogen kuravaanu,എന്റെ മണ്ണിൽ നൈട്രജൻ കുറവാണ്,THANGLISH,FERTILIZER_RECOMMENDATION,general,soil_health
+ente vazha ila manja aanu,എന്റെ വാഴയുടെ ഇല മഞ്ഞയാണ്,THANGLISH,DISEASE_OR_DEFICIENCY,banana,plant_health
+vazhayude ila karuthayi varunnu,വാഴയുടെ ഇല കറുത്തു വരുന്നു,THANGLISH,DISEASE_OR_DEFICIENCY,banana,plant_health
+ente vazhayude ila manja aakunnu enthayirikkum reason,എന്റെ വാഴയുടെ ഇല മഞ്ഞയാകുന്നു എന്തായിരിക്കും കാരണം,THANGLISH,DISEASE_OR_DEFICIENCY,banana,plant_health
+how to control rhinoceros beetle in coconut,how to control rhinoceros beetle in coconut,ENGLISH,DISEASE_OR_DEFICIENCY,coconut,pest_control
+തെങ്ങിന്റെ കൊമ്പൻ ചെല്ലിയെ എങ്ങനെ നിയന്ത്രിക്കാം,തെങ്ങിന്റെ കൊമ്പൻ ചെല്ലിയെ എങ്ങനെ നിയന്ത്രിക്കാം,MALAYALAM,DISEASE_OR_DEFICIENCY,coconut,pest_control
+vazhayude pindi unni control cheyyanam,വാഴയുടെ തണ്ട്തുരപ്പൻ പുഴുവിനെ നിയന്ത്രിക്കണം,THANGLISH,DISEASE_OR_DEFICIENCY,banana,pest_control
+vazhaila yellow color varunnu,വാഴയില മഞ്ഞ നിറം വരുന്നു,THANGLISH,DISEASE_OR_DEFICIENCY,banana,plant_health
+elathile kayathurappan puzhu nashippikkanam,ഏലത്തിലെ കായതുരപ്പൻ പുഴുവിനെ നശിപ്പിക്കണം,THANGLISH,DISEASE_OR_DEFICIENCY,cardamom,pest_control
+rubber panel dryness prevention methods,rubber panel dryness prevention methods,ENGLISH,DISEASE_OR_DEFICIENCY,rubber,plant_health
+pepper quick wilt disease control,pepper quick wilt disease control,ENGLISH,DISEASE_OR_DEFICIENCY,pepper,pest_control
+coconut bud rot prevention chemical,coconut bud rot prevention chemical,ENGLISH,DISEASE_OR_DEFICIENCY,coconut,plant_health
+nellinu ila vattam vannal enthu cheyyanam,നെല്ലിന് ഇല വാട്ടം വന്നാൽ എന്ത് ചെയ്യണം,THANGLISH,DISEASE_OR_DEFICIENCY,paddy,plant_health
+Which crop gives better profit this season,Which crop gives better profit this season,ENGLISH,CROP_RECOMMENDATION,general,crop_rotation
+njan kazhinja seasonil paddy cheythu ee seasonil profitable crop undo,ഞാൻ കഴിഞ്ഞ സീസണിൽ നെല്ല് കൃഷി ചെയ്തു ഈ സീസണിൽ ലാഭകരമായ വിള ഉണ്ടോ,THANGLISH,CROP_RECOMMENDATION,paddy,crop_rotation
+What crop is suitable for my soil,What crop is suitable for my soil,ENGLISH,CROP_RECOMMENDATION,general,crop_suitability
+krishi cheyyan nalla soil eth aanu,കൃഷി ചെയ്യാൻ നല്ല മണ്ണ് ഏതാണ്,THANGLISH,CROP_RECOMMENDATION,general,soil_health
+what should I plant after paddy,what should I plant after paddy,ENGLISH,CROP_RECOMMENDATION,paddy,crop_rotation
+which crop is suitable for Thrissur,which crop is suitable for Thrissur,ENGLISH,CROP_RECOMMENDATION,general,crop_suitability
+suitable crop in rain season,suitable crop in rain season,ENGLISH,CROP_RECOMMENDATION,general,crop_suitability
+high yield crop recommendation,high yield crop recommendation,ENGLISH,CROP_RECOMMENDATION,general,crop_suitability
+nellu kazhinjal pinne enthu krishi cheyyam,നെല്ല് കഴിഞ്ഞാൽ പിന്നെ എന്ത് കൃഷി ചെയ്യാം,THANGLISH,CROP_RECOMMENDATION,paddy,crop_rotation
+profitable crop recommendation for Kerala,profitable crop recommendation for Kerala,ENGLISH,CROP_RECOMMENDATION,general,crop_suitability
+recommend a crop for laterite soil,recommend a crop for laterite soil,ENGLISH,CROP_RECOMMENDATION,general,crop_suitability
+banana cultivation matching soil,banana cultivation matching soil,ENGLISH,CROP_RECOMMENDATION,banana,crop_suitability
+marketil innu banana price engane aanu,മാർക്കറ്റിൽ ഇന്ന് വാഴപ്പഴത്തിന്റെ വില എങ്ങനെയാണ്,THANGLISH,MARKET_PRICES,banana,market_price
+what is the current market price of pepper,what is the current market price of pepper,ENGLISH,MARKET_PRICES,pepper,market_price
+cardamom price in market today,cardamom price in market today,ENGLISH,MARKET_PRICES,cardamom,market_price
+today coconut market rate,today coconut market rate,ENGLISH,MARKET_PRICES,coconut,market_price
+what is the price of ginger today,what is the price of ginger today,ENGLISH,MARKET_PRICES,ginger,market_price
+keralathil rubber market price ethraya,കേരളത്തിൽ റബ്ബർ മാർക്കറ്റ് വില എത്രയാണ്,THANGLISH,MARKET_PRICES,rubber,market_price
+paddy price trend in Kerala,paddy price trend in Kerala,ENGLISH,MARKET_PRICES,paddy,market_price
+vegetables price in market,vegetables price in market,ENGLISH,MARKET_PRICES,general,market_price
+current coconut price list,current coconut price list,ENGLISH,MARKET_PRICES,coconut,market_price
+is rubber price increasing or decreasing,is rubber price increasing or decreasing,ENGLISH,MARKET_PRICES,rubber,market_price
+today agriculture market rates,today agriculture market rates,ENGLISH,MARKET_PRICES,general,market_price
+coconut rate details today,coconut rate details today,ENGLISH,MARKET_PRICES,coconut,market_price
+mazha kooduthal aanu ini njan entha cheyyendath,മഴ കൂടുതലാണ് ഇനി ഞാൻ എന്താണ് ചെയ്യേണ്ടത്,THANGLISH,GENERAL_ADVISORY,general,weather
+organic farming cheyyan pattumo,ജൈവകൃഷി ചെയ്യാൻ സാധിക്കുമോ,THANGLISH,GENERAL_ADVISORY,general,organic
+how to make jeevamrutham at home,how to make jeevamrutham at home,ENGLISH,FERTILIZER_RECOMMENDATION,general,organic
+jeevamrutham engane thayraakkam,ജീവാമൃതം എങ്ങനെ തയ്യാറാക്കാം,MIXED,FERTILIZER_RECOMMENDATION,general,organic
+how to get high latex yield in rubber,how to get high latex yield in rubber,ENGLISH,GENERAL_ADVISORY,rubber,cultivation
+how to reduce cultivation cost of crops,how to reduce cultivation cost of crops,ENGLISH,GENERAL_ADVISORY,general,cost
+what are the government schemes for farmers,what are the government schemes for farmers,ENGLISH,GENERAL_ADVISORY,general,government_schemes
+agricultural department support details,agricultural department support details,ENGLISH,GENERAL_ADVISORY,general,government_schemes
+why is my crop not growing properly,why is my crop not growing properly,ENGLISH,GENERAL_ADVISORY,general,cultivation
+how can I improve soil fertility naturally,how can I improve soil fertility naturally,ENGLISH,GENERAL_ADVISORY,general,soil_health
+what are the benefits of organic farming,what are the benefits of organic farming,ENGLISH,GENERAL_ADVISORY,general,organic
+when is the best time to harvest ginger,when is the best time to harvest ginger,ENGLISH,GENERAL_ADVISORY,ginger,cultivation
+Who is the Prime Minister of India,Who is the Prime Minister of India,ENGLISH,OUT_OF_DOMAIN,none,general
+sing me a song,sing me a song,ENGLISH,OUT_OF_DOMAIN,none,general
+hi hello how are you,hi hello how are you,ENGLISH,OUT_OF_DOMAIN,none,general
+tell me a joke,tell me a joke,ENGLISH,OUT_OF_DOMAIN,none,general
+who is the president of america,who is the president of america,ENGLISH,OUT_OF_DOMAIN,none,general
+play a movie for me,play a movie for me,ENGLISH,OUT_OF_DOMAIN,none,general
+what is the weather today in Delhi,what is the weather today in Delhi,ENGLISH,OUT_OF_DOMAIN,none,general
+who won the cricket match yesterday,who won the cricket match yesterday,ENGLISH,OUT_OF_DOMAIN,none,general
+recommend a good restaurant near me,recommend a good restaurant near me,ENGLISH,OUT_OF_DOMAIN,none,general
+what is the capital of kerala,what is the capital of kerala,ENGLISH,OUT_OF_DOMAIN,none,general
+latest movies to watch,latest movies to watch,ENGLISH,OUT_OF_DOMAIN,none,general
+write a python program,write a python program,ENGLISH,OUT_OF_DOMAIN,none,general

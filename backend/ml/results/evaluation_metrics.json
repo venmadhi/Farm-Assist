@@ -1,0 +1,9 @@
+{
+  "model_name": "ConvGeM-NeXt",
+  "test_samples": 269,
+  "overall_accuracy": 0.0112,
+  "macro_precision": 0.0005,
+  "macro_recall": 0.0083,
+  "macro_f1_score": 0.001,
+  "weighted_f1_score": 0.0013
+}

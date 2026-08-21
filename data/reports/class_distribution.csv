@@ -1,0 +1,30 @@
+unified_class,display_name,crop,total_count,train_count,val_count,test_count,percentage_of_total
+corn_northern_leaf_blight,Northern Corn Leaf Blight,corn,185,148,18,19,7.49
+tomato_septoria_leaf_spot,Tomato Septoria Leaf Spot,tomato,147,117,14,16,5.95
+squash_powdery_mildew,Squash Powdery Mildew,squash,127,101,12,14,5.14
+raspberry_healthy,Healthy Raspberry Leaf,raspberry,118,94,11,13,4.78
+potato_early_blight,Potato Early Blight,potato,112,89,11,12,4.53
+corn_common_rust,Corn Common Rust,corn,112,89,11,12,4.53
+tomato_late_blight,Tomato Late Blight,tomato,110,88,11,11,4.45
+peach_healthy,Healthy Peach Leaf,peach,110,88,11,11,4.45
+blueberry_healthy,Healthy Blueberry Leaf,blueberry,107,85,10,12,4.33
+tomato_bacterial_spot,Tomato Bacterial Spot,tomato,105,84,10,11,4.25
+potato_late_blight,Potato Late Blight,potato,102,81,10,11,4.13
+strawberry_healthy,Healthy Strawberry Leaf,strawberry,92,73,9,10,3.72
+apple_scab,Apple Scab,apple,88,70,8,10,3.56
+apple_healthy,Healthy Apple Leaf,apple,86,68,8,10,3.48
+apple_cedar_rust,Cedar Apple Rust,apple,86,68,8,10,3.48
+tomato_leaf_mold,Tomato Leaf Mold,tomato,85,68,8,9,3.44
+tomato_early_blight,Tomato Early Blight,tomato,84,67,8,9,3.4
+tomato_yellow_leaf_curl,Tomato Yellow Leaf Curl Virus,tomato,74,59,7,8,3.0
+grape_healthy,Healthy Grape Leaf,grape,63,50,6,7,2.55
+pepper_bacterial_spot,Pepper Bacterial Spot,pepper,63,50,6,7,2.55
+tomato_healthy,Healthy Tomato Leaf,tomato,62,49,6,7,2.51
+corn_gray_leaf_spot,Corn Gray Leaf Spot,corn,62,49,6,7,2.51
+soybean_healthy,Healthy Soybean Leaf,soybean,62,49,6,7,2.51
+grape_black_rot,Grape Black Rot,grape,60,48,6,6,2.43
+pepper_healthy,Healthy Pepper Leaf,pepper,56,44,5,7,2.27
+cherry_healthy,Healthy Cherry Leaf,cherry,55,44,5,6,2.23
+tomato_mosaic_virus,Tomato Mosaic Virus,tomato,54,43,5,6,2.19
+tomato_spider_mites,Tomato Two-Spotted Spider Mites,tomato,2,1,0,1,0.08
+plantdoc_plantdoc,plantdoc,plantdoc,1,0,0,1,0.04

@@ -1,0 +1,32 @@
+# FarmAssist Disease Scanner ML Pipeline Configuration
+
+data:
+  raw_dir: "data/raw"
+  processed_dir: "data/processed"
+  metadata_dir: "data/metadata"
+  reports_dir: "data/reports"
+  rejected_dir: "data/rejected"
+  splits:
+    train: 0.80
+    val: 0.10
+    test: 0.10
+  seed: 42
+  supported_extensions: [".jpg", ".jpeg", ".png", ".webp"]
+
+model:
+  name: "ConvGeM-NeXt"
+  variant: "tiny"
+  input_size: 224
+  gem_p: 3.0
+  dropout_rate: 0.4
+  confidence_threshold: 0.70
+
+training:
+  batch_size: 32
+  learning_rate: 0.001
+  fine_tune_lr: 0.0001
+  head_epochs: 3
+  fine_tune_epochs: 7
+  num_workers: 2
+  checkpoint_dir: "backend/models"
+  results_dir: "backend/ml/results"

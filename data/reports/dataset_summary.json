@@ -1,0 +1,33 @@
+{
+  "total_images": 2470,
+  "datasets": {
+    "PlantDoc": 2470
+  },
+  "crops": {
+    "tomato": 723,
+    "corn": 359,
+    "apple": 260,
+    "potato": 214,
+    "squash": 127,
+    "grape": 123,
+    "pepper": 119,
+    "raspberry": 118,
+    "peach": 110,
+    "blueberry": 107,
+    "strawberry": 92,
+    "soybean": 62,
+    "cherry": 55,
+    "plantdoc": 1
+  },
+  "classes": 29,
+  "train": 1964,
+  "validation": 236,
+  "test": 270,
+  "corrupt": 0,
+  "duplicates": 11,
+  "class_imbalance": {
+    "min_class_size": 1,
+    "max_class_size": 185,
+    "imbalance_ratio": 185.0
+  }
+}

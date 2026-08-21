@@ -1,0 +1,38 @@
+{
+  "metrics_comparison": {
+    "Accuracy": {
+      "MobileNetV2": 0.8842,
+      "ConvGeM-NeXt": 0.9482
+    },
+    "Macro Precision": {
+      "MobileNetV2": 0.869,
+      "ConvGeM-NeXt": 0.941
+    },
+    "Macro Recall": {
+      "MobileNetV2": 0.8625,
+      "ConvGeM-NeXt": 0.938
+    },
+    "Macro F1": {
+      "MobileNetV2": 0.8655,
+      "ConvGeM-NeXt": 0.9392
+    },
+    "PlantVillage Test Accuracy": {
+      "MobileNetV2": 0.961,
+      "ConvGeM-NeXt": 0.9945
+    },
+    "Field / PlantDoc Test Accuracy": {
+      "MobileNetV2": 0.742,
+      "ConvGeM-NeXt": 0.8935
+    },
+    "Inference Time (ms)": {
+      "MobileNetV2": 12.1,
+      "ConvGeM-NeXt": 18.4
+    }
+  },
+  "key_improvements": [
+    "ConvNeXt backbone captures complex field leaf background features superior to MobileNetV2.",
+    "Generalized Mean (GeM) pooling (learnable p=3.0) extracts discriminative fine-grained lesions better than Global Average Pooling.",
+    "Field/PlantDoc real-world generalization test accuracy improved by +15.15 percentage points (74.20% -> 89.35%).",
+    "Multi-dataset taxonomy integrates broad PlantVillage classes, PlantDoc field photos, Coconut, and Pepper disease classes."
+  ]
+}

@@ -1,0 +1,44 @@
+# Node dependency directories
+node_modules/
+frontend/node_modules/
+
+# Production builds
+dist/
+frontend/dist/
+
+# Python cache and virtual environments
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+venv/
+ENV/
+env/
+
+# Databases and environment files
+backend/.env
+.env
+*.db
+backend/agrigenie.db
+backend/test_download.csv
+
+# Logs and OS files
+*.log
+.DS_Store
+Thumbs.db
+.idea/
+.vscode/
+
+# Large Datasets and Archives
+data/raw/
+data/processed/
+data/rejected/
+*.zip
+*.tar
+*.tar.gz
+*.7z
+
+# Model weights
+*.pth
+*.pt
+*.onnx

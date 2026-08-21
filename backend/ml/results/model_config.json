@@ -1,0 +1,24 @@
+{
+  "architecture": "ConvGeM-NeXt",
+  "variant": "tiny",
+  "num_classes": 49,
+  "input_resolution": [
+    224,
+    224
+  ],
+  "gem_p_initial": 3.0,
+  "dropout_rate": 0.4,
+  "normalization": {
+    "mean": [
+      0.485,
+      0.456,
+      0.406
+    ],
+    "std": [
+      0.229,
+      0.224,
+      0.225
+    ]
+  },
+  "confidence_threshold": 0.7
+}
