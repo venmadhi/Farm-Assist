@@ -36,7 +36,7 @@ def get_digital_twin_summary(
         db.refresh(primary_farm)
 
     # Retrieve all sub-tables associated with this farm
-    soil_records = db.query(SoilTest).filter(SoilTest.farm_id == primary_farm.id).order_by(SoilTest.measured_at.desc()).all()
+    soil_records = db.query(SoilTest).filter(SoilTest.farm_id == primary_farm.id).order_by(SoilTest.measured_at.asc()).all()
     history_records = db.query(CropHistory).filter(CropHistory.farm_id == primary_farm.id).order_by(CropHistory.year.desc()).all()
     disease_records = db.query(DiseaseRecord).filter(DiseaseRecord.farm_id == primary_farm.id).order_by(DiseaseRecord.scanned_at.desc()).all()
     weather_records = db.query(WeatherHistory).filter(WeatherHistory.farm_id == primary_farm.id).order_by(WeatherHistory.recorded_at.desc()).all()
@@ -53,7 +53,7 @@ def get_digital_twin_summary(
     warnings = []
     
     if soil_records:
-        latest_soil = soil_records[0]
+        latest_soil = soil_records[-1]
         # pH impact
         if latest_soil.ph < 5.5:
             health_score -= 15.0
@@ -188,6 +188,7 @@ def get_digital_twin_summary(
             {
                 "id": c.id,
                 "crop": c.crop_name,
+                "crop_name": c.crop_name,
                 "yield": c.actual_yield,
                 "season": c.season,
                 "year": c.year,
@@ -199,6 +200,8 @@ def get_digital_twin_summary(
                 "actual_profit": c.actual_profit,
                 "cultivation_cost": c.cultivation_cost,
                 "actual_selling_price": c.actual_selling_price,
+                "absolute_error": round(abs(c.expected_yield - c.actual_yield), 2) if (c.expected_yield is not None and c.actual_yield is not None) else None,
+                "percentage_error": round((abs(c.expected_yield - c.actual_yield) / c.actual_yield * 100.0), 1) if (c.expected_yield is not None and c.actual_yield and c.actual_yield > 0) else 0.0,
                 "harvest_date": c.harvest_date.strftime("%Y-%m-%d") if c.harvest_date else None,
                 "start_date": c.start_date.strftime("%Y-%m-%d") if c.start_date else None
             } for c in completed_cycles
@@ -207,6 +210,7 @@ def get_digital_twin_summary(
             {
                 "id": c.id,
                 "crop": c.crop_name,
+                "crop_name": c.crop_name,
                 "season": c.season,
                 "year": c.year,
                 "area_acres": c.area_acres,
@@ -279,42 +283,59 @@ def add_crop_history(
         weather_summary=history_in.weather_summary,
         disease_incidence=history_in.disease_incidence,
         fertilizer_used=history_in.fertilizer_used,
-        market_price=history_in.market_price
+        market_price=history_in.market_price,
+        harvest_date=datetime.datetime.combine(history_in.end_date, datetime.time.min),
+        start_date=datetime.datetime.combine(history_in.start_date, datetime.time.min)
     )
     db.add(new_history)
     
-    # Save a matching completed CropCycle record
-    new_cycle = CropCycle(
-        farm_id=primary_farm.id,
-        crop_name=history_in.crop_name,
-        season=history_in.season,
-        year=history_in.year,
-        area_acres=primary_farm.land_area_acres,
-        expected_yield=history_in.yield_kg,
-        actual_yield=history_in.yield_kg,
-        expected_revenue=history_in.revenue or 0.0,
-        actual_revenue=history_in.revenue,
-        expected_profit=(history_in.revenue or 0.0) * 0.7,
-        actual_profit=(history_in.revenue or 0.0) * 0.7,
-        actual_selling_price=history_in.market_price,
-        cultivation_cost=(history_in.revenue or 0.0) * 0.3,
-        fertilizer_used=history_in.fertilizer_used,
-        disease_incidence=history_in.disease_incidence,
-        status="HARVESTED",
-        harvest_date=datetime.datetime.utcnow()
-    )
-    db.add(new_cycle)
+    from sqlalchemy import func
+    existing_cycle = db.query(CropCycle).filter(
+        CropCycle.farm_id == primary_farm.id,
+        func.lower(CropCycle.crop_name) == func.lower(history_in.crop_name.strip()),
+        CropCycle.season == history_in.season,
+        CropCycle.year == history_in.year
+    ).first()
+    
+    start_dt = datetime.datetime.combine(history_in.start_date, datetime.time.min) if hasattr(history_in, 'start_date') and history_in.start_date else datetime.datetime.utcnow()
+    end_dt = datetime.datetime.combine(history_in.end_date, datetime.time.min) if hasattr(history_in, 'end_date') and history_in.end_date else datetime.datetime.utcnow()
+    
+    if existing_cycle:
+        existing_cycle.actual_yield = history_in.yield_kg
+        existing_cycle.actual_revenue = history_in.revenue
+        existing_cycle.actual_profit = (history_in.revenue or 0.0) - (existing_cycle.cultivation_cost or 0.0)
+        existing_cycle.actual_selling_price = history_in.market_price
+        existing_cycle.fertilizer_used = history_in.fertilizer_used
+        existing_cycle.disease_incidence = history_in.disease_incidence
+        existing_cycle.start_date = start_dt
+        existing_cycle.harvest_date = end_dt
+        existing_cycle.status = "HARVESTED"
+    else:
+        # Save a matching completed CropCycle record
+        new_cycle = CropCycle(
+            farm_id=primary_farm.id,
+            crop_name=history_in.crop_name,
+            season=history_in.season,
+            year=history_in.year,
+            area_acres=primary_farm.land_area_acres,
+            expected_yield=history_in.yield_kg,
+            actual_yield=history_in.yield_kg,
+            expected_revenue=history_in.revenue or 0.0,
+            actual_revenue=history_in.revenue,
+            expected_profit=0.0,
+            actual_profit=history_in.revenue or 0.0,
+            actual_selling_price=history_in.market_price,
+            cultivation_cost=0.0,
+            fertilizer_used=history_in.fertilizer_used,
+            disease_incidence=history_in.disease_incidence,
+            status="HARVESTED",
+            start_date=start_dt,
+            harvest_date=end_dt
+        )
+        db.add(new_cycle)
     
     db.commit()
     db.refresh(new_history)
-    
-    # Trigger model retraining check
-    try:
-        from ..ml.retrain_agent import retrain_agent
-        retrain_agent.check_and_retrain(db)
-    except Exception as e:
-        print(f"Retraining checker run failed: {e}")
-        
     return new_history
 
 @router.post("/farm-update", response_model=FarmResponse)
@@ -453,6 +474,8 @@ def start_crop_cycle(
     if existing:
         raise HTTPException(status_code=400, detail=f"An active crop cycle for {cycle_in.crop_name} already exists.")
 
+    start_date_val = datetime.datetime.combine(cycle_in.start_date, datetime.datetime.min.time()) if cycle_in.start_date else datetime.datetime.utcnow()
+
     new_cycle = CropCycle(
         farm_id=primary_farm.id,
         crop_name=cycle_in.crop_name,
@@ -462,13 +485,16 @@ def start_crop_cycle(
         expected_yield=cycle_in.expected_yield,
         expected_profit=cycle_in.expected_profit,
         expected_revenue=cycle_in.expected_revenue,
-        status="ACTIVE"
+        status="ACTIVE",
+        start_date=start_date_val
     )
     db.add(new_cycle)
     db.commit()
     db.refresh(new_cycle)
     return new_cycle
 
+
+RETRAINING_ERROR_THRESHOLD = 50.0  # Configurable prediction percentage error threshold (%)
 
 @router.post("/crop-cycle/{cycle_id}/harvest", response_model=CropCycleResponse)
 def harvest_crop_cycle(
@@ -481,22 +507,40 @@ def harvest_crop_cycle(
     if not cycle:
         raise HTTPException(status_code=404, detail="Crop cycle not found.")
         
-    # Calculate actual revenue and profit
-    actual_revenue = harvest_in.actual_yield * harvest_in.actual_selling_price
-    actual_profit = actual_revenue - harvest_in.cultivation_cost
+    if harvest_in.actual_yield <= 0:
+        raise HTTPException(status_code=400, detail="Actual yield must be greater than 0 kg.")
+    if harvest_in.actual_selling_price < 0:
+        raise HTTPException(status_code=400, detail="Actual selling price cannot be negative.")
+    if harvest_in.cultivation_cost < 0:
+        raise HTTPException(status_code=400, detail="Actual cultivation cost cannot be negative.")
+        
+    # Calculate actual revenue and profit from farmer inputs ONLY
+    actual_revenue = round(harvest_in.actual_yield * harvest_in.actual_selling_price, 2)
+    actual_profit = round(actual_revenue - harvest_in.cultivation_cost, 2)
     
-    # Update cycle values
+    # Handle dates accurately
+    if harvest_in.start_date:
+        cycle.start_date = datetime.datetime.combine(harvest_in.start_date, datetime.datetime.min.time())
+    
+    if harvest_in.harvest_date:
+        harvest_date_val = datetime.datetime.combine(harvest_in.harvest_date, datetime.datetime.min.time())
+    else:
+        harvest_date_val = datetime.datetime.utcnow()
+        
+    if cycle.start_date and harvest_date_val < cycle.start_date:
+        raise HTTPException(status_code=400, detail="Harvest date cannot be earlier than cultivation start date.")
+    
     cycle.actual_yield = harvest_in.actual_yield
     cycle.actual_selling_price = harvest_in.actual_selling_price
     cycle.cultivation_cost = harvest_in.cultivation_cost
     cycle.actual_revenue = actual_revenue
     cycle.actual_profit = actual_profit
-    cycle.fertilizer_used = harvest_in.fertilizer_used
-    cycle.disease_incidence = harvest_in.disease_incidence
+    cycle.fertilizer_used = harvest_in.fertilizer_used or "None"
+    cycle.disease_incidence = harvest_in.disease_incidence or "None"
     cycle.status = "HARVESTED"
-    cycle.harvest_date = datetime.datetime.utcnow()
+    cycle.harvest_date = harvest_date_val
     
-    # Save a record to the old CropHistory table as well to ensure compatibility with any other logic
+    # Save a record to the CropHistory table with exact farmer harvest details
     new_history = CropHistory(
         farm_id=cycle.farm_id,
         crop_name=cycle.crop_name,
@@ -507,18 +551,24 @@ def harvest_crop_cycle(
         weather_summary="Normal",
         disease_incidence=harvest_in.disease_incidence or "None",
         fertilizer_used=harvest_in.fertilizer_used or "None",
-        market_price=harvest_in.actual_selling_price
+        market_price=harvest_in.actual_selling_price,
+        harvest_date=harvest_date_val,
+        start_date=cycle.start_date
     )
     db.add(new_history)
     db.commit()
     db.refresh(cycle)
     
-    # Trigger model retraining check
-    try:
-        from ..ml.retrain_agent import retrain_agent
-        retrain_agent.check_and_retrain(db)
-    except Exception as e:
-        print(f"Retraining checker run failed: {e}")
+    # Evaluate prediction error against retraining threshold
+    expected_yield = cycle.expected_yield or 0.0
+    actual_yield = harvest_in.actual_yield
+    abs_error = abs(expected_yield - actual_yield)
+    percentage_error = (abs_error / actual_yield * 100.0) if actual_yield > 0 else 0.0
+    
+    if percentage_error > RETRAINING_ERROR_THRESHOLD:
+        print(f"[Harvest Feedback] Retraining evaluation: Prediction error is {percentage_error:.1f}% (Threshold: {RETRAINING_ERROR_THRESHOLD}%). Marked as candidate for model improvement.")
+    else:
+        print(f"[Harvest Feedback] Retraining evaluation: Prediction error is {percentage_error:.1f}% <= {RETRAINING_ERROR_THRESHOLD}%. Prediction is acceptable, no retraining triggered.")
         
     return cycle
 
@@ -539,9 +589,26 @@ def manual_model_retrain(
     current_farmer: Farmer = Depends(get_current_farmer),
     db: Session = Depends(get_db)
 ):
-    # Manual trigger of retraining check
-    from ..ml.retrain_agent import retrain_agent
-    triggered, msg = retrain_agent.check_and_retrain(db, force=True)
-    return {"triggered": triggered, "message": msg}
+    # Check completed cycles for meaningful prediction errors above threshold
+    primary_farm = db.query(Farm).filter(Farm.farmer_id == current_farmer.id).first()
+    if not primary_farm:
+        return {"triggered": False, "message": "No farm profile found."}
+        
+    completed_cycles = db.query(CropCycle).filter(CropCycle.farm_id == primary_farm.id, CropCycle.status == "HARVESTED").all()
+    candidates = [
+        c for c in completed_cycles 
+        if c.actual_yield and c.actual_yield > 0 and (abs(c.expected_yield - c.actual_yield) / c.actual_yield * 100.0) > RETRAINING_ERROR_THRESHOLD
+    ]
+    
+    if not candidates:
+        return {
+            "triggered": False, 
+            "message": f"All {len(completed_cycles)} historical crop prediction(s) are within acceptable error tolerance (<= {RETRAINING_ERROR_THRESHOLD}% error). Retraining is not required."
+        }
+    
+    return {
+        "triggered": False, 
+        "message": f"Identified {len(candidates)} candidate record(s) exceeding {RETRAINING_ERROR_THRESHOLD}% error threshold. Feedback records preserved for ML model improvement."
+    }
 
 

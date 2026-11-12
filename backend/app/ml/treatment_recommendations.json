@@ -1,0 +1,298 @@
+{
+  "leaf_blast": {
+    "disease_name": "Rice Blast (Leaf Blast)",
+    "crop": "Rice",
+    "pathogen_type": "Fungal (Magnaporthe oryzae)",
+    "severity_guidance": "High - Can cause severe yield loss.",
+    "nutrient_associations": [
+      "High or excessive nitrogen application increases susceptibility to rice blast.",
+      "Adequate silicon and potassium improve resistance."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Avoid excess nitrogen to limit disease spread; apply potassium for improved disease resistance.",
+      "nutrient": "Potassium"
+    },
+    "cultural_management": [
+      "Avoid excess nitrogen fertilizer.",
+      "Destroy crop residues after harvest.",
+      "Use resistant varieties if available."
+    ],
+    "biological_management": [
+      "Apply Pseudomonas fluorescens (20g/L) as a foliar spray."
+    ],
+    "chemical_management": [
+      "Spray Tricyclazole (0.6g/L) or Propiconazole (1ml/L) if disease severity is high."
+    ],
+    "irrigation_guidance": "Avoid prolonged drought stress, which predisposes plants to neck blast.",
+    "prevention": [
+      "Seed treatment with appropriate fungicides before sowing."
+    ],
+    "source": "Kerala Agricultural University (KAU) PoP",
+    "source_type": "Academic"
+  },
+  "leaf_blotch": {
+    "disease_name": "Rice Leaf Blotch",
+    "crop": "Rice",
+    "pathogen_type": "Fungal",
+    "severity_guidance": "Moderate - Usually occurs in later stages of crop growth.",
+    "nutrient_associations": [
+      "Potassium deficiency can make leaves more susceptible to blotch and spots."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Correct potassium deficiency to strengthen leaf cell walls.",
+      "nutrient": "Potassium"
+    },
+    "cultural_management": [
+      "Ensure balanced NPK application.",
+      "Remove heavily infected lower leaves to improve aeration."
+    ],
+    "biological_management": [
+      "Foliar spray of neem seed kernel extract (NSKE) 5%."
+    ],
+    "chemical_management": [
+      "Spray Mancozeb (2.5g/L) or Carbendazim (1g/L) during early symptom appearance."
+    ],
+    "irrigation_guidance": "Maintain consistent water levels, avoid alternate extreme drying and flooding.",
+    "prevention": [
+      "Use disease-free seeds and ensure proper field sanitation."
+    ],
+    "source": "ICAR-IIRR Guidelines",
+    "source_type": "Academic"
+  },
+  "narrow_brown": {
+    "disease_name": "Narrow Brown Leaf Spot",
+    "crop": "Rice",
+    "pathogen_type": "Fungal (Cercospora janseana)",
+    "severity_guidance": "Low to Moderate - Typically affects mature plants.",
+    "nutrient_associations": [
+      "Associated with potassium deficiency in soils."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Apply potassium to reduce severity of narrow brown leaf spot.",
+      "nutrient": "Potassium"
+    },
+    "cultural_management": [
+      "Use balanced fertilizers, especially correcting K deficiency.",
+      "Ensure proper planting density to allow air circulation."
+    ],
+    "biological_management": [
+      "Pseudomonas fluorescens root dip or foliar application."
+    ],
+    "chemical_management": [
+      "Fungicide application like Propiconazole is effective if applied at booting stage."
+    ],
+    "irrigation_guidance": "Maintain normal flooded conditions.",
+    "prevention": [
+      "Avoid late planting and use early maturing varieties."
+    ],
+    "source": "Kerala Agricultural University (KAU) PoP",
+    "source_type": "Academic"
+  },
+  "Segatoka infected": {
+    "disease_name": "Sigatoka Leaf Spot",
+    "crop": "Banana",
+    "pathogen_type": "Fungal (Mycosphaerella spp.)",
+    "severity_guidance": "High - Can severely impact fruit filling and yield.",
+    "nutrient_associations": [
+      "Potassium is heavily required by bananas; deficiency weakens leaves.",
+      "Proper nitrogen-potassium ratio is critical for resistance."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Support rapid new leaf emergence and correct potassium deficit.",
+      "nutrient": "Potassium"
+    },
+    "cultural_management": [
+      "Prune and destroy severely infected lower leaves.",
+      "Improve drainage and weed control.",
+      "Maintain proper spacing (e.g., 2m x 2m for Nendran)."
+    ],
+    "biological_management": [
+      "Foliar spray of Pseudomonas fluorescens (20g/L)."
+    ],
+    "chemical_management": [
+      "Spray Propiconazole (1ml/L) or Carbendazim (1g/L) + Mancozeb (2g/L) with a sticking agent."
+    ],
+    "irrigation_guidance": "Avoid overhead sprinkler irrigation which spreads fungal spores.",
+    "prevention": [
+      "Ensure proper field drainage during monsoons."
+    ],
+    "source": "KAU Package of Practices for Banana",
+    "source_type": "Academic"
+  },
+  "Canker Rubber Tree": {
+    "disease_name": "Patch Canker",
+    "crop": "Rubber",
+    "pathogen_type": "Fungal (Phytophthora palmivora)",
+    "severity_guidance": "High - Can destroy the tapping panel.",
+    "nutrient_associations": [
+      "Overall plant vigor requires balanced NPK. No direct cure, but healthy bark resists better."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Maintain optimal nutrition for bark regeneration.",
+      "nutrient": "General"
+    },
+    "cultural_management": [
+      "Stop tapping on affected trees.",
+      "Scrape off the affected bark tissues and burn them."
+    ],
+    "biological_management": [
+      "Apply Trichoderma-enriched compost around the base."
+    ],
+    "chemical_management": [
+      "Apply Mancozeb or Copper Oxychloride paste on the scraped panel."
+    ],
+    "irrigation_guidance": "Ensure excellent drainage; Phytophthora thrives in waterlogged conditions.",
+    "prevention": [
+      "Avoid tapping during heavy rainy days when bark is wet."
+    ],
+    "source": "Rubber Board of India",
+    "source_type": "Government/Academic"
+  },
+  "Pink Disease": {
+    "disease_name": "Pink Disease",
+    "crop": "Rubber",
+    "pathogen_type": "Fungal (Cortium salmonicolor)",
+    "severity_guidance": "High - Causes branch die-back and bark splitting.",
+    "nutrient_associations": [
+      "None specifically documented, requires direct fungicide application."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Fertilizer does not cure this disease. Follow standard schedule.",
+      "nutrient": "None"
+    },
+    "cultural_management": [
+      "Prune and burn dried/infected branches.",
+      "Regular inspection during monsoon."
+    ],
+    "biological_management": [
+      "None highly effective once established."
+    ],
+    "chemical_management": [
+      "Apply Bordeaux paste or Copper Oxychloride on affected forks/branches."
+    ],
+    "irrigation_guidance": "Normal rain-fed conditions apply.",
+    "prevention": [
+      "Prophylactic spraying of Bordeaux mixture (1%) before monsoons."
+    ],
+    "source": "Rubber Board of India",
+    "source_type": "Government/Academic"
+  },
+  "Brown BastTree Trunk": {
+    "disease_name": "Brown Bast",
+    "crop": "Rubber",
+    "pathogen_type": "Physiological / Tapping Stress",
+    "severity_guidance": "Moderate - Causes dryness of tapping panel.",
+    "nutrient_associations": [
+      "Often related to over-tapping or physiological stress rather than direct nutrient deficiency."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Provide balanced nutrition to support recovery from physiological stress.",
+      "nutrient": "General"
+    },
+    "cultural_management": [
+      "Give the tree a tapping rest for 3 to 6 months.",
+      "Reduce tapping intensity/frequency."
+    ],
+    "biological_management": [
+      "Not applicable."
+    ],
+    "chemical_management": [
+      "Not applicable. Scrape dry bark to stimulate regeneration."
+    ],
+    "irrigation_guidance": "Ensure adequate moisture during summer.",
+    "prevention": [
+      "Follow recommended tapping systems (e.g., d/2 or d/3) and avoid excessive stimulant (Ethephon) usage."
+    ],
+    "source": "Rubber Board of India",
+    "source_type": "Government/Academic"
+  },
+  "bacterial": {
+    "disease_name": "Bacterial Leaf Blight / Spot",
+    "crop": "General Crops",
+    "pathogen_type": "Bacterial (Xanthomonas spp.)",
+    "severity_guidance": "High - Can spread rapidly under high humidity.",
+    "nutrient_associations": [
+      "Excess nitrogen increases susceptibility to bacterial infections.",
+      "Adequate potassium improves cell wall strength against bacterial ingress."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Reduce nitrogen application immediately; ensure potassium is optimal.",
+      "nutrient": "Potassium"
+    },
+    "cultural_management": [
+      "Avoid overhead watering to minimize splash dispersal.",
+      "Remove and destroy infected plant parts.",
+      "Ensure proper plant spacing for aeration."
+    ],
+    "biological_management": [
+      "Apply Bacillus subtilis or Pseudomonas fluorescens formulations."
+    ],
+    "chemical_management": [
+      "Copper-based bactericides (e.g., Copper Oxychloride) or Streptocycline as per local recommendations."
+    ],
+    "irrigation_guidance": "Use drip irrigation instead of sprinklers.",
+    "prevention": [
+      "Use disease-free certified seeds."
+    ],
+    "source": "ICAR General Guidelines",
+    "source_type": "Academic"
+  },
+  "brown_spot": {
+    "disease_name": "Brown Spot",
+    "crop": "General Crops",
+    "pathogen_type": "Fungal",
+    "severity_guidance": "Moderate - Often indicates poor soil health or stress.",
+    "nutrient_associations": [
+      "Heavily associated with deficient soils (low nitrogen, potassium, or micronutrients like silicon/zinc)."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Address overall nutritional stress, specifically checking N and K levels.",
+      "nutrient": "General"
+    },
+    "cultural_management": [
+      "Improve overall soil health.",
+      "Eliminate weed hosts."
+    ],
+    "biological_management": [
+      "Foliar sprays of beneficial microbes."
+    ],
+    "chemical_management": [
+      "Mancozeb or Zineb spray if severity warrants chemical control."
+    ],
+    "irrigation_guidance": "Avoid water stress.",
+    "prevention": [
+      "Maintain optimal soil fertility and organic matter."
+    ],
+    "source": "Agricultural Ext. Manuals",
+    "source_type": "Academic"
+  },
+  "rust": {
+    "disease_name": "Rust Disease",
+    "crop": "General Crops",
+    "pathogen_type": "Fungal (Puccinia spp.)",
+    "severity_guidance": "Moderate to High - Rapid airborne spread.",
+    "nutrient_associations": [
+      "High nitrogen combined with low potassium increases rust susceptibility."
+    ],
+    "fertilizer_guidance": {
+      "purpose": "Balance NPK ratio, focusing on adequate Potassium.",
+      "nutrient": "Potassium"
+    },
+    "cultural_management": [
+      "Remove alternate hosts.",
+      "Adjust planting dates to avoid peak rust seasons if applicable."
+    ],
+    "biological_management": [
+      "Apply bio-fungicides like Trichoderma viride."
+    ],
+    "chemical_management": [
+      "Spray Propiconazole or Hexaconazole at early symptom appearance."
+    ],
+    "irrigation_guidance": "Avoid late afternoon/evening irrigation that leaves foliage wet overnight.",
+    "prevention": [
+      "Use rust-resistant cultivars."
+    ],
+    "source": "State Agricultural Department",
+    "source_type": "Government"
+  }
+}

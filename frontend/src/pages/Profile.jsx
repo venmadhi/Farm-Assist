@@ -1,12 +1,119 @@
 import React, { useState, useEffect } from 'react';
-import { User, MapPin, Layers, Droplet, Wind, Sparkles, Save, CheckCircle2, History } from 'lucide-react';
-import { twinAPI } from '../utils/api';
+import { User, Layers, Save, CheckCircle2, History, Sprout, TrendingUp, Calendar, AlertCircle, Loader2, MessageSquareCode, ThumbsUp, ThumbsDown } from 'lucide-react';
+import { twinAPI, chatbotAPI } from '../utils/api';
+
+const getCropEmoji = (crop) => {
+  if (!crop) return '🌱';
+  const c = crop.toLowerCase();
+  if (c.includes('rice') || c.includes('paddy')) return '🌾';
+  if (c.includes('coconut')) return '🥥';
+  if (c.includes('banana')) return '🍌';
+  if (c.includes('pepper')) return '🌶️';
+  if (c.includes('rubber')) return '🌳';
+  if (c.includes('cardamom')) return '🌱';
+  if (c.includes('coffee')) return '☕';
+  if (c.includes('tea')) return '🍵';
+  if (c.includes('tomato')) return '🍅';
+  if (c.includes('mango')) return '🥭';
+  return '🌱';
+};
+
+const StatusBadge = ({ status }) => {
+  const s = (status || '').toUpperCase();
+  if (s === 'ACTIVE') {
+    return (
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-green-50 text-green-700 border border-green-200 uppercase tracking-wide">
+        <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-pulse inline-block" />
+        Active
+      </span>
+    );
+  }
+  if (s === 'HARVESTED') {
+    return (
+      <span className="inline-flex items-center gap-1 px-2 py-0.5 rounded-full text-[9px] font-bold bg-blue-50 text-blue-700 border border-blue-200 uppercase tracking-wide">
+        ✓ Harvested
+      </span>
+    );
+  }
+  return (
+    <span className="inline-flex items-center px-2 py-0.5 rounded-full text-[9px] font-bold bg-slate-50 text-slate-600 border border-slate-200 uppercase tracking-wide">
+      {status}
+    </span>
+  );
+};
+
+const formatDate = (dateStr) => {
+  if (!dateStr) return 'Not recorded';
+  try {
+    return new Date(dateStr).toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' });
+  } catch {
+    return dateStr;
+  }
+};
+
+function CycleCard({ cycle }) {
+  const isActive = cycle.status === 'ACTIVE';
+  return (
+    <div className={`border rounded-lg p-4 space-y-3 transition-colors ${isActive ? 'border-green-200 bg-green-50/40' : 'border-slate-100 bg-slate-50/30'}`}>
+      <div className="flex items-start justify-between gap-2">
+        <div className="flex items-center gap-2">
+          <span className="text-xl">{getCropEmoji(cycle.crop_name)}</span>
+          <div>
+            <p className="font-bold text-slate-800 text-xs capitalize">{cycle.crop_name}</p>
+            <p className="text-[10px] text-slate-500">{cycle.season} · {cycle.year}</p>
+          </div>
+        </div>
+        <StatusBadge status={cycle.status} />
+      </div>
+      <div className="grid grid-cols-2 gap-x-4 gap-y-1 text-[10px]">
+        <div className="flex items-center gap-1 text-slate-500">
+          <Calendar className="w-3 h-3" />
+          <span>Started: <span className="text-slate-700 font-semibold">{formatDate(cycle.start_date)}</span></span>
+        </div>
+        <div className="flex items-center gap-1 text-slate-500">
+          <Layers className="w-3 h-3" />
+          <span>Area: <span className="text-slate-700 font-semibold">{cycle.area_acres} acre{cycle.area_acres !== 1 ? 's' : ''}</span></span>
+        </div>
+        {cycle.harvest_date && (
+          <div className="flex items-center gap-1 text-slate-500">
+            <CheckCircle2 className="w-3 h-3 text-blue-500" />
+            <span>Harvested: <span className="text-slate-700 font-semibold">{formatDate(cycle.harvest_date)}</span></span>
+          </div>
+        )}
+        <div className="flex items-center gap-1 text-slate-500">
+          <Sprout className="w-3 h-3" />
+          <span>Yield: <span className="text-slate-700 font-semibold">
+            {cycle.actual_yield != null ? `${cycle.actual_yield.toLocaleString()} kg` : cycle.expected_yield != null ? `~${cycle.expected_yield.toLocaleString()} kg (est.)` : 'Not recorded'}
+          </span></span>
+        </div>
+        <div className="flex items-center gap-1 text-slate-500">
+          <TrendingUp className="w-3 h-3" />
+          <span>Profit: <span className="text-slate-700 font-semibold">
+            {cycle.actual_profit != null ? `₹${cycle.actual_profit.toLocaleString()}` : cycle.expected_profit != null ? `~₹${cycle.expected_profit.toLocaleString()} (est.)` : 'Not recorded'}
+          </span></span>
+        </div>
+        {cycle.fertilizer_used && cycle.fertilizer_used !== 'None' && (
+          <div className="col-span-2 text-slate-500">Fertilizer: <span className="text-slate-700 font-semibold">{cycle.fertilizer_used}</span></div>
+        )}
+      </div>
+    </div>
+  );
+}
 
 export default function Profile() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState('');
   const [success, setSuccess] = useState('');
   const [profileData, setProfileData] = useState(null);
+
+  // Separate state for persistent cultivation history from /profile/crop-cycles
+  const [cyclesLoading, setCyclesLoading] = useState(true);
+  const [cyclesError, setCyclesError] = useState('');
+  const [allCycles, setAllCycles] = useState([]);
+
+  const [feedbackLoading, setFeedbackLoading] = useState(true);
+  const [feedbackError, setFeedbackError] = useState('');
+  const [feedbackHistory, setFeedbackHistory] = useState([]);
   
   const [formData, setFormData] = useState({
     farm_name: 'Primary Farm',
@@ -21,6 +128,8 @@ export default function Profile() {
 
   useEffect(() => {
     fetchProfileDetails();
+    fetchCultivationHistory();
+    fetchFeedbackHistory();
   }, []);
 
   const fetchProfileDetails = async () => {
@@ -36,6 +145,46 @@ export default function Profile() {
       setError('Failed to fetch profile settings.');
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Fetch ALL crop cycles (ACTIVE + HARVESTED) from the persistent database
+  // Uses GET /api/v1/profile/crop-cycles — authenticated, user-scoped
+  const fetchCultivationHistory = async () => {
+    try {
+      setCyclesLoading(true);
+      setCyclesError('');
+      const cycles = await twinAPI.getCropCycles();
+      setAllCycles(Array.isArray(cycles) ? cycles : []);
+    } catch (err) {
+      console.error('Failed to load cultivation history:', err);
+      if (err.response?.status === 401 || err.response?.status === 403) {
+        setCyclesError('Authentication error. Please log in again.');
+      } else if (err.response?.status === 404) {
+        // No farm yet — genuinely empty, not an error
+        setAllCycles([]);
+      } else {
+        setCyclesError('Unable to load cultivation history. Please try again.');
+      }
+    } finally {
+      setCyclesLoading(false);
+    }
+  };
+
+  const fetchFeedbackHistory = async () => {
+    try {
+      setFeedbackLoading(true);
+      setFeedbackError('');
+      // Need to import chatbotAPI from api.js if not already imported, but let's assume it or we can import it.
+      // Wait, api.js exports chatbotAPI. Let's check imports at the top of Profile.jsx.
+      // Assuming we need to import it, I'll add the import first. Actually, I can use a direct call if imported.
+      const history = await chatbotAPI.getFeedbackHistory();
+      setFeedbackHistory(Array.isArray(history) ? history : []);
+    } catch (err) {
+      console.error('Failed to load feedback history:', err);
+      setFeedbackError('Unable to load chatbot feedback history.');
+    } finally {
+      setFeedbackLoading(false);
     }
   };
 
@@ -225,42 +374,172 @@ export default function Profile() {
             </form>
           </div>
 
-          {/* Historical Crops logged */}
+          {/* ============================================================
+              CULTIVATION HISTORY
+              Source: GET /api/v1/profile/crop-cycles (persistent database)
+              Shows ALL cycles: ACTIVE first, then HARVESTED, sorted by start_date desc.
+              Previous crops are NEVER overwritten — each cycle is a separate DB record.
+              ============================================================ */}
           <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm">
-            <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5">
-              <History className="w-4 h-4 text-slate-400" />
-              Historical Harvest Logs
-            </h4>
-            
-            {profileData?.crop_history?.length === 0 ? (
-              <p className="text-xs text-slate-500">No historical crops logged yet.</p>
-            ) : (
-              <div className="border border-slate-100 rounded-lg overflow-hidden">
-                <table className="w-full text-xs text-left">
-                  <thead className="bg-slate-50 text-slate-500 font-bold uppercase tracking-wider border-b border-slate-100">
-                    <tr>
-                      <th className="px-4 py-2">Crop</th>
-                      <th className="px-4 py-2">Yield</th>
-                      <th className="px-4 py-2">Revenue</th>
-                      <th className="px-4 py-2">Season</th>
-                      <th className="px-4 py-2">Year</th>
-                    </tr>
-                  </thead>
-                  <tbody className="divide-y divide-slate-100 text-slate-700">
-                    {profileData?.crop_history?.map((h, idx) => (
-                      <tr key={idx} className="hover:bg-slate-50/50">
-                        <td className="px-4 py-2 font-semibold capitalize">{h.crop}</td>
-                        <td className="px-4 py-2">{h.yield.toLocaleString()} kg</td>
-                        <td className="px-4 py-2 text-green-650 font-medium">₹{h.revenue ? h.revenue.toLocaleString() : 'N/A'}</td>
-                        <td className="px-4 py-2">{h.season}</td>
-                        <td className="px-4 py-2">{h.year}</td>
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
+            <div className="flex items-center justify-between">
+              <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+                <History className="w-4 h-4 text-slate-400" />
+                Cultivation History
+              </h4>
+              {!cyclesLoading && !cyclesError && (
+                <button
+                  type="button"
+                  onClick={fetchCultivationHistory}
+                  className="text-[10px] text-slate-400 hover:text-green-600 font-semibold transition-colors"
+                >
+                  Refresh
+                </button>
+              )}
+            </div>
+
+            {/* Loading state — shown while fetching from backend */}
+            {cyclesLoading && (
+              <div className="flex items-center gap-2 text-xs text-slate-500 py-4">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Loading cultivation history...
+              </div>
+            )}
+
+            {/* Error state — clearly distinct from empty history */}
+            {!cyclesLoading && cyclesError && (
+              <div className="flex items-start gap-2 bg-rose-50 border border-rose-200 text-rose-700 text-xs px-4 py-3 rounded-lg">
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold">Error loading history</p>
+                  <p className="text-rose-600 mt-0.5">{cyclesError}</p>
+                  <button
+                    type="button"
+                    onClick={fetchCultivationHistory}
+                    className="mt-2 text-rose-700 font-bold underline underline-offset-2"
+                  >
+                    Try again
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {/* Empty state — only shown after a successful fetch with zero records */}
+            {!cyclesLoading && !cyclesError && allCycles.length === 0 && (
+              <div className="text-center py-8 space-y-2">
+                <Sprout className="w-8 h-8 text-slate-300 mx-auto" />
+                <p className="text-xs text-slate-500 font-medium">No cultivation history yet.</p>
+                <p className="text-[10px] text-slate-400">
+                  Start a farming cycle from the Crop Intelligence page to begin logging history.
+                </p>
+              </div>
+            )}
+
+            {/* Active cycles — shown prominently at top */}
+            {!cyclesLoading && !cyclesError && allCycles.filter(c => c.status === 'ACTIVE').length > 0 && (
+              <div className="space-y-2">
+                <p className="text-[10px] font-bold text-green-700 uppercase tracking-wider">
+                  Current Active Cycle{allCycles.filter(c => c.status === 'ACTIVE').length > 1 ? 's' : ''}
+                </p>
+                {allCycles
+                  .filter(c => c.status === 'ACTIVE')
+                  .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
+                  .map(cycle => <CycleCard key={cycle.id} cycle={cycle} />)
+                }
+              </div>
+            )}
+
+            {/* All previously completed / harvested cycles */}
+            {!cyclesLoading && !cyclesError && allCycles.filter(c => c.status !== 'ACTIVE').length > 0 && (
+              <div className="space-y-2">
+                {allCycles.filter(c => c.status === 'ACTIVE').length > 0 && (
+                  <div className="border-t border-slate-100 pt-3">
+                    <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider mb-2">Previous Cultivation Cycles</p>
+                  </div>
+                )}
+                {allCycles
+                  .filter(c => c.status !== 'ACTIVE')
+                  .sort((a, b) => new Date(b.start_date) - new Date(a.start_date))
+                  .map(cycle => <CycleCard key={cycle.id} cycle={cycle} />)
+                }
               </div>
             )}
           </div>
+
+          {/* Chatbot Feedback History */}
+          <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm">
+            <div className="flex items-center justify-between">
+              <h4 className="font-bold text-slate-800 text-sm flex items-center gap-1.5">
+                <MessageSquareCode className="w-4 h-4 text-slate-400" />
+                Chatbot Feedback History
+              </h4>
+              {!feedbackLoading && !feedbackError && (
+                <button
+                  type="button"
+                  onClick={fetchFeedbackHistory}
+                  className="text-[10px] text-slate-400 hover:text-green-600 font-semibold transition-colors"
+                >
+                  Refresh
+                </button>
+              )}
+            </div>
+
+            {feedbackLoading && (
+              <div className="flex items-center gap-2 text-xs text-slate-500 py-4">
+                <Loader2 className="w-4 h-4 animate-spin" />
+                Loading feedback history...
+              </div>
+            )}
+
+            {!feedbackLoading && feedbackError && (
+              <div className="flex items-start gap-2 bg-rose-50 border border-rose-200 text-rose-700 text-xs px-4 py-3 rounded-lg">
+                <AlertCircle className="w-4 h-4 shrink-0 mt-0.5" />
+                <div>
+                  <p className="font-semibold">Error loading feedback</p>
+                  <p className="text-rose-600 mt-0.5">{feedbackError}</p>
+                  <button
+                    type="button"
+                    onClick={fetchFeedbackHistory}
+                    className="mt-2 text-rose-700 font-bold underline underline-offset-2"
+                  >
+                    Try again
+                  </button>
+                </div>
+              </div>
+            )}
+
+            {!feedbackLoading && !feedbackError && feedbackHistory.length === 0 && (
+              <div className="text-center py-8 space-y-2">
+                <MessageSquareCode className="w-8 h-8 text-slate-300 mx-auto" />
+                <p className="text-xs text-slate-500 font-medium">No feedback provided yet.</p>
+                <p className="text-[10px] text-slate-400">
+                  Provide feedback to the AI assistant to help it improve.
+                </p>
+              </div>
+            )}
+
+            {!feedbackLoading && !feedbackError && feedbackHistory.length > 0 && (
+              <div className="space-y-3 max-h-96 overflow-y-auto pr-2">
+                {feedbackHistory.map(feedback => (
+                  <div key={feedback.id} className="border border-slate-100 bg-slate-50 rounded-lg p-4 space-y-2">
+                    <div className="flex items-start justify-between gap-2">
+                      <p className="text-xs font-bold text-slate-800 line-clamp-2">Q: {feedback.query}</p>
+                      {feedback.rating === 1 ? (
+                        <ThumbsUp className="w-4 h-4 text-green-600 shrink-0" />
+                      ) : (
+                        <ThumbsDown className="w-4 h-4 text-rose-600 shrink-0" />
+                      )}
+                    </div>
+                    <p className="text-[10px] text-slate-600 line-clamp-3">A: {feedback.response}</p>
+                    <div className="flex items-center gap-3 text-[9px] text-slate-400 font-semibold pt-2 border-t border-slate-200 mt-2">
+                      <span>{new Date(feedback.created_at).toLocaleDateString()}</span>
+                      {feedback.intent && <span>Intent: {feedback.intent}</span>}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+
         </div>
 
       </div>

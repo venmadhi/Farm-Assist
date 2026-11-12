@@ -9,7 +9,6 @@ sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), '..')))
 from app.ml.crop_agent import crop_agent
 from app.ml.disease_agent import disease_agent
 from app.ml.fertilizer_agent import fertilizer_agent
-from app.knowledge_base.rag_engine import rag_engine
 
 class TestAgriGenieAgents(unittest.TestCase):
     
@@ -123,16 +122,19 @@ class TestAgriGenieAgents(unittest.TestCase):
 
     def test_rag_engine_retrieval(self):
         print("\nTesting Bilingual RAG Engine...")
-        # Test search retrieval matching keywords
-        article, score = rag_engine.retrieve_context("കൊമ്പൻ ചെല്ലി")
-        self.assertIsNotNone(article)
-        self.assertEqual(article["crop"], "coconut")
-        self.assertGreater(score, 1.0)
+        from app.chatbot.rag_engine import rag_engine
+        
+        # Test semantic search retrieval
+        res = rag_engine.process_query("കൊമ്പൻ ചെല്ലി")
+        self.assertIsNotNone(res["kb_context"])
+        self.assertEqual(res["intent"], "PEST_MANAGEMENT")
+        self.assertGreater(res["retrieval_score"], 0.3)
         
         # Test response generation offline template
-        response = rag_engine.generate_response("How to make Jeevamrutham?")
-        self.assertIn("Jeevamrutham", response["response"])
-        self.assertEqual(response["matched_topic"], "Organic Soil Improvement - Jeevamrutham Preparation")
+        from app.chatbot.response_generator import response_generator
+        res = rag_engine.process_query("Is neem oil effective against whiteflies?")
+        response = response_generator.generate_response(res)
+        self.assertIn("neem", response.lower())
         print("-> RAG Engine Success: Retrieved matched localized context.")
 
 if __name__ == '__main__':

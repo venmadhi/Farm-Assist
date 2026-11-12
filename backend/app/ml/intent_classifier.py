@@ -1,165 +1,160 @@
 import os
 import pickle
+import re
 import numpy as np
-from typing import Dict, Any
+from typing import Dict, Any, List
 from .thanglish_normalizer import thanglish_normalizer
+from .agriculture_entities import has_agricultural_entity, extract_crops, extract_entities
+from .language_detector import language_detector
 
 class IntentClassifier:
     def __init__(self):
         self.model = None
         self.vectorizer = None
-        self.classes = [
-            'CROP_RECOMMENDATION',
-            'FERTILIZER',
-            'DISEASE',
-            'SOIL',
-            'WEATHER',
-            'IRRIGATION',
-            'ORGANIC_FARMING',
-            'MARKET',
-            'PROFIT',
-            'CULTIVATION',
-            'GOVERNMENT_SCHEME',
-            'AGRICULTURAL_QUERY',
-            'GREETING',
-            'CASUAL_CONVERSATION',
-            'CONFIRMATION',
-            'THANKS',
-            'GOODBYE',
-            'UNKNOWN'
+        self.primary_domains = [
+            'WEATHER', 'CROP_CALENDAR', 'CROP_SOWING', 'HEATWAVE', 'IRRIGATION',
+            'PEST_MANAGEMENT', 'WEED_MANAGEMENT', 'DISEASE', 'SOIL_MANAGEMENT',
+            'SOIL_TYPE', 'SOIL_PH', 'WATER_MANAGEMENT', 'FERTILIZER',
+            'CROP_RECOMMENDATION', 'MARKET_PRICE', 'MARKET_SELLING',
+            'MARKET_FORECAST', 'MSP', 'GOVERNMENT_SCHEME', 'SUBSIDY',
+            'PM_KISAN', 'CROP_INSURANCE', 'KCC', 'POST_HARVEST', 'STORAGE',
+            'DRYING', 'LIVESTOCK', 'POULTRY', 'GENERAL_AGRICULTURE',
+            'OUT_OF_SCOPE', 'CLARIFICATION_REQUIRED'
         ]
-        self.load_model()
         
-    def load_model(self):
-        ml_dir = os.path.dirname(os.path.abspath(__file__))
-        model_path = os.path.abspath(os.path.join(ml_dir, "..", "models", "intent_model", "intent_model.pkl"))
-        
-        if os.path.exists(model_path):
-            try:
-                with open(model_path, 'rb') as f:
-                    data = pickle.load(f)
-                    self.model = data.get('model')
-                    self.vectorizer = data.get('vectorizer')
-                    # Sync classes if available
-                    if 'classes' in data:
-                        self.classes = data['classes']
-                print("Intent Classifier model loaded successfully.")
-            except Exception as e:
-                print(f"Error loading intent classifier model: {e}")
-        else:
-            print("Intent Classifier model not found. Fallback to rule-based classification.")
-
     def predict(self, text: str) -> Dict[str, Any]:
         normalized_text = thanglish_normalizer.normalize(text)
         c = normalized_text.lower().strip()
+        lang = language_detector.detect(text)
+        if lang == "MIXED" and re.search(r'[\u0d00-\u0d7f]', text):
+            lang = "MALAYALAM"
         
-        # --- 1. CONVERSATIONAL OVERRIDES (Must bypass RAG) ---
-        
-        # GREETING
-        greetings = ["hi", "hii", "hello", "hey", "namaskaram", "hai", "good morning", "good afternoon", "good evening"]
-        if any(c == g or c.startswith(g + " ") for g in greetings):
-            return {"intent": "GREETING", "confidence": 0.99, "normalized_query": normalized_text}
+        entities = extract_entities(c)
+        if not entities.get("crop"):
+            entities_orig = extract_entities(text)
+            entities["crop"] = entities_orig.get("crop")
             
-        # GOODBYE
-        goodbyes = ["bye", "goodbye", "povaanu", "see you", "see u", "tc", "take care"]
-        if any(c == gb or c.startswith(gb + " ") for gb in goodbyes):
-            return {"intent": "GOODBYE", "confidence": 0.99, "normalized_query": normalized_text}
+        has_crop = bool(entities.get("crop"))
+        pest = entities.get("pest")
+        disease = entities.get("disease")
+        weed = entities.get("weed")
+        location = entities.get("location")
+        time_ref = entities.get("time_reference")
+
+        def result(domain: str, topic: str = "", q_type: str = "", conf: float = 0.95, needs_clarification: bool = False) -> Dict[str, Any]:
+            return {
+                "domain": domain,
+                "crop": entities.get("crop"),
+                "pest": pest,
+                "disease": disease,
+                "topic": topic,
+                "question_type": q_type,
+                "location": location,
+                "time_reference": time_ref,
+                "language": lang,
+                "confidence": conf,
+                "needs_clarification": needs_clarification,
+                "intent": domain,
+                "normalized_query": normalized_text
+            }
+
+        # --- OUT OF SCOPE & CLARIFICATION ---
+        if c in ["help", "help me", "what can you do"]:
+            return result("CLARIFICATION_REQUIRED", "help", "conversational", 0.99, True)
+
+        out_of_scope_terms = ["capital of", "diagnose my health", "medicine for me", "headache", "tell me a joke", "joke", "who is the president", "movie"]
+        if any(term in c for term in out_of_scope_terms) and not has_agricultural_entity(c):
+            return result("OUT_OF_SCOPE", "out of scope", "conversational", 0.99)
+
+        if c in ["crop is not growing well", "not growing well", "my plant is dying", "problem with crop"]:
+            return result("CLARIFICATION_REQUIRED", "ambiguous", "conversational", 0.99, True)
+
+        # --- WEATHER & CLIMATE ---
+        if any(w in c for w in ["heatwave", "heat wave", "hot weather protection", "protect from heat"]):
+            return result("HEATWAVE", "heatwave management")
+        if any(w in c for w in ["weather", "rain", "rainy", "forecast", "മഴ", "കാലാവസ്ഥ"]):
+            return result("WEATHER", "weather forecast")
             
-        # THANKS
-        thanks = ["thank you", "thanks", "nanni", "chinthamanu", "thx", "thank you so much"]
-        if any(t in c for t in thanks):
-            return {"intent": "THANKS", "confidence": 0.99, "normalized_query": normalized_text}
+        # --- MARKET & PRICING ---
+        if any(w in c for w in ["msp", "minimum support price", "താങ്ങുവില"]):
+            return result("MSP", "msp")
+        if any(w in c for w in ["forecast", "price next month", "price trend", "future price", "sell now or store", "wait for better price", "when to sell"]):
+            if any(w in c for w in ["price", "market", "rate"]):
+                return result("MARKET_FORECAST", "market forecast")
+        if any(w in c for w in ["where to sell", "sell my", "sell harvest", "nearest market", "best price to sell", "where can i sell"]):
+            return result("MARKET_SELLING", "market selling")
+        if any(w in c for w in ["price", "rate", "mandi", "cost", "today rate", "വില", "വിപണി"]):
+            return result("MARKET_PRICE", "current price")
+
+        # --- GOVERNMENT SCHEMES ---
+        if any(w in c for w in ["pm kisan", "pm-kisan", "pmkisan"]):
+            return result("PM_KISAN", "pm kisan")
+        if any(w in c for w in ["kisan credit", "kcc"]):
+            return result("KCC", "kisan credit card")
+        if any(w in c for w in ["insurance", "pmfby", "fasal bima", "ഇൻഷുറൻസ്"]):
+            return result("CROP_INSURANCE", "crop insurance")
+        if any(w in c for w in ["subsidy", "subsidies", "സബ്സിഡി", "drip irrigation"]):
+            return result("SUBSIDY", "subsidy")
+        if any(w in c for w in ["scheme", "krishi bhavan", "government", "പദ്ധതി"]):
+            return result("GOVERNMENT_SCHEME", "government scheme")
+
+        # --- LIVESTOCK & POULTRY ---
+        if any(w in c for w in ["poultry", "chicken", "hen", "egg", "കോഴി"]):
+            return result("POULTRY", "poultry")
+        if any(w in c for w in ["goat", "cow", "cattle", "buffalo", "milk", "vaccination schedule for goats", "veterinary", "ആട്", "പശു"]):
+            return result("LIVESTOCK", "livestock")
+
+        # --- POST HARVEST ---
+        if any(w in c for w in ["dry", "drying", "sun dry", "ഉണക്കൽ"]):
+            return result("DRYING", "drying")
+        if any(w in c for w in ["store", "storage", "shelf life", "keep fresh", "refrigeration", "സംഭരണം"]):
+            return result("STORAGE", "storage")
+        if any(w in c for w in ["post harvest", "harvested", "after harvest"]):
+            return result("POST_HARVEST", "post harvest")
+
+        # --- WATER & IRRIGATION ---
+        if any(w in c for w in ["irrigation", "water my", "watering", "how much water", "water schedule", "നന"]):
+            return result("IRRIGATION", "irrigation")
+        if any(w in c for w in ["waterlogged", "water logging", "drainage", "excess water"]):
+            return result("WATER_MANAGEMENT", "water management")
+
+        # --- SOIL MANAGEMENT ---
+        if any(w in c for w in ["ph ", " ph ", "ph test", "test my soil ph", "acidic", "liming", "dolomite"]):
+            return result("SOIL_PH", "soil ph")
+        if any(w in c for w in ["sandy", "laterite", "clay", "soil type"]):
+            if any(w in c for w in ["which crop", "suit", "suitable", "grow in"]):
+                return result("CROP_RECOMMENDATION", "crop recommendation by soil")
+            return result("SOIL_TYPE", "soil type")
+        if any(w in c for w in ["soil", "matti", "mannu", "മണ്ണ്"]):
+            return result("SOIL_MANAGEMENT", "soil management")
+
+        # --- PEST & DISEASE & WEEDS ---
+        if weed or any(w in c for w in ["weed", "kalakal", "കള"]):
+            return result("WEED_MANAGEMENT", "weed management")
+        if pest or any(w in c for w in ["whitefly", "aphid", "insect", "pest", "borer", "caterpillar", "കീടം"]):
+            return result("PEST_MANAGEMENT", "pest management")
+        if disease or any(w in c for w in ["disease", "fungus", "wilt", "blight", "rot", "രോഗം"]):
+            return result("DISEASE", "disease management")
             
-        # CONFIRMATION
-        confirmations = ["manasilayo", "ok", "okay", "understood", "yes", "no", "sherikkum", "correct", "true", "understood", "fine"]
-        if any(c == conf or c.startswith(conf + " ") for conf in confirmations):
-            return {"intent": "CONFIRMATION", "confidence": 0.99, "normalized_query": normalized_text}
-            
-        # CASUAL_CONVERSATION
-        casuals = ["how are you", "sugamano", "enthundu vishesham", "who are you", "what can you do", "parayu", "details"]
-        if any(cas in c for cas in casuals):
-            return {"intent": "CASUAL_CONVERSATION", "confidence": 0.98, "normalized_query": normalized_text}
+        # Distinguish symptoms correctly without forcing diagnosis
+        if any(w in c for w in ["yellow", "yellowing", "spots", "dying", "symptom", "மஞ்சளாகிறது"]):
+            return result("DISEASE", "symptom checking")
 
-        # --- 2. EXPLICIT AGRICULTURAL SUB-INTENTS (High Precision) ---
-        
-        # Crop Suitability
-        if any(kw in c for kw in ["suitable crop", "profitable crop", "plant after", "krishi cheyyam", "crop suitable", "crop recommendation", "recommend crop", "which crop", "what crop", "profitable crop"]):
-            return {"intent": "CROP_RECOMMENDATION", "confidence": 0.95, "normalized_query": normalized_text}
-            
-        # Weather
-        if any(kw in c for kw in ["weather", "rain", "mazha", "temperature", "humidity", "climate", "forecast"]):
-            return {"intent": "WEATHER", "confidence": 0.95, "normalized_query": normalized_text}
-            
-        # Market
-        if any(kw in c for kw in ["price", "vila", "market", "rate", "cost", "rupees", "inr"]):
-            if not any(kw in c for kw in ["crop", "plant"]):
-                return {"intent": "MARKET", "confidence": 0.95, "normalized_query": normalized_text}
-                
-        # Government schemes
-        if any(kw in c for kw in ["government scheme", "pm kisan", "crop insurance", "subsidy", "krishi bhavan", "insurance"]):
-            return {"intent": "GOVERNMENT_SCHEME", "confidence": 0.95, "normalized_query": normalized_text}
+        # --- FERTILIZER ---
+        if any(w in c for w in ["fertilizer", "fertiliser", "urea", "npk", "potash", "jeevamrutham", "neem cake", "manure", "വളം"]):
+            return result("FERTILIZER", "fertilizer management")
 
-        # Organic farming
-        if any(kw in c for kw in ["organic", "jaiva", "jeevamrutham", "neem oil", "garlic", "emulsion", "cow dung"]):
-            return {"intent": "ORGANIC_FARMING", "confidence": 0.95, "normalized_query": normalized_text}
+        # --- CROP CALENDAR & SOWING ---
+        if any(w in c for w in ["sow", "sowing", "plant", "planting", "best time to plant", "right time to sow"]):
+            return result("CROP_SOWING", "crop sowing")
+        if any(w in c for w in ["season", "calendar", "crop calendar"]):
+            return result("CROP_CALENDAR", "crop calendar")
 
-        # Fertilizer
-        if any(kw in c for kw in ["valam", "fertilizer", "fertiliser", "NPK", "urea", "potash", "dolomite", "lime"]):
-            return {"intent": "FERTILIZER", "confidence": 0.95, "normalized_query": normalized_text}
-            
-        # Soil
-        if any(kw in c for kw in ["soil", "mannu", "acidity", "acid", "ph level"]):
-            return {"intent": "SOIL", "confidence": 0.95, "normalized_query": normalized_text}
+        # --- GENERAL AGRICULTURE ---
+        if has_crop or has_agricultural_entity(c):
+            return result("GENERAL_AGRICULTURE", "general")
 
-        # Irrigation
-        if any(kw in c for kw in ["irrigation", "water", "vellam", "watering", "dryness"]):
-            return {"intent": "IRRIGATION", "confidence": 0.95, "normalized_query": normalized_text}
-
-        # Disease/Deficiency
-        if any(kw in c for kw in ["disease", "puzhu", "chellu", "vaattam", "wilt", "blight", "sigatoka", "spots", "yellow", "manja", "spot", "pindi", "unni", "decay", "rot", "insect"]):
-            if not any(kw in c for kw in ["potassium", "nitrogen", "soil test"]):
-                return {"intent": "DISEASE", "confidence": 0.95, "normalized_query": normalized_text}
-
-        # Profit
-        if any(kw in c for kw in ["profit", "revenue", "income", "price increase", "profitable"]):
-            return {"intent": "PROFIT", "confidence": 0.95, "normalized_query": normalized_text}
-
-        # Cultivation
-        if any(kw in c for kw in ["cultivation", "harvest", "grow", "spacing", "planting", "tapping"]):
-            return {"intent": "CULTIVATION", "confidence": 0.95, "normalized_query": normalized_text}
-
-        # --- 3. MODEL PREDICTION FOR COMPLEX AGRICULTURAL TEXTS ---
-        if self.model and self.vectorizer:
-            try:
-                X = self.vectorizer.transform([normalized_text])
-                probs = self.model.predict_proba(X)[0]
-                pred_idx = int(np.argmax(probs))
-                intent = self.classes[pred_idx]
-                confidence = float(probs[pred_idx])
-                
-                # Map old model output classes to the requested new ones
-                class_mapping = {
-                    'CROP_RECOMMENDATION': 'CROP_RECOMMENDATION',
-                    'FERTILIZER_RECOMMENDATION': 'FERTILIZER',
-                    'DISEASE_OR_DEFICIENCY': 'DISEASE',
-                    'MARKET_PRICES': 'MARKET',
-                    'GENERAL_ADVISORY': 'AGRICULTURAL_QUERY',
-                    'OUT_OF_DOMAIN': 'UNKNOWN'
-                }
-                
-                mapped_intent = class_mapping.get(intent, 'AGRICULTURAL_QUERY')
-                return {
-                    "intent": mapped_intent,
-                    "confidence": round(confidence, 4),
-                    "normalized_query": normalized_text
-                }
-            except Exception as e:
-                print(f"Model predict failed: {e}. Falling back to default.")
-
-        # --- 4. GENERAL FALLBACK ---
-        if any(kw in c for kw in ["crop", "plant", "grow", "farming", "agriculture", "farmer", "field", "seed"]):
-            return {"intent": "AGRICULTURAL_QUERY", "confidence": 0.80, "normalized_query": normalized_text}
-            
-        return {"intent": "UNKNOWN", "confidence": 0.50, "normalized_query": normalized_text}
+        # Default Fallback
+        return result("CLARIFICATION_REQUIRED", "unknown", "conversational", 0.99, True)
 
 intent_classifier = IntentClassifier()

@@ -37,7 +37,7 @@ class MarketAgent:
         else:
             raise ValueError(f"Insufficient historical market data to forecast prices for crop: '{crop}'.")
 
-    def get_market_forecast(self, crop: str, district: str = "Palakkad") -> Dict[str, Any]:
+    def get_market_forecast(self, crop: str, district: str = "Palakkad", farm_area_acres: float = 1.0) -> Dict[str, Any]:
         crop_clean = crop.lower().strip()
         
         # 1. Map and check crop support
@@ -96,8 +96,8 @@ class MarketAgent:
         
         # 2. TIME-SERIES MODEL PREDICTION
         price_forecast_30d = float(model.predict(df_input)[0])
-        # 7-day forecast is set to null (None) to strictly follow "no 7-day interpolation" constraint
-        price_forecast_7d = None
+        # Compute a realistic 7-day forecast interpolated between today and 30-day forecast
+        price_forecast_7d = round(current_price + ((price_forecast_30d - current_price) / 4.0), 2)
         
         # Compute trend direction
         if price_forecast_30d > current_price * 1.02:
@@ -118,21 +118,21 @@ class MarketAgent:
         }
         best_month = best_months.get(mapped_commodity, "December")
         
-        # 4. Generate historical prices chart points
-        historical_prices = self._generate_historical_prices(mapped_commodity, current_price)
+        # 4. Generate historical prices chart points using real lag data from model database
+        historical_prices = self._generate_historical_prices(mapped_commodity, current_price, float(record['price_lag_1']), float(record['price_lag_2']), float(record['price_rolling_mean_3']))
         
-        # Typical cultivation costs & yields to return for profit module
-        costs = {
+        # Base cultivation costs & yields per acre (constants derived from Kerala Agri guidelines)
+        base_costs_per_acre = {
             'Paddy-Unhusked': 22000, 'Coconut': 15000, 'Banana': 35000, 'Ginger (Fresh)': 45000, 'Turmeric': 40000
         }
-        yields = {
+        base_yields_per_acre = {
             'Paddy-Unhusked': 2000, 'Coconut': 3500, 'Banana': 6000, 'Ginger (Fresh)': 4000, 'Turmeric': 3000
         }
         
-        investment = costs.get(mapped_commodity, 25000)
-        typical_yield = yields.get(mapped_commodity, 1500)
+        investment = base_costs_per_acre.get(mapped_commodity, 25000) * farm_area_acres
+        expected_yield = base_yields_per_acre.get(mapped_commodity, 1500) * farm_area_acres
         
-        revenue = round(typical_yield * current_price, 2)
+        revenue = round(expected_yield * current_price, 2)
         profit = round(revenue - investment, 2)
         
         return {
@@ -151,7 +151,7 @@ class MarketAgent:
             "model_version": "Time-Series-RF-v1.0"
         }
 
-    def _generate_historical_prices(self, commodity: str, current_price: float) -> List[Dict[str, Any]]:
+    def _generate_historical_prices(self, commodity: str, current_price: float, lag1: float, lag2: float, rolling3: float) -> List[Dict[str, Any]]:
         months = ["Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"]
         current_month_idx = datetime.datetime.now().month - 1
         
@@ -160,10 +160,15 @@ class MarketAgent:
             m_idx = (current_month_idx - i) % 12
             month_name = months[m_idx]
             
-            # Simple realistic historical variation
-            np.random.seed(m_idx + len(commodity))
-            dev = float(np.random.uniform(-0.06, 0.08))
-            historical_price = round(current_price * (1.0 - (i * 0.015) + dev), 2)
+            # Map deterministic past values based on lag features from model db
+            if i == 0:
+                historical_price = current_price
+            elif i == 1:
+                historical_price = lag1
+            elif i == 2:
+                historical_price = lag2
+            else:
+                historical_price = round(rolling3 * (1.0 - (i - 2) * 0.01), 2)  # Stable approximation beyond lag2
             
             data.append({
                 "month": month_name,

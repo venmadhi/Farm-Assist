@@ -1,7 +1,8 @@
+import datetime
 from fastapi import APIRouter, Depends, HTTPException
 from sqlalchemy.orm import Session
 from ..database import get_db
-from ..models import Farm, FertilizerHistory, WeatherHistory
+from ..models import Farm, FertilizerHistory, WeatherHistory, SoilTest
 from ..schemas import FertilizerRequest, FertilizerResponse
 from .auth import get_current_farmer
 from ..ml.fertilizer_agent import fertilizer_agent
@@ -38,6 +39,25 @@ def calculate_crop_fertilizer_schedule(
             status_code=400,
             detail="Recent temperature and humidity data are required but missing from the database. Please record weather data first."
         )
+
+    # 1. Log real soil measurement to SoilTest table
+    try:
+        tested_soil = SoilTest(
+            farm_id=farm.id,
+            nitrogen=request.nitrogen,
+            phosphorus=request.phosphorus,
+            potassium=request.potassium,
+            ph=request.ph,
+            organic_carbon=0.85,
+            boron=0.2,
+            iron=4.5,
+            zinc=0.6,
+            measured_at=datetime.datetime.utcnow()
+        )
+        db.add(tested_soil)
+        db.commit()
+    except Exception as es:
+        print(f"Fertilizer SoilTest logging warning: {es}")
 
     try:
         result = fertilizer_agent.calculate_fertilizer(

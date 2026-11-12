@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_BASE = 'http://localhost:8000/api/v1';
+const API_BASE = import.meta.env.VITE_API_BASE_URL || 'http://localhost:8000/api/v1';
 
 const apiClient = axios.create({
   baseURL: API_BASE,
@@ -83,12 +83,14 @@ export const twinAPI = {
     return response.data;
   },
   
-  addCropHistory: async (cropName, yieldKg, season, year, revenue, weatherSummary = null, diseaseIncidence = null, fertilizerUsed = null, marketPrice = null) => {
+  addCropHistory: async (cropName, yieldKg, season, year, startDate, endDate, revenue, weatherSummary = null, diseaseIncidence = null, fertilizerUsed = null, marketPrice = null) => {
     const response = await apiClient.post('/profile/crop-history', {
       crop_name: cropName,
       yield_kg: parseFloat(yieldKg),
       season,
       year: parseInt(year),
+      start_date: startDate,
+      end_date: endDate,
       revenue: parseFloat(revenue) || null,
       weather_summary: weatherSummary,
       disease_incidence: diseaseIncidence,
@@ -119,8 +121,8 @@ export const twinAPI = {
     return response.data;
   },
 
-  startCropCycle: async (cropName, season, year, areaAcres, expectedYield, expectedProfit, expectedRevenue) => {
-    const response = await apiClient.post('/profile/crop-cycle', {
+  startCropCycle: async (cropName, season, year, areaAcres, expectedYield, expectedProfit, expectedRevenue, startDate = null) => {
+    const payload = {
       crop_name: cropName,
       season: season,
       year: parseInt(year),
@@ -128,18 +130,23 @@ export const twinAPI = {
       expected_yield: parseFloat(expectedYield),
       expected_profit: parseFloat(expectedProfit),
       expected_revenue: parseFloat(expectedRevenue)
-    });
+    };
+    if (startDate) payload.start_date = startDate;
+    const response = await apiClient.post('/profile/crop-cycle', payload);
     return response.data;
   },
 
-  harvestCropCycle: async (cycleId, actualYield, actualPrice, cultivationCost, fertilizerUsed = "", diseaseIncidence = "") => {
-    const response = await apiClient.post(`/profile/crop-cycle/${cycleId}/harvest`, {
+  harvestCropCycle: async (cycleId, actualYield, actualPrice, cultivationCost, fertilizerUsed = "", diseaseIncidence = "", startDate = null, harvestDate = null) => {
+    const payload = {
       actual_yield: parseFloat(actualYield),
       actual_selling_price: parseFloat(actualPrice),
       cultivation_cost: parseFloat(cultivationCost),
       fertilizer_used: fertilizerUsed,
       disease_incidence: diseaseIncidence
-    });
+    };
+    if (startDate) payload.start_date = startDate;
+    if (harvestDate) payload.harvest_date = harvestDate;
+    const response = await apiClient.post(`/profile/crop-cycle/${cycleId}/harvest`, payload);
     return response.data;
   },
 
@@ -234,11 +241,103 @@ export const fertilizerAPI = {
 };
 
 export const chatbotAPI = {
-  chat: async (message, geminiKey = null) => {
+  chat: async (message, language = 'AUTO') => {
+    const hasMalayalamScript = /[\u0D00-\u0D7F]/u.test(message);
+    const requestedLanguage = language === 'ml'
+      ? 'MALAYALAM'
+      : language === 'en' && !hasMalayalamScript
+        ? 'ENGLISH'
+        : 'AUTO';
     const response = await apiClient.post('/chatbot/chat', {
       message,
-      gemini_key: geminiKey || null,
+      language: requestedLanguage,
+    }, { timeout: 25000 });
+    return response.data;
+  },
+
+  streamChat: async (message, language = 'AUTO', imageData, onContext, onToken, onError, onComplete) => {
+    const hasMalayalamScript = /[\u0D00-\u0D7F]/u.test(message);
+    const requestedLanguage = language === 'ml'
+      ? 'MALAYALAM'
+      : language === 'en' && !hasMalayalamScript
+        ? 'ENGLISH'
+        : 'AUTO';
+    
+    const token = localStorage.getItem('agrigenie_token');
+    
+    try {
+      const response = await fetch(`${API_BASE}/chatbot/stream`, {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+          ...(token ? { 'Authorization': `Bearer ${token}` } : {})
+        },
+        body: JSON.stringify({
+          message,
+          language: requestedLanguage,
+          image_data: imageData || null
+        })
+      });
+
+      if (!response.ok) {
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const reader = response.body.getReader();
+      const decoder = new TextDecoder('utf-8');
+      
+      let buffer = '';
+      
+      while (true) {
+        const { done, value } = await reader.read();
+        if (done) break;
+        
+        buffer += decoder.decode(value, { stream: true });
+        
+        // Split by double newline which is the standard SSE separator
+        const messages = buffer.split('\n\n');
+        
+        // Keep the last incomplete message in the buffer
+        buffer = messages.pop() || '';
+        
+        for (const msg of messages) {
+          if (msg.startsWith('data: ')) {
+            const dataStr = msg.substring(6);
+            try {
+              const data = JSON.parse(dataStr);
+              if (data.type === 'context' && onContext) {
+                onContext(data);
+              } else if (data.type === 'token' && onToken) {
+                onToken(data.text);
+              } else if (data.type === 'done' && onComplete) {
+                onComplete();
+              }
+            } catch (e) {
+              console.warn('Error parsing SSE JSON:', e);
+            }
+          }
+        }
+      }
+      
+    } catch (err) {
+      if (onError) onError(err);
+    }
+  },
+
+  submitFeedback: async (query, responseText, intent, cropEntity, rating, comment = null) => {
+    const response = await apiClient.post('/chatbot/feedback', {
+      query,
+      response: responseText,
+      intent,
+      crop_entity: cropEntity,
+      rating,
+      comment
     });
+    return response.data;
+  },
+
+  getFeedbackHistory: async () => {
+    const response = await apiClient.get('/chatbot/feedback-history');
     return response.data;
   }
 };

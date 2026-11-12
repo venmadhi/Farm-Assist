@@ -25,20 +25,16 @@ class ThanglishNormalizer:
             "valam": "valam",
             "valamanu": "valam",
             "valamkodukkanam": "valam kodukkanam",
-            "fertilizer": "valam",
-            "fertiliser": "valam",
             # Crop/Paddy
             "nellinu": "nellu",
             "nellu": "nellu",
             "nel": "nellu",
-            "paddy": "nellu",
             "paddykk": "nellu",
             "paddiyil": "nellu",
             # Leaves/Leaf
             "ilakal": "ila",
             "ilayude": "ila",
             "ila": "ila",
-            "leaf": "ila",
             "leafil": "ila",
             "leafin": "ila",
             # Disease/Pest
@@ -48,7 +44,6 @@ class ThanglishNormalizer:
             "chellu": "chellu",
             "kooman": "chellu",
             "vaattam": "vattom",
-            "wilt": "vattom",
             "blight": "blight",
             "sigatoka": "sigatoka",
             "segatoka": "sigatoka",
@@ -56,22 +51,16 @@ class ThanglishNormalizer:
             "kurav": "kuravu",
             "kurava": "kuravu",
             "kuravaanu": "kuravu",
-            "low": "kuravu",
             "kuravanu": "kuravu",
             # Weather
             "mazha": "mazha",
-            "rain": "mazha",
             # Price/Market
-            "price": "vila",
-            "rate": "vila",
             "rateil": "vila",
             "vilakku": "vila",
             "vila": "vila",
             # General
             "manja": "manja",
-            "yellow": "manja",
             "karutha": "karuppu",
-            "black": "karuppu",
             "spot": "spot",
             "spots": "spot",
             "profite": "profit",
@@ -89,15 +78,15 @@ class ThanglishNormalizer:
 
     def normalize(self, text: str) -> str:
         text_clean = text.lower().strip()
-        # Remove special characters except alphanumeric and basic spaces
-        text_clean = re.sub(r'[^a-zA-Z0-9\s\u0d00-\u0d7f]', '', text_clean)
+        # Remove special characters except alphanumeric, basic spaces, Malayalam (\u0d00-\u0d7f) and Tamil (\u0b80-\u0bff)
+        text_clean = re.sub(r'[^a-zA-Z0-9\s\u0d00-\u0d7f\u0b80-\u0bff]', '', text_clean)
         
         words = text_clean.split()
         normalized_words = []
         
         for w in words:
-            # Check if word contains non-ASCII (e.g. Malayalam Unicode) - don't translate these here
-            if bool(re.search(r'[\u0d00-\u0d7f]', w)):
+            # Check if word contains non-ASCII (e.g. Malayalam/Tamil Unicode) - don't translate these here
+            if bool(re.search(r'[\u0d00-\u0d7f\u0b80-\u0bff]', w)):
                 normalized_words.append(w)
                 continue
                 

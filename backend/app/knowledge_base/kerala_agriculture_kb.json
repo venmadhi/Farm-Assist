@@ -1,212 +1,1203 @@
 [
-  {
-    "id": 1,
-    "title": "Organic Soil Improvement - Jeevamrutham Preparation",
-    "crop": "general",
-    "topic": "fertilizer",
-    "tags": ["organic", "fertilizer", "soil health", "jeevamrutham", "jaiva"],
-    "keywords": ["jeevamrutham", "cow dung", "cow urine", "jaggery", "pulse flour"],
-    "source_name": "Kerala Agricultural University",
-    "source_url": "https://kau.in/practices/organic-soil",
-    "date": "2024-05-12",
-    "language": "English/Malayalam",
-    "content": "Jeevamrutham is a highly effective microbial formulation that improves soil health. Preparation method: In a 200-liter barrel, mix 10 kg fresh local cow dung, 5 to 10 liters local cow urine, 2 kg jaggery, 2 kg pulse flour (besan/cowpea), and a handful of fertile undisturbed soil. Fill the rest of the barrel with water. Stir the mixture clockwise twice daily. Keep in shade. The microbial culture will multiply and be ready for application within 5-7 days. Drench the soil around plants or apply via irrigation. It enhances earthworm activity and nutrient bioavailability.",
-    "malayalam_content": "ജീവാമൃതം മണ്ണിലെ സൂക്ഷ്മാണുക്കളുടെ പ്രവർത്തനം വർദ്ധിപ്പിക്കുന്നു. നിർമ്മാണ രീതി: 200 ലിറ്റർ വെള്ളം കൊള്ളുന്ന ഒരു ബാരലിൽ 10 കിലോഗ്രാം പച്ച ചാണകം, 5 മുതൽ 10 ലിറ്റർ വരെ ഗോമൂത്രം, 2 കിലോഗ്രാം ശർക്കര, 2 കിലോഗ്രാം പയർപൊടി, ഒരു പിടി വളക്കൂറുള്ള മണ്ണ് എന്നിവ യോജിപ്പിക്കുക. ഈ മിശ്രിതം ദിവസവും രണ്ടുതവണ വീതം ഘടികാരദിശയിൽ ഇളക്കണം. തണലിൽ സൂക്ഷിക്കുക. 5-7 ദിവസത്തിനുള്ളിൽ ജീവാമൃതം തയാറാകും. ഇത് ചെടികളുടെ ചുവട്ടിൽ ഒഴിച്ചു കൊടുക്കാം."
-  },
-  {
-    "id": 2,
-    "title": "Rhinoceros Beetle Management in Coconut Palms",
-    "crop": "coconut",
-    "topic": "pest control",
-    "tags": ["rhinoceros beetle", "pest control", "coconut", "kooman", "biological control", "കൊമ്പൻ", "ചെല്ലി"],
-    "keywords": ["rhinoceros beetle", "clearing crown", "metarhizium", "neem cake", "castor cake", "കൊമ്പൻ ചെല്ലി"],
-    "source_name": "ICAR-Central Plantation Crops Research Institute",
-    "source_url": "https://cpcri.icar.gov.in/pest-management/rhinoceros-beetle",
-    "date": "2023-11-20",
-    "language": "English/Malayalam",
-    "content": "The Rhinoceros Beetle (Chellu) is a major pest attacking the crown of coconut palms. Control measures: 1. Clean the palm crown regularly. 2. Apply a mixture of neem cake + sand (1:1 ratio) in the inner leaf axils of the crown (150g per palm). 3. Hang PVC pipe traps containing yeast + toddy ferment solution to capture adults. 4. Introduce Metarhizium anisopliae (green muscardine fungus) into breeding sites like cow dung pits to biologically destroy beetle larvae.",
-    "malayalam_content": "കൊമ്പൻ ചെല്ലി തെങ്ങിന്റെ ഓലകളെയും കൂമ്പുകളെയും നശിപ്പിക്കുന്നു. പ്രതിവിധി: 1. തെങ്ങിന്റെ മുകൾഭാഗം വൃത്തിയായി സൂക്ഷിക്കുക. 2. വേപ്പിൻ പിണ്ണാക്കും മണലും തുല്യ അളവിൽ കലർത്തി ഓലക്കവിളുകളിൽ ഇടുക (150 ഗ്രാം ഒരു തെങ്ങിന്). 3. ചാണകക്കുഴികളിൽ മെറ്റാറൈസിയം അനിസോപ്ലിയേ എന്ന ഫംഗസ് ചേർത്ത് കൊമ്പൻ ചെല്ലിയുടെ പുഴുക്കളെ നശിപ്പിക്കാം."
-  },
-  {
-    "id": 3,
-    "title": "Quick Wilt Prevention in Black Pepper Vines",
-    "crop": "pepper",
-    "topic": "disease prevention",
-    "tags": ["quick wilt", "pepper", "foot rot", "dhrutha vaattam", "monsoon"],
-    "keywords": ["quick wilt", "phytophthora", "trichoderma", "bordeaux mixture", "pruning"],
-    "source_name": "Indian Institute of Spices Research (ICAR-IISR)",
-    "source_url": "https://spices.res.in/diseases/pepper-wilt",
-    "date": "2024-02-15",
-    "language": "English/Malayalam",
-    "content": "Quick Wilt (Dhrutha Vaattam) caused by Phytophthora capsici kills pepper vines during monsoons. Preventative schedule: 1. Apply Trichoderma harzianum enriched farmyard manure (5kg per vine) in May-June before monsoons start. 2. Spray the foliage and drench the soil around the vine base with 1% Bordeaux mixture. 3. Ensure excellent water drainage around the vine basins. 4. Prune branches of standards (supporting trees) to ensure adequate sunlight penetrations onto the pepper vine.",
-    "malayalam_content": "കുരുമുളകിലെ ദ്രുതവാട്ടം തടയാൻ: 1. കാലവർഷത്തിന് മുൻപ് (മെയ്-ജൂൺ) ട്രൈക്കോഡെർമ ചേർത്ത ചാണകപ്പൊടി തടങ്ങളിൽ ഇടുക. 2. വള്ളികളിലും ഇലകളിലും 1% വീര്യമുള്ള ബോർഡോ മിശ്രിതം തളിക്കുകയും തടം കുതിർക്കുകയും ചെയ്യുക. 3. തടങ്ങളിൽ വെള്ളം കെട്ടിക്കിടക്കാൻ അനുവദിക്കരുത്. 4. വെയിൽ കിട്ടാനായി താങ്ങുമരങ്ങളുടെ ചില്ലകൾ കോതി ഒതുക്കുക."
-  },
-  {
-    "id": 4,
-    "title": "Pseudostem Weevil Control in Banana Cultivation",
-    "crop": "banana",
-    "topic": "pest control",
-    "tags": ["banana", "pseudostem weevil", "pest", "pindi unni", "stem borer"],
-    "keywords": ["pseudostem weevil", "banana stem", "neem oil", "traps", "injection"],
-    "source_name": "Kerala Agricultural University",
-    "source_url": "https://kau.in/practices/banana-weevil",
-    "date": "2024-06-01",
-    "language": "English/Malayalam",
-    "content": "Banana Pseudostem Weevil (Pindi Unni) bores tunnels inside the banana stem, leading to plant collapse. Treatment: 1. Maintain field sanitation and remove dry leaves. 2. Cut banana pseudo-stem traps (50cm long) split longitudinally and place them face down around the base of plants to trap adult beetles. 3. Inject Beauveria bassiana (bio-pesticide) solution or apply Neem oil emulsion (5%) into the leaf axils. 4. Spray Carbaryl (4g/L) for heavy chemical outbreaks.",
-    "malayalam_content": "വാഴയിലെ പിണ്ടിഉണ്ണിയെ തടയാൻ: 1. കൃഷിയിടം എപ്പോഴും ശുചിയായി സൂക്ഷിക്കുക. ഉണങ്ങിയ ഇലകൾ മാറ്റുക. 2. വാഴപ്പിണ്ടി 50 സെ.മീ നീളത്തിൽ മുറിച്ച് കീറി വാഴകളുടെ ചുവട്ടിൽ വെച്ച് വണ്ടുകളെ ആകർഷിച്ച് നശിപ്പിക്കുക. 3. വേപ്പെണ്ണ വെളുത്തുള്ളി മിശ്രിതം ഓലക്കവിളുകളിൽ ഒഴിക്കുക."
-  },
-  {
-    "id": 5,
-    "title": "Rain-guarding and Ethrel in Rubber Tapping",
-    "crop": "rubber",
-    "topic": "cultivation practice",
-    "tags": ["rubber", "tapping", "rain guarding", "ethrel", "latex"],
-    "keywords": ["rain guarding", "ethrel", "tapping schedule", "latex yield"],
-    "source_name": "Rubber Board of India",
-    "source_url": "https://rubberboard.org.in/rubber-tapping-monsoon",
-    "date": "2023-05-10",
-    "language": "English/Malayalam",
-    "content": "Tapping rubber during monsoon requires rain-guarding to prevent water from washing away latex and causing panel diseases (bark rot). Fit polythene rain-guards over the tapping panel in April before monsoons. To optimize yield, Ethrel (latex stimulant, 2.5% concentration) can be applied on the tapping cut once in two months. Apply only to healthy clones under tapping for more than 5 years. Avoid over-application as it causes dryness of the tapping panel (Tapping Panel Dryness).",
-    "malayalam_content": "മഴക്കാലത്തും ടാപ്പിംഗ് മുടങ്ങാതെ നടത്താൻ റെയിൻ ഗാർഡ് ആവശ്യമാണ്. ഏപ്രിൽ മാസത്തിൽ ടാപ്പിംഗ് പാനലിന് മുകളിൽ പോളിത്തീൻ ഷീറ്റുകൾ ഘടിപ്പിക്കുക. റബ്ബറിന്റെ ഉത്പാദനം വർദ്ധിപ്പിക്കാൻ എഥ്രൽ (Ethrel 2.5%) പാനലിൽ പുരട്ടാം. വലിപ്പമുള്ള ആരോഗ്യവത്തായ മരങ്ങളിൽ മാത്രം ഉപയോഗിക്കുക. കൂടുതൽ ഉപയോഗിച്ചാൽ മരം ഉണങ്ങിപ്പോകാൻ (Tapping Panel Dryness) കാരണമാകും."
-  },
-  {
-    "id": 6,
-    "title": "Cardamom Capsule Borer Management",
-    "crop": "cardamom",
-    "topic": "pest control",
-    "tags": ["cardamom", "capsule borer", "pest", "elam", "idukki"],
-    "keywords": ["capsule borer", "cardamom pest", "neem oil", "spray schedule"],
-    "source_name": "Indian Cardamom Research Institute (ICRI)",
-    "source_url": "https://indianspices.com/research/cardamom-borer",
-    "date": "2024-03-22",
-    "language": "English/Malayalam",
-    "content": "Cardamom Capsule Borer (Conogethes punctiferalis) larvae bore into shoots and young capsules, resulting in hollow fruits. Treatment: 1. Clean the basins and prune infested tillers. 2. Spray Neem Oil emulsion (3%) or Quinalphos (2ml/L) at the beginning of the crop set. 3. Monitor the field for white moths and destroy egg masses. Maintain optimal forest overhead shade of 40-50% to prevent excessive moth breeding.",
-    "malayalam_content": "ഏലത്തിലെ കായതുരപ്പനെ തടയാൻ: 1. ഏലത്തോട്ടത്തിലെ ഉണങ്ങിയ ഇലകളും രോഗം ബാധിച്ച തണ്ടുകളും വെട്ടി മാറ്റുക. 2. കായകൾ ഉണ്ടാകുന്ന സമയത്ത് വേപ്പെണ്ണ മിശ്രിതം (3%) അല്ലെങ്കിൽ ക്വിനാൽഫോസ് (2ml/L) തളിക്കുക. 3. തോട്ടത്തിൽ നിഴൽ ക്രമീകരിക്കുക."
-  },
-  {
-    "id": 7,
-    "title": "Soil Acidity Neutralization in Kerala Soils",
-    "crop": "general",
-    "topic": "soil management",
-    "tags": ["ph", "acid soil", "lime", "dolomite", "soil testing"],
-    "keywords": ["acidic soil", "lime", "dolomite", "ph correction", "calcium"],
-    "source_name": "Kerala Agriculture Department",
-    "source_url": "https://keralaagriculture.gov.in/soil-acidity",
-    "date": "2024-01-30",
-    "language": "English/Malayalam",
-    "content": "Due to heavy rains, Kerala soils are naturally acidic (pH < 5.5), which binds phosphorus and limits calcium uptake. Correction method: Apply agricultural lime (calcium carbonate) or dolomite (calcium magnesium carbonate) at the rate of 100g to 200g per square meter depending on soil analysis. Broadcast the lime evenly and mix thoroughly with soil 2 weeks before chemical fertilizer application. Never apply lime and nitrogenous fertilizers together, as it leads to ammonia gas loss.",
-    "malayalam_content": "കേരളത്തിലെ മണ്ണിൽ അമ്ലത്വം (അസിഡിറ്റി) കൂടുതലാണ്. ഇത് പരിഹരിക്കാൻ: സെന്റിന് 2 മുതൽ 4 കിലോഗ്രാം എന്ന തോതിൽ കുമ്മായം അല്ലെങ്കിൽ ഡോളോമൈറ്റ് മണ്ണിൽ ചേർത്ത് ഇളക്കുക. വളം പ്രയോഗിക്കുന്നതിന് രണ്ടാഴ്ച മുൻപെങ്കിലും കുമ്മായം ചേർക്കണം. കുമ്മായും രാസവളങ്ങളും ഒരുമിച്ച് ചേർക്കരുത്."
-  },
-  {
-    "id": 8,
-    "title": "Rice Stem Borer Treatment",
-    "crop": "rice",
-    "topic": "pest control",
-    "tags": ["rice", "paddy", "stem borer", "thandu thurappan", "chithal"],
-    "keywords": ["stem borer", "yellow stem borer", "paddy pest", "chlorantraniliprole", "trichogramma"],
-    "source_name": "Kerala Agricultural University",
-    "source_url": "https://kau.in/practices/paddy-stem-borer",
-    "date": "2024-07-04",
-    "language": "English/Malayalam",
-    "content": "Rice Yellow Stem Borer causes dead hearts during vegetative stage and whiteheads during reproductive stages. Control: 1. Install pheromone traps at 8 traps/acre. 2. Release Trichogramma japonicum egg parasitoid at 2 cards/acre weekly. 3. Apply Cartap Hydrochloride (4G at 10kg/acre) or spray Chlorantraniliprole 18.5 SC (60ml/acre) under heavy outbreaks.",
-    "malayalam_content": "നെല്ലിലെ തണ്ടുതുരപ്പൻ പുഴു തണ്ടുകൾ തിന്നുതീർത്ത് ഉണങ്ങാൻ കാരണമാകുന്നു. പ്രതിവിധി: 1. ഒരേക്കറിന് 8 ഫെറമോൺ കെണികൾ സ്ഥാപിക്കുക. 2. ട്രൈക്കോഡെർമ മുട്ട കാർഡുകൾ ഉപയോഗിക്കുക. 3. കീടബാധ കടുപ്പമാണെങ്കിൽ കാർട്ടാപ് ഹൈഡ്രോക്ലോറൈഡ് (Cartap Hydrochloride) പ്രയോഗിക്കുക."
-  },
-  {
-    "id": 9,
-    "title": "Ginger Soft Rot Management",
-    "crop": "ginger",
-    "topic": "disease control",
-    "tags": ["ginger", "soft rot", "rhizome rot", "chichil", "pythium"],
-    "keywords": ["soft rot", "ginger disease", "pythium", "metalaxyl", "seed treatment"],
-    "source_name": "Indian Institute of Spices Research (ICAR-IISR)",
-    "source_url": "https://spices.res.in/diseases/ginger-rot",
-    "date": "2023-08-18",
-    "language": "English/Malayalam",
-    "content": "Ginger Soft Rot (Rhizome Rot) caused by Pythium spp. leads to yellowing of leaves and decay of the underground rhizomes. Prevention: 1. Perform seed treatment with Mancozeb (3g/L) or Trichoderma for 30 minutes before planting. 2. Provide raised beds with proper water runoff. 3. If disease appears, drench the infected beds with Metalaxyl-Mancozeb (2g/L) immediately.",
-    "malayalam_content": "ഇഞ്ചിയിലെയും മഞ്ഞളിലെയും ചീച്ചിൽ രോഗം കർഷകർക്ക് വലിയ നഷ്ടമുണ്ടാക്കുന്നു. പ്രതിവിധി: 1. നടുന്നതിന് മുൻപ് വിത്ത് ഇഞ്ചി മാങ്കോസെബ് (Mancozeb 3g/L) ലായനിയിൽ 30 മിനിറ്റ് മുക്കി വെക്കുക. 2. വെള്ളം കെട്ടിക്കിടക്കാത്ത ഉയർന്ന തടങ്ങൾ നിർമ്മിക്കുക. 3. രോഗം കണ്ടാൽ മെറ്റാലാക്സിൽ-മാങ്കോസെബ് പ്രയോഗിക്കുക."
-  },
-  {
-    "id": 10,
-    "title": "Banana Sigatoka Disease Control",
-    "crop": "banana",
-    "topic": "disease control",
-    "tags": ["banana", "sigatoka", "leaf spot", "ila manja", "fungicide"],
-    "keywords": ["sigatoka", "leaf spot", "mycosphaerella", "carbendazim", "propiconazole"],
-    "source_name": "Kerala Agricultural University",
-    "source_url": "https://kau.in/practices/banana-sigatoka",
-    "date": "2024-06-15",
-    "language": "English/Malayalam",
-    "content": "Sigatoka Leaf Spot caused by Mycosphaerella musicola leads to pale yellow spots on leaves, which merge to dry out entire foliage. Treatment: 1. Cut and burn severely affected leaves. 2. Spray Propiconazole (1ml/L) or Carbendazim (1g/L) mixed with agricultural wetting agent. 3. Maintain wider crop spacing to reduce relative humidity inside the field.",
-    "malayalam_content": "വാഴയിലകളിൽ മഞ്ഞപ്പുള്ളികൾ വീണു ഇലകൾ ഉണങ്ങിപ്പോകുന്ന രോഗമാണിത്. പ്രതിവിധി: 1. രോഗബാധയുള്ള ഇലകൾ മുറിച്ചു മാറ്റുക. 2. പ്രൊപ്പികൊണസോൾ (Propiconazole 1ml/L) അല്ലെങ്കിൽ കാർബെൻഡാസിം തളിക്കുക. 3. തോട്ടത്തിൽ കാറ്റും വെളിച്ചവും കടക്കാൻ വാഴകൾ തമ്മിൽ നിശ്ചിത അകലം പാലിക്കുക."
-  },
-  {
-    "id": 11,
-    "title": "Nitrogen Deficiency and Correction in Crop Farming",
-    "crop": "general",
-    "topic": "fertilizer",
-    "tags": ["nitrogen", "deficiency", "urea", "NPK", "leaves yellowing"],
-    "keywords": ["nitrogen deficiency", "yellowing leaves", "urea dosage", "cowpea cover cropping"],
-    "source_name": "Kerala Agriculture Department",
-    "source_url": "https://keralaagriculture.gov.in/nitrogen-deficiency",
-    "date": "2024-02-10",
-    "language": "English/Malayalam",
-    "content": "Nitrogen is critical for crop vegetative growth. Deficiency causes overall leaf yellowing starting from older leaves, stunted stems, and poor tillering. Correction: 1. Top dress with Urea (approx. 20-30g/sqm for short crops) or ammonium sulfate. 2. Grow leguminous cover crops (cowpeas, green gram) during off-season to lock nitrogen naturally. 3. Apply compost or vermicompost regularly.",
-    "malayalam_content": "നൈട്രജന്റെ കുറവുണ്ടാകുമ്പോൾ ചെടികളുടെ താഴത്തെ ഇലകൾ മഞ്ഞനിറമാകുന്നു. പ്രതിവിധി: 1. മണ്ണിൽ ആവശ്യാനുസരണം യൂറിയ പ്രയോഗിക്കുക. 2. മുതിരയോ പയറോ കൃഷി ചെയ്ത് മണ്ണിൽ ഉഴുതു ചേർക്കുന്നത് നൈട്രജൻ വർദ്ധിപ്പിക്കും. 3. കമ്പോസ്റ്റ് ചേർത്തു കൊടുക്കുക."
-  },
-  {
-    "id": 12,
-    "title": "Potassium Deficiency and Correction in Plants",
-    "crop": "general",
-    "topic": "fertilizer",
-    "tags": ["potassium", "potash", "deficiency", "MOP", "leaf margins drying"],
-    "keywords": ["potassium deficiency", "marginal leaf scorch", "potash", "wood ash", "MOP"],
-    "source_name": "Kerala Agricultural University",
-    "source_url": "https://kau.in/practices/potassium-deficiency",
-    "date": "2024-05-18",
-    "language": "English/Malayalam",
-    "content": "Potassium deficiency causes marginal leaf scorch (leaves drying from edges inward), weak root anchoring, and low resistance to dry weather. Correction: 1. Apply Muriate of Potash (MOP) at recommended split doses. 2. For organic farming, apply wood ash (100-200g per plant) or bury potassium-rich coconut husks in trenches around plant basins.",
-    "malayalam_content": "പൊട്ടാസ്യത്തിന്റെ കുറവ് മൂലം ഇലകളുടെ അരികുകൾ ഉണങ്ങിപ്പോകുന്നു. പ്രതിവിധി: 1. മണ്ണിൽ ആവശ്യത്തിന് മ്യൂറിയേറ്റ് ഓഫ് പൊട്ടാഷ് (MOP) ചേർക്കുക. 2. ജൈവ രീതിയിൽ ചാരം ചെടികളുടെ ചുവട്ടിലിടുക. തെങ്ങിന്റെയും വാഴയുടെയും തടങ്ങളിൽ തേങ്ങാത്തൊണ്ട് അടുക്കുന്നത് പൊട്ടാസ്യം വർദ്ധിപ്പിക്കാൻ സഹായിക്കും."
-  },
-  {
-    "id": 13,
-    "title": "Government Crop Insurance and PM-KISAN Scheme in Kerala",
-    "crop": "general",
-    "topic": "government scheme",
-    "tags": ["government schemes", "crop insurance", "PM KISAN", "subsidy", "krishi bhavan"],
-    "keywords": ["PM-KISAN", "crop insurance", "krishi bhavan registration", "kerala agriculture portal"],
-    "source_name": "Department of Agriculture Development and Farmers Welfare, Govt of Kerala",
-    "source_url": "https://keralaagriculture.gov.in/schemes",
-    "date": "2024-03-01",
-    "language": "English/Malayalam",
-    "content": "Farmers in Kerala can access several safety nets: 1. PM-KISAN: Offers direct income support of ₹6,000 per year in three installments to small landholding families. 2. State Crop Insurance Scheme: Covers damage from flood, drought, land-slides, or pest outbreaks. Register at your local Krishi Bhavan within 15 days of planting or apply online via AIMS portal (Kerala Agriculture Department).",
-    "malayalam_content": "കേരളത്തിലെ കൃഷി പദ്ധതികൾ: 1. പി.എം കിസാൻ (PM-KISAN) വഴി വർഷത്തിൽ 6000 രൂപ സഹായധനം ലഭിക്കും. 2. സംസ്ഥാന വിള ഇൻഷുറൻസ് പദ്ധതി വഴി പ്രകൃതിക്ഷോഭം മൂലമുള്ള നഷ്ടങ്ങൾക്ക് പരിഹാരം നേടാം. തദ്ദേശ കൃഷിഭവനിൽ രജിസ്റ്റർ ചെയ്യുക."
-  },
-  {
-    "id": 14,
-    "title": "Coconut Bud Rot Disease Treatment",
-    "crop": "coconut",
-    "topic": "disease control",
-    "tags": ["coconut", "bud rot", "kumbil azhukal", "monsoon disease"],
-    "keywords": ["bud rot", "phytophthora palmivora", "bordeaux paste", "foliar spray"],
-    "source_name": "ICAR-Central Plantation Crops Research Institute",
-    "source_url": "https://cpcri.icar.gov.in/pest-management/bud-rot",
-    "date": "2023-12-05",
-    "language": "English/Malayalam",
-    "content": "Bud Rot (Kumbil Azhukal) caused by Phytophthora palmivora rots the heart leaf spindle of coconut palms, eventually killing the growth point. Remedy: 1. Remove infected tissues completely. 2. Apply 10% Bordeaux paste to the cut surfaces. 3. Protect the crown by spraying 1% Bordeaux mixture on surrounding palms before monsoon seasons.",
-    "malayalam_content": "തെങ്ങിൻറെ കൂമ്പുചീയൽ തടയാൻ: 1. ചീഞ്ഞ ഭാഗങ്ങൾ വെട്ടിമാറ്റി വൃത്തിയാക്കുക. 2. മുറിച്ച ഭാഗത്ത് 10% വീര്യമുള്ള ബോർഡോ പേസ്റ്റ് പുരട്ടുക. 3. കാലവർഷത്തിന് മുൻപായി മറ്റു തെങ്ങുകളിൽ 1% ബോർഡോ മിശ്രിതം തളിക്കുക."
-  },
-  {
-    "id": 15,
-    "title": "Organic Pest Control via Neem Oil Garlic Emulsion",
-    "crop": "general",
-    "topic": "organic farming",
-    "tags": ["organic", "pest control", "neem oil", "garlic", "emulsion", "bio pesticide"],
-    "keywords": ["neem oil emulsion", "garlic extract", "insect repellent", "sucking pests"],
-    "source_name": "Kerala Agricultural University",
-    "source_url": "https://kau.in/practices/neem-garlic-emulsion",
-    "date": "2024-04-10",
-    "language": "English/Malayalam",
-    "content": "Neem oil garlic emulsion is a powerful broad-spectrum organic insect repellent. Preparation: Dissolve 60g bar soap in 1 liter hot water to make soap solution. Mix 200ml neem oil with this soap solution by shaking vigorously until emulsified. Grind 200g garlic bulbs into a fine paste and filter its extract. Mix the neem oil emulsion and garlic extract together, then dilute with 9 liters of water (1:50 dilution) to make 10 liters of sprayable solution. Effective against aphids, mealybugs, and caterpillars.",
-    "malayalam_content": "വേപ്പെണ്ണ വെളുത്തുള്ളി മിശ്രിതം തയാറാക്കാൻ: 1. ഒരു ലിറ്റർ ചെറുചൂടുവെള്ളത്തിൽ 60 ഗ്രാം സോപ്പ് ലായനിയാക്കുക. 2. ഇതിലേക്ക് 200 മില്ലി വേപ്പെണ്ണ ഒഴിച്ച് നന്നായി യോജിപ്പിക്കുക (എമൽഷൻ). 3. 200 ഗ്രാം വെളുത്തുള്ളി അരച്ചെടുത്ത നീര് ഈ ലായനിയിലേക്ക് ചേർക്കുക. ഇതിലേക്ക് 9 ലിറ്റർ വെള്ളം ചേർത്ത് ഉപയോഗിക്കാം."
-  }
+    {
+        "id": 1,
+        "title": "Organic Soil Improvement - Jeevamrutham Preparation",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops",
+            "soil"
+        ],
+        "topic": "organic farming",
+        "intent": [
+            "ORGANIC_FARMING",
+            "INPUT_PREPARATION",
+            "SOIL_HEALTH"
+        ],
+        "subtopic": "input preparation",
+        "categories": [
+            "organic_farming",
+            "soil_health",
+            "input_preparation",
+            "bio_fertilizer"
+        ],
+        "tags": [
+            "organic",
+            "soil health",
+            "jeevamrutham",
+            "jaiva",
+            "microbial culture",
+            "input preparation",
+            "cow dung",
+            "cow urine"
+        ],
+        "keywords": [
+            "jeevamrutham",
+            "how to prepare jeevamrutham",
+            "what is jeevamrutham",
+            "jeevamrutham preparation",
+            "cow dung",
+            "cow urine",
+            "jaggery",
+            "pulse flour",
+            "microbial culture"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "university",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/organic-soil",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-05-12",
+        "language": "English/Malayalam",
+        "content": "Jeevamrutham is a highly effective microbial formulation that improves soil health. Preparation method: In a 200-liter barrel, mix 10 kg fresh local cow dung, 5 to 10 liters local cow urine, 2 kg jaggery, 2 kg pulse flour (besan/cowpea), and a handful of fertile undisturbed soil. Fill the rest of the barrel with water. Stir the mixture clockwise twice daily. Keep in shade. The microbial culture will multiply and be ready for application within 5-7 days. Drench the soil around plants or apply via irrigation. It enhances earthworm activity and nutrient bioavailability.",
+        "malayalam_content": "ജീവാമൃതം മണ്ണിലെ സൂക്ഷ്മാണുക്കളുടെ പ്രവർത്തനം വർദ്ധിപ്പിക്കുന്നു. നിർമ്മാണ രീതി: 200 ലിറ്റർ വെള്ളം കൊള്ളുന്ന ഒരു ബാരലിൽ 10 കിലോഗ്രാം പച്ച ചാണകം, 5 മുതൽ 10 ലിറ്റർ വരെ ഗോമൂത്രം, 2 കിലോഗ്രാം ശർക്കര, 2 കിലോഗ്രാം പയർപൊടി, ഒരു പിടി വളക്കൂറുള്ള മണ്ണ് എന്നിവ യോജിപ്പിക്കുക. ഈ മിശ്രിതം ദിവസവും രണ്ടുതവണ വീതം ഘടികാരദിശയിൽ ഇളക്കണം. തണലിൽ സൂക്ഷിക്കുക. 5-7 ദിവസത്തിനുള്ളിൽ ജീവാമൃതം തയാറാകും. ഇത് ചെടികളുടെ ചുവട്ടിൽ ഒഴിച്ചു കൊടുക്കാം.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 20,
+        "title": "Coconut Nutrient and Fertilizer Management",
+        "crop": "coconut",
+        "crop_aliases": [
+            "coconut",
+            "thengu",
+            "cocos nucifera",
+            "coconut palm",
+            "തെങ്ങ്",
+            "തേങ്ങ"
+        ],
+        "topic": "fertilizer",
+        "intent": [
+            "FERTILIZER_RECOMMENDATION",
+            "NUTRIENT_MANAGEMENT"
+        ],
+        "subtopic": "crop nutrient management",
+        "categories": [
+            "fertilizer",
+            "nutrient_management",
+            "plantation_crops",
+            "coconut_cultivation"
+        ],
+        "tags": [
+            "coconut",
+            "fertilizer",
+            "fertiliser",
+            "nutrient",
+            "NPK",
+            "urea",
+            "rajphos",
+            "potash",
+            "MOP",
+            "magnesium",
+            "boron",
+            "organic manure",
+            "തെങ്ങ്",
+            "വളം"
+        ],
+        "keywords": [
+            "fertilizer suggestion for coconut",
+            "fertilizer for coconut",
+            "coconut fertilizer recommendation",
+            "coconut nutrient management",
+            "coconut NPK",
+            "coconut manure schedule",
+            "thenginu valam",
+            "mature coconut palm fertilizer",
+            "coconut fertilizer dose"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "ICAR-Central Plantation Crops Research Institute / Kerala Agricultural University",
+        "source_url": "https://cpcri.icar.gov.in/crop-production/coconut-nutrient-management",
+        "authority": "ICAR-CPCRI / Kerala Agricultural University",
+        "date": "2024-01-15",
+        "language": "English/Malayalam",
+        "content": "For adult bearing coconut palms (8 years and above) under rainfed/irrigated conditions in Kerala: The standard annual fertilizer recommendation per palm is approximately 500g Nitrogen (approx. 1.1 kg Urea), 320g P2O5 (approx. 1.6 kg Rajphos/Rock Phosphate), and 1200g K2O (approx. 2 kg Muriate of Potash/MOP), along with 25 to 50 kg organic manure or compost and 1 kg dolomite/lime in acidic soils. Apply in two split doses under soil moisture: 1/3rd in May-June (pre-monsoon) and 2/3rd in September-October (post-monsoon) in circular basins of 1.8m radius around the palm. Young palms require graded doses starting from 1/4th of the adult dose in the first year. Avoid applying fertilizer directly to dry soil or during waterlogged flooding. Exact dosage should be adjusted based on soil test results and tree age.",
+        "malayalam_content": "ഫലം തരുന്ന മുതിർന്ന തെങ്ങിന് (8 വയസ്സിന് മുകളിൽ) വാർഷിക ശുപാർശ ചെയ്ത വളത്തോത്: 500 ഗ്രാം നൈട്രജൻ (ഏകദേശം 1.1 കി.ഗ്രാം യൂറിയ), 320 ഗ്രാം ഫോസ്ഫറസ് (ഏകദേശം 1.6 കി.ഗ്രാം രാജ്ഫോസ്), 1200 ഗ്രാം പൊട്ടാഷ് (ഏകദേശം 2 കി.ഗ്രാം മ്യൂറിയേറ്റ് ഓഫ് പൊട്ടാഷ്/MOP). ഇതിനൊപ്പം 25-50 കി.ഗ്രാം ജൈവവളവും 1 കി.ഗ്രാം കുമ്മായം അല്ലെങ്കിൽ ഡോളോമൈറ്റും ചേർക്കണം. വർഷത്തിൽ രണ്ടു തവണയായി (മേയ്-ജൂൺ മാസത്തിൽ മൂന്നിലൊന്നും, സെപ്റ്റംബർ-ഒക്ടോബർ മാസത്തിൽ മൂന്നിൽ രണ്ടും) തെങ്ങിന്റെ തടത്തിൽ (1.8 മീറ്റർ ചുറ്റളവിൽ) മണ്ണിൽ ഈർപ്പമുള്ളപ്പോൾ ചേർക്കുക. ഇളന്തെങ്ങുകൾക്ക് പ്രായത്തിനനുസരിച്ച് കുറഞ്ഞ അളവിൽ നൽകുക. കനത്ത മഴയിലോ വെള്ളക്കെട്ടിലോ വളം ചെയ്യരുത്.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 21,
+        "title": "Soil Health and Organic Soil Improvement in Coconut Basins",
+        "crop": "coconut",
+        "crop_aliases": [
+            "coconut",
+            "thengu",
+            "cocos nucifera",
+            "coconut palm",
+            "തെങ്ങ്",
+            "തേങ്ങ"
+        ],
+        "topic": "soil management",
+        "intent": [
+            "SOIL_RECOMMENDATION",
+            "SOIL_HEALTH",
+            "SOIL_SUITABILITY"
+        ],
+        "subtopic": "soil health and organic improvement",
+        "categories": [
+            "soil_health",
+            "soil_management",
+            "organic_farming",
+            "coconut_cultivation"
+        ],
+        "tags": [
+            "coconut",
+            "soil health",
+            "soil improvement",
+            "organic soil improvement",
+            "green manure",
+            "coconut basin",
+            "mulching",
+            "soil acidity",
+            "dolomite",
+            "മണ്ണ്"
+        ],
+        "keywords": [
+            "how to improve soil for coconut",
+            "improve soil for coconut",
+            "coconut soil health",
+            "coconut basin green manuring",
+            "coconut mulching",
+            "coconut husk burial",
+            "soil for coconut"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "ICAR-Central Plantation Crops Research Institute",
+        "source_url": "https://cpcri.icar.gov.in/soil-health-coconut",
+        "authority": "ICAR-CPCRI",
+        "date": "2024-02-10",
+        "language": "English/Malayalam",
+        "content": "To improve soil health and structure in coconut gardens: 1. Green manuring: Sow green manure cover crops such as sunn hemp (Crotalaria juncea) or cowpea in the coconut basin (1.8m radius) during April-May with pre-monsoon showers and incorporate into the soil at flowering stage (August-September) to add 15-20 kg fresh biomass per palm. 2. Coconut husk burial: Bury coconut husks (layer of 50-100 husks) in trenches (2m long, 0.5m wide, 0.5m deep) between palms to absorb rain, preserve soil moisture, and supply potassium over 5-6 years. 3. Acidity correction: Broadcast 1 kg agricultural lime or dolomite per palm every year into the basin to correct soil acidity, separated by 2-3 weeks from fertilizer application. 4. Organic mulching: Mulch the basin with dry leaves and organic residues to enhance microbial activity and earthworm populations.",
+        "malayalam_content": "തെങ്ങിൻ തോട്ടങ്ങളിലെ മണ്ണിന്റെ ഫലഭൂയിഷ്ഠത വർദ്ധിപ്പിക്കാൻ: 1. പച്ചിലവള കൃഷി: ഏപ്രിൽ-മേയ് മാസങ്ങളിൽ തടങ്ങളിൽ ചണമ്പ്, പയർ എന്നിവ വിതച്ച് പൂവിടുമ്പോൾ (ആഗസ്റ്റ്-സെപ്റ്റംബർ) മണ്ണിൽ ഉഴുതു ചേർക്കുക. 2. തൊണ്ട് കുഴിച്ചിടൽ: തെങ്ങിൻ നിരകൾക്കിടയിൽ ചാലുകീറി തൊണ്ടുകൾ മലർത്തിയും കമിഴ്ത്തിയും അടുക്കി മൂടുന്നത് ഈർപ്പവും പൊട്ടാസ്യവും നിലനിർത്താൻ സഹായിക്കും. 3. കുമ്മായം ചേർക്കൽ: അമ്ലത്വം കുറയ്ക്കാൻ വർഷത്തിലൊരിക്കൽ തെങ്ങൊന്നിന് 1 കി.ഗ്രാം കുമ്മായം തടത്തിൽ വിതറി ചേർക്കുക. 4. പുതയിടൽ: വേനൽക്കാലത്ത് തെങ്ങിൻ തടത്തിൽ ഉണങ്ങിയ ഇലകളും ചപ്പുചവറുകളും പുതയിടുക.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 22,
+        "title": "Banana Fertilizer and Nutrient Management Schedule",
+        "crop": "banana",
+        "crop_aliases": [
+            "banana",
+            "vazha",
+            "musa",
+            "nendran",
+            "grand naine",
+            "വാഴ"
+        ],
+        "topic": "fertilizer",
+        "intent": [
+            "FERTILIZER_RECOMMENDATION",
+            "NUTRIENT_MANAGEMENT"
+        ],
+        "subtopic": "banana nutrition",
+        "categories": [
+            "fertilizer",
+            "nutrient_management",
+            "banana_cultivation"
+        ],
+        "tags": [
+            "banana",
+            "fertilizer",
+            "nutrient",
+            "NPK",
+            "nendran",
+            "grand naine",
+            "urea",
+            "potash",
+            "manure",
+            "വാഴ",
+            "വളം"
+        ],
+        "keywords": [
+            "fertilizer for banana",
+            "banana fertilizer recommendation",
+            "nendran fertilizer schedule",
+            "banana NPK",
+            "vazha valam",
+            "banana fertilizer suggestion"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/banana-nutrition",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-03-01",
+        "language": "English/Malayalam",
+        "content": "For Nendran and major dessert banana cultivars in Kerala: Baseline recommendation per plant is 10-15 kg well-rotted farmyard manure/compost at planting, followed by 200-250g Nitrogen (approx. 450-550g Urea), 150-200g P2O5 (approx. 750-1000g Rock Phosphate), and 300-400g K2O (approx. 500-650g MOP). Apply in 4 to 6 split applications from 1st to 5th month after planting. Full phosphorus is applied early (around 2nd month), while nitrogen and potassium are given in equal split doses along with earthing-up and irrigation. Maintain soil moisture and confirm exact doses with a soil-test report.",
+        "malayalam_content": "നേന്ത്രവാഴ ഉൾപ്പെടെയുള്ള വാഴകൾക്ക്: അടിവളമായി 10-15 കി.ഗ്രാം ഉണങ്ങിപ്പൊടിഞ്ഞ ചാണകം/കമ്പോസ്റ്റ് നൽകുക. മേൽവളമായി വാഴയൊന്നിന് 200-250 ഗ്രാം നൈട്രജൻ (450-550 ഗ്രാം യൂറിയ), 150-200 ഗ്രാം ഫോസ്ഫറസ് (750-1000 ഗ്രാം രാജ്ഫോസ്), 300-400 ഗ്രാം പൊട്ടാഷ് (500-650 ഗ്രാം MOP) എന്നിവ നട്ട് 1 മുതൽ 5 മാസം വരെ 4-6 തവണകളായി നൽകണം. ഫോസ്ഫറസ് ആദ്യഘട്ടത്തിൽ നൽകുക; നൈട്രജനും പൊട്ടാഷും വളർച്ചാ ഘട്ടങ്ങളിൽ തുല്യമായി വിഭജിച്ച് നൽകുക.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 23,
+        "title": "Tomato Agro-Climatic Suitability and Cultivation Guide for Kerala",
+        "crop": "tomato",
+        "crop_aliases": [
+            "tomato",
+            "thakkali",
+            "solanum lycopersicum",
+            "തക്കാളി"
+        ],
+        "topic": "crop suitability",
+        "intent": [
+            "CROP_SUITABILITY",
+            "CROP_SELECTION",
+            "CROP_CULTIVATION"
+        ],
+        "subtopic": "crop suitability",
+        "categories": [
+            "crop_suitability",
+            "crop_selection",
+            "vegetable_cultivation"
+        ],
+        "tags": [
+            "tomato",
+            "suitability",
+            "cultivation",
+            "kerala climate",
+            "bacterial wilt resistant",
+            "soil",
+            "തക്കാളി"
+        ],
+        "keywords": [
+            "tomato is best or not",
+            "is tomato suitable",
+            "tomato suitability",
+            "tomato cultivation kerala",
+            "grow tomato in kerala",
+            "can I grow tomato"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/tomato-cultivation",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-02-15",
+        "language": "English/Malayalam",
+        "content": "Tomato is suitable for cultivation across Kerala, performing best during post-monsoon and dry winter months (September to February). Suitability requirements: 1. Soil: Well-drained sandy loam or clay loam rich in organic matter with pH 6.0 to 7.0. 2. Climate: Moderate temperatures (20-30°C) with plenty of sunlight; heavy continuous monsoon rains increase bacterial wilt and fruit rot. 3. Variety: Choose Kerala Agricultural University bacterial wilt-resistant varieties such as Manurakshi, Manuprabha, Vellayani Vijai, or Sakthi. Check soil drainage and season before planting.",
+        "malayalam_content": "കേരളത്തിൽ തക്കാളി കൃഷിക്ക് ഏറ്റവും അനുയോജ്യമായ സമയം സെപ്റ്റംബർ മുതൽ ഫെബ്രുവരി വരെയുള്ള മഴ കുറഞ്ഞ കാലമാണ്. നല്ല നീർവാർച്ചയും ജൈവാംശവുമുള്ള മണൽ കലർന്ന പശിമരാശി മണ്ണാണ് അനുയോജ്യം (pH 6.0 - 7.0). ബാക്ടീരിയൽ വാട്ടത്തെ പ്രതിരോധിക്കുന്ന മനുപ്രഭ, മനുരക്ഷി, വെള്ളായണി വിജയ്, ശക്തി തുടങ്ങിയ ഇനങ്ങൾ തിരഞ്ഞെടുക്കുക.",
+        "domain": "CROP_CULTIVATION"
+    },
+    {
+        "id": 24,
+        "title": "Apple Agro-Climatic Suitability Assessment in Kerala",
+        "crop": "apple",
+        "crop_aliases": [
+            "apple",
+            "apple fruit",
+            "malus domestica",
+            "ആപ്പിൾ"
+        ],
+        "topic": "crop suitability",
+        "intent": [
+            "CROP_SUITABILITY",
+            "CROP_SELECTION"
+        ],
+        "subtopic": "crop suitability assessment",
+        "categories": [
+            "crop_suitability",
+            "crop_selection",
+            "fruit_crops"
+        ],
+        "tags": [
+            "apple",
+            "suitability",
+            "kerala climate",
+            "high altitude",
+            "temperate crop",
+            "chilling hours",
+            "ഇടുക്കി",
+            "ആപ്പിൾ"
+        ],
+        "keywords": [
+            "apple is best or not",
+            "is apple suitable",
+            "can I grow apple in kerala",
+            "apple cultivation kerala",
+            "apple suitability",
+            "apple in kerala"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University / ICAR-CPCRI",
+        "source_url": "https://kau.in/fruit-crops/apple-suitability",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-01-20",
+        "language": "English/Malayalam",
+        "content": "Standard commercial apple varieties are temperate fruit crops that require 400 to 1000 winter chilling hours (below 7°C) and are NOT suitable for commercial farming in the warm, humid plains and coastal districts of Kerala. However, low-chilling tropical apple varieties (such as HRMN-99, Anna, and Dorsett Golden) can be successfully cultivated in high-altitude cool hill tracts of Kerala (such as Kanthalloor, Vattavada, Munnar in Idukki, and higher elevations of Wayanad). For general Kerala plains, tropical fruits like Banana, Mango, Papaya, and Jackfruit are far more reliable and agronomically suitable.",
+        "malayalam_content": "സാധാരണ ആപ്പിൾ ഇനങ്ങൾ തണുത്ത കാലാവസ്ഥയുള്ള ശീതകാല വിളകളായതിനാൽ കേരളത്തിലെ സമതലങ്ങളിലും തീരദേശങ്ങളിലും വാണിജ്യാടിസ്ഥാനത്തിൽ കൃഷി ചെയ്യാൻ അനുയോജ്യമല്ല. എന്നാൽ കുറഞ്ഞ തണുപ്പ് ആവശ്യമുള്ള എച്ച്.ആർ.എം.എൻ-99 (HRMN-99), അന്ന (Anna) തുടങ്ങിയ ഇനങ്ങൾ ഇടുക്കിയിലെ കാന്തല്ലൂർ, വട്ടവട, മൂന്നാർ തുടങ്ങിയ ഉയർന്ന മലയോര മേഖലകളിൽ വളർത്താം. സമതല പ്രദേശങ്ങളിൽ വാഴ, മാവ്, പപ്പായ, പ്ലാവ് തുടങ്ങിയ ഉഷ്ണമേഖലാ പഴങ്ങളാണ് ഏറ്റവും അനുയോജ്യം.",
+        "domain": "CROP_CULTIVATION"
+    },
+    {
+        "id": 2,
+        "title": "Rhinoceros Beetle Management in Coconut Palms",
+        "crop": "coconut",
+        "crop_aliases": [
+            "coconut",
+            "thengu",
+            "cocos nucifera",
+            "തെങ്ങ്",
+            "തേങ്ങ"
+        ],
+        "topic": "pest control",
+        "intent": [
+            "PEST_CONTROL",
+            "PEST_IDENTIFICATION"
+        ],
+        "subtopic": "pest management",
+        "categories": [
+            "pest_control",
+            "coconut_pest",
+            "biological_control"
+        ],
+        "tags": [
+            "rhinoceros beetle",
+            "pest control",
+            "coconut",
+            "kooman",
+            "biological control",
+            "കൊമ്പൻ",
+            "ചെല്ലി"
+        ],
+        "keywords": [
+            "rhinoceros beetle",
+            "clearing crown",
+            "metarhizium",
+            "neem cake",
+            "castor cake",
+            "കൊമ്പൻ ചെല്ലി"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "ICAR-Central Plantation Crops Research Institute",
+        "source_url": "https://cpcri.icar.gov.in/pest-management/rhinoceros-beetle",
+        "authority": "ICAR-CPCRI",
+        "date": "2023-11-20",
+        "language": "English/Malayalam",
+        "content": "The Rhinoceros Beetle (Chellu) is a major pest attacking the crown of coconut palms. Control measures: 1. Clean the palm crown regularly. 2. Apply a mixture of neem cake + sand (1:1 ratio) in the inner leaf axils of the crown (150g per palm). 3. Hang PVC pipe traps containing yeast + toddy ferment solution to capture adults. 4. Introduce Metarhizium anisopliae (green muscardine fungus) into breeding sites like cow dung pits to biologically destroy beetle larvae.",
+        "malayalam_content": "കൊമ്പൻ ചെല്ലി തെങ്ങിന്റെ ഓലകളെയും കൂമ്പുകളെയും നശിപ്പിക്കുന്നു. പ്രതിവിധി: 1. തെങ്ങിന്റെ മുകൾഭാഗം വൃത്തിയായി സൂക്ഷിക്കുക. 2. വേപ്പിൻ പിണ്ണാക്കും മണലും തുല്യ അളവിൽ കലർത്തി ഓലക്കവിളുകളിൽ ഇടുക (150 ഗ്രാം ഒരു തെങ്ങിന്). 3. ചാണകക്കുഴികളിൽ മെറ്റാറൈസിയം അനിസോപ്ലിയേ എന്ന ഫംഗസ് ചേർത്ത് കൊമ്പൻ ചെല്ലിയുടെ പുഴുക്കളെ നശിപ്പിക്കാം.",
+        "domain": "PEST_MANAGEMENT"
+    },
+    {
+        "id": 14,
+        "title": "Coconut Bud Rot Disease Treatment",
+        "crop": "coconut",
+        "crop_aliases": [
+            "coconut",
+            "thengu",
+            "cocos nucifera",
+            "തെങ്ങ്",
+            "തേങ്ങ"
+        ],
+        "topic": "disease control",
+        "intent": [
+            "DISEASE_CONTROL",
+            "DISEASE_IDENTIFICATION"
+        ],
+        "subtopic": "disease management",
+        "categories": [
+            "disease_control",
+            "coconut_disease",
+            "fungicide_treatment"
+        ],
+        "tags": [
+            "coconut",
+            "bud rot",
+            "kumbil azhukal",
+            "monsoon disease",
+            "കൂമ്പുചീയൽ"
+        ],
+        "keywords": [
+            "bud rot",
+            "phytophthora palmivora",
+            "bordeaux paste",
+            "foliar spray",
+            "കൂമ്പുചീയൽ"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "ICAR-Central Plantation Crops Research Institute",
+        "source_url": "https://cpcri.icar.gov.in/pest-management/bud-rot",
+        "authority": "ICAR-CPCRI",
+        "date": "2023-12-05",
+        "language": "English/Malayalam",
+        "content": "Bud Rot (Kumbil Azhukal) caused by Phytophthora palmivora rots the heart leaf spindle of coconut palms, eventually killing the growth point. Remedy: 1. Remove infected tissues completely. 2. Apply 10% Bordeaux paste to the cut surfaces. 3. Protect the crown by spraying 1% Bordeaux mixture on surrounding palms before monsoon seasons.",
+        "malayalam_content": "തെങ്ങിൻറെ കൂമ്പുചീയൽ തടയാൻ: 1. ചീഞ്ഞ ഭാഗങ്ങൾ വെട്ടിമാറ്റി വൃത്തിയാക്കുക. 2. മുറിച്ച ഭാഗത്ത് 10% വീര്യമുള്ള ബോർഡോ പേസ്റ്റ് പുരട്ടുക. 3. കാലവർഷത്തിന് മുൻപായി മറ്റു തെങ്ങുകളിൽ 1% ബോർഡോ മിശ്രിതം തളിക്കുക.",
+        "domain": "CROP_DISEASE"
+    },
+    {
+        "id": 3,
+        "title": "Quick Wilt Prevention in Black Pepper Vines",
+        "crop": "pepper",
+        "crop_aliases": [
+            "black pepper",
+            "pepper",
+            "kurumulaku",
+            "piper nigrum",
+            "കുരുമുളക്"
+        ],
+        "topic": "disease prevention",
+        "intent": [
+            "DISEASE_CONTROL",
+            "DISEASE_IDENTIFICATION"
+        ],
+        "subtopic": "disease prevention",
+        "categories": [
+            "disease_control",
+            "pepper_disease",
+            "monsoon_care"
+        ],
+        "tags": [
+            "quick wilt",
+            "pepper",
+            "foot rot",
+            "dhrutha vaattam",
+            "monsoon",
+            "ദ്രുതവാട്ടം"
+        ],
+        "keywords": [
+            "quick wilt",
+            "phytophthora",
+            "trichoderma",
+            "bordeaux mixture",
+            "pruning"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Indian Institute of Spices Research (ICAR-IISR)",
+        "source_url": "https://spices.res.in/diseases/pepper-wilt",
+        "authority": "ICAR-IISR",
+        "date": "2024-02-15",
+        "language": "English/Malayalam",
+        "content": "Quick Wilt (Dhrutha Vaattam) caused by Phytophthora capsici kills pepper vines during monsoons. Preventative schedule: 1. Apply Trichoderma harzianum enriched farmyard manure (5kg per vine) in May-June before monsoons start. 2. Spray the foliage and drench the soil around the vine base with 1% Bordeaux mixture. 3. Ensure excellent water drainage around the vine basins. 4. Prune branches of standards (supporting trees) to ensure adequate sunlight penetrations onto the pepper vine.",
+        "malayalam_content": "കുരുമുളകിലെ ദ്രുതവാട്ടം തടയാൻ: 1. കാലവർഷത്തിന് മുൻപ് (മെയ്-ജൂൺ) ട്രൈക്കോഡെർമ ചേർത്ത ചാണകപ്പൊടി തടങ്ങളിൽ ഇടുക. 2. വള്ളികളിലും ഇലകളിലും 1% വീര്യമുള്ള ബോർഡോ മിശ്രിതം തളിക്കുകയും തടം കുതിർക്കുകയും ചെയ്യുക. 3. തടങ്ങളിൽ വെള്ളം കെട്ടിക്കിടക്കാൻ അനുവദിക്കരുത്. 4. വെയിൽ കിട്ടാനായി താങ്ങുമരങ്ങളുടെ ചില്ലകൾ കോതി ഒതുക്കുക.",
+        "domain": "CROP_DISEASE"
+    },
+    {
+        "id": 4,
+        "title": "Pseudostem Weevil Control in Banana Cultivation",
+        "crop": "banana",
+        "crop_aliases": [
+            "banana",
+            "vazha",
+            "musa",
+            "വാഴ"
+        ],
+        "topic": "pest control",
+        "intent": [
+            "PEST_CONTROL",
+            "PEST_IDENTIFICATION"
+        ],
+        "subtopic": "pest control",
+        "categories": [
+            "pest_control",
+            "banana_pest",
+            "bio_control"
+        ],
+        "tags": [
+            "banana",
+            "pseudostem weevil",
+            "pest",
+            "pindi unni",
+            "stem borer"
+        ],
+        "keywords": [
+            "pseudostem weevil",
+            "banana stem",
+            "neem oil",
+            "traps",
+            "injection"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/banana-weevil",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-06-01",
+        "language": "English/Malayalam",
+        "content": "Banana Pseudostem Weevil (Pindi Unni) bores tunnels inside the banana stem, leading to plant collapse. Treatment: 1. Maintain field sanitation and remove dry leaves. 2. Cut banana pseudo-stem traps (50cm long) split longitudinally and place them face down around the base of plants to trap adult beetles. 3. Inject Beauveria bassiana (bio-pesticide) solution or apply Neem oil emulsion (5%) into the leaf axils. 4. Spray Carbaryl (4g/L) for heavy chemical outbreaks.",
+        "malayalam_content": "വാഴയിലെ പിണ്ടിഉണ്ണിയെ തടയാൻ: 1. കൃഷിയിടം എപ്പോഴും ശുചിയായി സൂക്ഷിക്കുക. ഉണങ്ങിയ ഇലകൾ മാറ്റുക. 2. വാഴപ്പിണ്ടി 50 സെ.മീ നീളത്തിൽ മുറിച്ച് കീറി വാഴകളുടെ ചുവട്ടിൽ വെച്ച് വണ്ടുകളെ ആകർഷിച്ച് നശിപ്പിക്കുക. 3. വേപ്പെണ്ണ വെളുത്തുള്ളി മിശ്രിതം ഓലക്കവിളുകളിൽ ഒഴിക്കുക.",
+        "domain": "PEST_MANAGEMENT"
+    },
+    {
+        "id": 10,
+        "title": "Banana Sigatoka Disease Control",
+        "crop": "banana",
+        "crop_aliases": [
+            "banana",
+            "vazha",
+            "musa",
+            "വാഴ"
+        ],
+        "topic": "disease control",
+        "intent": [
+            "DISEASE_CONTROL",
+            "DISEASE_IDENTIFICATION"
+        ],
+        "subtopic": "disease management",
+        "categories": [
+            "disease_control",
+            "banana_disease",
+            "fungicide_spray"
+        ],
+        "tags": [
+            "banana",
+            "sigatoka",
+            "leaf spot",
+            "ila manja",
+            "fungicide"
+        ],
+        "keywords": [
+            "sigatoka",
+            "leaf spot",
+            "mycosphaerella",
+            "carbendazim",
+            "propiconazole"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/banana-sigatoka",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-06-15",
+        "language": "English/Malayalam",
+        "content": "Sigatoka Leaf Spot caused by Mycosphaerella musicola leads to pale yellow spots on leaves, which merge to dry out entire foliage. Treatment: 1. Cut and burn severely affected leaves. 2. Spray Propiconazole (1ml/L) or Carbendazim (1g/L) mixed with agricultural wetting agent. 3. Maintain wider crop spacing to reduce relative humidity inside the field.",
+        "malayalam_content": "വാഴയിലകളിൽ മഞ്ഞപ്പുള്ളികൾ വീണു ഇലകൾ ഉണങ്ങിപ്പോകുന്ന രോഗമാണിത്. പ്രതിവിധി: 1. രോഗബാധയുള്ള ഇലകൾ മുറിച്ചു മാറ്റുക. 2. പ്രൊപ്പികൊണസോൾ (Propiconazole 1ml/L) അല്ലെങ്കിൽ കാർബെൻഡാസിം തളിക്കുക. 3. തോട്ടത്തിൽ കാറ്റും വെളിച്ചവും കടക്കാൻ വാഴകൾ തമ്മിൽ നിശ്ചിത അകലം പാലിക്കുക.",
+        "domain": "CROP_DISEASE"
+    },
+    {
+        "id": 5,
+        "title": "Rain-guarding and Ethrel in Rubber Tapping",
+        "crop": "rubber",
+        "crop_aliases": [
+            "rubber",
+            "hevea brasiliensis",
+            "റബ്ബർ"
+        ],
+        "topic": "cultivation practice",
+        "intent": [
+            "CROP_CULTIVATION",
+            "WEATHER_AGRICULTURE"
+        ],
+        "subtopic": "tapping management",
+        "categories": [
+            "plantation_crops",
+            "rubber_cultivation",
+            "monsoon_management"
+        ],
+        "tags": [
+            "rubber",
+            "tapping",
+            "rain guarding",
+            "ethrel",
+            "latex"
+        ],
+        "keywords": [
+            "rain guarding",
+            "ethrel",
+            "tapping schedule",
+            "latex yield"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Rubber Board of India",
+        "source_url": "https://rubberboard.org.in/rubber-tapping-monsoon",
+        "authority": "Rubber Board of India",
+        "date": "2023-05-10",
+        "language": "English/Malayalam",
+        "content": "Tapping rubber during monsoon requires rain-guarding to prevent water from washing away latex and causing panel diseases (bark rot). Fit polythene rain-guards over the tapping panel in April before monsoons. To optimize yield, Ethrel (latex stimulant, 2.5% concentration) can be applied on the tapping cut once in two months. Apply only to healthy clones under tapping for more than 5 years. Avoid over-application as it causes dryness of the tapping panel (Tapping Panel Dryness).",
+        "malayalam_content": "മഴക്കാലത്തും ടാപ്പിംഗ് മുടങ്ങാതെ നടത്താൻ റെയിൻ ഗാർഡ് ആവശ്യമാണ്. ഏപ്രിൽ മാസത്തിൽ ടാപ്പിംഗ് പാനലിന് മുകളിൽ പോളിത്തീൻ ഷീറ്റുകൾ ഘടിപ്പിക്കുക. റബ്ബറിന്റെ ഉത്പാദനം വർദ്ധിപ്പിക്കാൻ എഥ്രൽ (Ethrel 2.5%) പാനലിൽ പുരട്ടാം. വലിപ്പമുള്ള ആരോഗ്യവത്തായ മരങ്ങളിൽ മാത്രം ഉപയോഗിക്കുക. കൂടുതൽ ഉപയോഗിച്ചാൽ മരം ഉണങ്ങിപ്പോകാൻ (Tapping Panel Dryness) കാരണമാകും.",
+        "domain": "WEATHER_CLIMATE"
+    },
+    {
+        "id": 6,
+        "title": "Cardamom Capsule Borer Management",
+        "crop": "cardamom",
+        "crop_aliases": [
+            "cardamom",
+            "elam",
+            "elettaria cardamomum",
+            "ഏലം"
+        ],
+        "topic": "pest control",
+        "intent": [
+            "PEST_CONTROL",
+            "PEST_IDENTIFICATION"
+        ],
+        "subtopic": "pest control",
+        "categories": [
+            "spices",
+            "cardamom_pest",
+            "pest_management"
+        ],
+        "tags": [
+            "cardamom",
+            "capsule borer",
+            "pest",
+            "elam",
+            "idukki"
+        ],
+        "keywords": [
+            "capsule borer",
+            "cardamom pest",
+            "neem oil",
+            "spray schedule"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Indian Cardamom Research Institute (ICRI)",
+        "source_url": "https://indianspices.com/research/cardamom-borer",
+        "authority": "Indian Cardamom Research Institute (ICRI)",
+        "date": "2024-03-22",
+        "language": "English/Malayalam",
+        "content": "Cardamom Capsule Borer (Conogethes punctiferalis) larvae bore into shoots and young capsules, resulting in hollow fruits. Treatment: 1. Clean the basins and prune infested tillers. 2. Spray Neem Oil emulsion (3%) or Quinalphos (2ml/L) at the beginning of the crop set. 3. Monitor the field for white moths and destroy egg masses. Maintain optimal forest overhead shade of 40-50% to prevent excessive moth breeding.",
+        "malayalam_content": "ഏലത്തിലെ കായതുരപ്പനെ തടയാൻ: 1. ഏലത്തോട്ടത്തിലെ ഉണങ്ങിയ ഇലകളും രോഗം ബാധിച്ച തണ്ടുകളും വെട്ടി മാറ്റുക. 2. കായകൾ ഉണ്ടാകുന്ന സമയത്ത് വേപ്പെണ്ണ മിശ്രിതം (3%) അല്ലെങ്കിൽ ക്വിനാൽഫോസ് (2ml/L) തളിക്കുക. 3. തോട്ടത്തിൽ നിഴൽ ക്രമീകരിക്കുക.",
+        "domain": "PEST_MANAGEMENT"
+    },
+    {
+        "id": 7,
+        "title": "Soil Acidity Neutralization in Kerala Soils",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops",
+            "soil"
+        ],
+        "topic": "soil management",
+        "intent": [
+            "SOIL_RECOMMENDATION",
+            "SOIL_HEALTH",
+            "SOIL_SUITABILITY"
+        ],
+        "subtopic": "soil pH management",
+        "categories": [
+            "soil_health",
+            "soil_management",
+            "liming"
+        ],
+        "tags": [
+            "ph",
+            "acid soil",
+            "lime",
+            "dolomite",
+            "soil testing",
+            "soil acidity"
+        ],
+        "keywords": [
+            "acidic soil",
+            "lime",
+            "dolomite",
+            "ph correction",
+            "calcium",
+            "soil acidity"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agriculture Department",
+        "source_url": "https://keralaagriculture.gov.in/soil-acidity",
+        "authority": "Kerala Agriculture Department",
+        "date": "2024-01-30",
+        "language": "English/Malayalam",
+        "content": "Due to heavy rains, Kerala soils are naturally acidic (pH < 5.5), which binds phosphorus and limits calcium uptake. Correction method: Apply agricultural lime (calcium carbonate) or dolomite (calcium magnesium carbonate) at the rate of 100g to 200g per square meter depending on soil analysis. Broadcast the lime evenly and mix thoroughly with soil 2 weeks before chemical fertilizer application. Never apply lime and nitrogenous fertilizers together, as it leads to ammonia gas loss.",
+        "malayalam_content": "കേരളത്തിലെ മണ്ണിൽ അമ്ലത്വം (അസിഡിറ്റി) കൂടുതലാണ്. ഇത് പരിഹരിക്കാൻ: സെന്റിന് 2 മുതൽ 4 കിലോഗ്രാം എന്ന തോതിൽ കുമ്മായം അല്ലെങ്കിൽ ഡോളോമൈറ്റ് മണ്ണിൽ ചേർത്ത് ഇളക്കുക. വളം പ്രയോഗിക്കുന്നതിന് രണ്ടാഴ്ച മുൻപെങ്കിലും കുമ്മായം ചേർക്കണം. കുമ്മായും രാസവളങ്ങളും ഒരുമിച്ച് ചേർക്കരുത്.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 16,
+        "title": "Soil Suitability and pH Requirements for Paddy (Rice)",
+        "crop": "rice",
+        "crop_aliases": [
+            "rice",
+            "paddy",
+            "nellu",
+            "oryza sativa",
+            "നെല്ല്"
+        ],
+        "topic": "soil suitability",
+        "intent": [
+            "SOIL_SUITABILITY",
+            "SOIL_RECOMMENDATION"
+        ],
+        "subtopic": "soil requirements",
+        "categories": [
+            "rice_cultivation",
+            "soil_suitability",
+            "cereal_crops"
+        ],
+        "tags": [
+            "rice",
+            "paddy",
+            "soil",
+            "soil texture",
+            "clay loam",
+            "loam",
+            "pH",
+            "drainage",
+            "water retention"
+        ],
+        "keywords": [
+            "best soil for paddy",
+            "rice soil requirements",
+            "paddy soil",
+            "clay soil",
+            "soil pH",
+            "rice cultivation"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-01-01",
+        "language": "English/Malayalam",
+        "content": "Paddy grows well in clay loam, loam, and other soils that retain sufficient water while allowing drainage between irrigation or rainfall events. Rice tolerates a relatively broad soil pH range; approximately pH 5.0 to 8.0 is suitable for normal rice growth. Confirm soil amendments with a complete soil test and local Kerala Agricultural University or Department of Agriculture guidance.",
+        "malayalam_content": "നെല്ല് കിളിമണ്ണ് കലർന്ന മണൽമണ്ണിലും വെള്ളം ആവശ്യത്തിന് പിടിച്ചുനിർത്തുന്ന മറ്റ് മണ്ണുകളിലും നന്നായി വളരും. വെള്ളം കെട്ടിനിൽക്കാതെ ആവശ്യത്തിന് ഈർപ്പം നിലനിർത്തണം. നെല്ലിന് ഏകദേശം pH 5.0 മുതൽ 8.0 വരെ സാധാരണ വളർച്ചയ്ക്ക് അനുയോജ്യമാണ്. മണ്ണ് ഭേദഗതികൾ പൂർണ്ണ മണ്ണ് പരിശോധനയും കൃഷിഭവൻ നിർദേശവും അടിസ്ഥാനമാക്കി മാത്രം നടത്തുക.",
+        "domain": "SOIL_WATER"
+    },
+    {
+        "id": 9,
+        "title": "Rice Stem Borer Treatment",
+        "crop": "rice",
+        "crop_aliases": [
+            "rice",
+            "paddy",
+            "nellu",
+            "നെല്ല്"
+        ],
+        "topic": "pest control",
+        "intent": [
+            "PEST_CONTROL",
+            "PEST_IDENTIFICATION"
+        ],
+        "subtopic": "pest control",
+        "categories": [
+            "rice_pest",
+            "pest_control"
+        ],
+        "tags": [
+            "rice",
+            "paddy",
+            "stem borer",
+            "thandu thurappan",
+            "chithal"
+        ],
+        "keywords": [
+            "stem borer",
+            "yellow stem borer",
+            "paddy pest",
+            "chlorantraniliprole",
+            "trichogramma"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/paddy-stem-borer",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-07-04",
+        "language": "English/Malayalam",
+        "content": "Rice Yellow Stem Borer causes dead hearts during vegetative stage and whiteheads during reproductive stages. Control: 1. Install pheromone traps at 8 traps/acre. 2. Release Trichogramma japonicum egg parasitoid at 2 cards/acre weekly. 3. Apply Cartap Hydrochloride (4G at 10kg/acre) or spray Chlorantraniliprole 18.5 SC (60ml/acre) under heavy outbreaks.",
+        "malayalam_content": "നെല്ലിലെ തണ്ടുതുരപ്പൻ പുഴു തണ്ടുകൾ തിന്നുതീർത്ത് ഉണങ്ങാൻ കാരണമാകുന്നു. പ്രതിവിധി: 1. ഒരേക്കറിന് 8 ഫെറമോൺ കെണികൾ സ്ഥാപിക്കുക. 2. ട്രൈക്കോഡെർമ മുട്ട കാർഡുകൾ ഉപയോഗിക്കുക. 3. കീടബാധ കടുപ്പമാണെങ്കിൽ കാർട്ടാപ് ഹൈഡ്രോക്ലോറൈഡ് (Cartap Hydrochloride) പ്രയോഗിക്കുക.",
+        "domain": "PEST_MANAGEMENT"
+    },
+    {
+        "id": 25,
+        "title": "Ginger Soft Rot Management",
+        "crop": "ginger",
+        "crop_aliases": [
+            "ginger",
+            "inji",
+            "zingiber officinale",
+            "ഇഞ്ചി"
+        ],
+        "topic": "disease control",
+        "intent": [
+            "DISEASE_CONTROL",
+            "DISEASE_IDENTIFICATION"
+        ],
+        "subtopic": "disease control",
+        "categories": [
+            "spices",
+            "ginger_disease",
+            "rhizome_rot"
+        ],
+        "tags": [
+            "ginger",
+            "soft rot",
+            "rhizome rot",
+            "chichil",
+            "pythium"
+        ],
+        "keywords": [
+            "soft rot",
+            "ginger disease",
+            "pythium",
+            "metalaxyl",
+            "seed treatment"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Indian Institute of Spices Research (ICAR-IISR)",
+        "source_url": "https://spices.res.in/diseases/ginger-rot",
+        "authority": "ICAR-IISR",
+        "date": "2023-08-18",
+        "language": "English/Malayalam",
+        "content": "Ginger Soft Rot (Rhizome Rot) caused by Pythium spp. leads to yellowing of leaves and decay of the underground rhizomes. Prevention: 1. Perform seed treatment with Mancozeb (3g/L) or Trichoderma for 30 minutes before planting. 2. Provide raised beds with proper water runoff. 3. If disease appears, drench the infected beds with Metalaxyl-Mancozeb (2g/L) immediately.",
+        "malayalam_content": "ഇഞ്ചിയിലെയും മഞ്ഞളിലെയും ചീച്ചിൽ രോഗം കർഷകർക്ക് വലിയ നഷ്ടമുണ്ടാക്കുന്നു. പ്രതിവിധി: 1. നടുന്നതിന് മുൻപ് വിത്ത് ഇഞ്ചി മാങ്കോസെബ് (Mancozeb 3g/L) ലായനിയിൽ 30 മിനിറ്റ് മുക്കി വെക്കുക. 2. വെള്ളം കെട്ടിക്കിടക്കാത്ത ഉയർന്ന തടങ്ങൾ നിർമ്മിക്കുക. 3. രോഗം കണ്ടാൽ മെറ്റാലാക്സിൽ-മാങ്കോസെബ് പ്രയോഗിക്കുക.",
+        "domain": "CROP_DISEASE"
+    },
+    {
+        "id": 17,
+        "title": "Crop Selection by Soil, Season, Water and Farm Objective",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops"
+        ],
+        "topic": "crop suitability",
+        "intent": [
+            "CROP_SUITABILITY",
+            "CROP_SELECTION"
+        ],
+        "subtopic": "crop planning",
+        "categories": [
+            "crop_selection",
+            "crop_suitability",
+            "agro_climatic"
+        ],
+        "tags": [
+            "crop suitability",
+            "crop selection",
+            "soil compatibility",
+            "season",
+            "water availability",
+            "Kerala crops"
+        ],
+        "keywords": [
+            "which crop is best",
+            "suitable crop",
+            "crop recommendation",
+            "what crop should I grow",
+            "agro climatic suitability",
+            "which crop to grow"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-01-01",
+        "language": "English/Malayalam",
+        "content": "Crop choice should be based on the farm's district and agro-climatic conditions, soil type, water availability, season, farm area, and the farmer's food or market objective. No crop is universally best. Use these factors to shortlist suitable crops, then confirm the seasonal recommendation with Kerala Agricultural University or the local Krishi Bhavan.",
+        "malayalam_content": "വിള തിരഞ്ഞെടുക്കുമ്പോൾ ജില്ലയും കാർഷിക കാലാവസ്ഥയും, മണ്ണിന്റെ തരം, ജലലഭ്യത, സീസൺ, കൃഷിയിടത്തിന്റെ വിസ്തീർണ്ണം, ഭക്ഷ്യവിളയോ വിപണി ലക്ഷ്യമോ എന്നിവ പരിഗണിക്കണം. എല്ലായിടത്തും ഒരേ വിളയാണ് മികച്ചത് എന്ന് പറയാനാവില്ല. കേരള കാർഷിക സർവകലാശാലയുടെയോ പ്രാദേശിക കൃഷിഭവന്റെയോ സീസൺ നിർദേശം സ്ഥിരീകരിക്കുക.",
+        "domain": "CROP_CULTIVATION"
+    },
+    {
+        "id": 18,
+        "title": "Paddy Harvesting, Drying and Safe Grain Storage During Rain",
+        "crop": "paddy",
+        "crop_aliases": [
+            "rice",
+            "paddy rice",
+            "rice grain",
+            "paddy grain",
+            "oryza sativa",
+            "നെല്ല്"
+        ],
+        "topic": "post-harvest management",
+        "intent": [
+            "POST_HARVEST",
+            "HARVESTING",
+            "STORAGE",
+            "WEATHER_AGRICULTURE"
+        ],
+        "subtopic": "grain drying and storage",
+        "categories": [
+            "harvesting",
+            "post_harvest",
+            "drying",
+            "storage",
+            "grain_storage",
+            "weather_agriculture"
+        ],
+        "tags": [
+            "paddy",
+            "rice",
+            "harvest",
+            "post-harvest",
+            "drying",
+            "storage",
+            "wet grain",
+            "moisture",
+            "rain",
+            "spoilage"
+        ],
+        "keywords": [
+            "ready to harvest",
+            "harvest and store",
+            "grain moisture",
+            "dry grain",
+            "safe storage",
+            "fungal spoilage",
+            "monsoon harvest",
+            "harvest paddy"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-01-01",
+        "language": "English/Malayalam",
+        "content": "When mature paddy is ready and rain is approaching, harvest as soon as practical and move cut material under cover. Thresh and clean promptly, separate visibly damaged or mouldy grain, and dry wet grain on a clean, well-ventilated surface or with an approved dryer. Do not bag or stack warm, damp grain. Before storage, verify the moisture target for the intended use and storage duration with an authoritative rice-storage guide or the local Krishi Bhavan. Store only cool, dry grain in clean bags on raised pallets, with protection from rain and moisture re-entry. Inspect regularly for mould, musty odour, heating, insects, or clumping.",
+        "malayalam_content": "നെല്ല് പാകമായിരിക്കെ മഴ വരാനുണ്ടെങ്കിൽ സാധ്യമായത്ര വേഗം കൊയ്ത് മഴ തട്ടാത്ത സ്ഥലത്തേക്ക് മാറ്റുക. വൃത്തിയുള്ള, വായുസഞ്ചാരമുള്ള തറയിലോ അംഗീകൃത ഡ്രയറിലോ നനഞ്ഞ ധാന്യം ഉടൻ ഉണക്കുക. പൂപ്പൽ പിടിച്ചതോ കേടായതോ ആയ ധാന്യം വേർതിരിക്കുക. ചൂടും നനവും ഉള്ള ധാന്യം ചാക്കിലാക്കി അടുക്കരുത്. ഉപയോഗവും സംഭരണകാലവും അനുസരിച്ചുള്ള ശരിയായ ഈർപ്പനില കൃഷിഭവനിൽ സ്ഥിരീകരിച്ച് മാത്രം വൃത്തിയുള്ള വരണ്ട ചാക്കുകളിലും നിലത്തുനിന്ന് ഉയർത്തിയ സംഭരണസ്ഥലത്തും സൂക്ഷിക്കുക. പൂപ്പൽ, ദുർഗന്ധം, ചൂട്, കീടം, കട്ടപിടിക്കൽ എന്നിവ പതിവായി പരിശോധിക്കുക.",
+        "domain": "WEATHER_CLIMATE"
+    },
+    {
+        "id": 19,
+        "title": "Paddy Nutrient and Fertilizer Management",
+        "crop": "rice",
+        "crop_aliases": [
+            "paddy",
+            "nellu",
+            "rice crop",
+            "oryza sativa",
+            "നെല്ല്"
+        ],
+        "topic": "fertilizer",
+        "intent": [
+            "FERTILIZER_RECOMMENDATION",
+            "NUTRIENT_MANAGEMENT"
+        ],
+        "subtopic": "rice nutrition",
+        "categories": [
+            "fertilizer",
+            "nutrient_management",
+            "paddy_cultivation"
+        ],
+        "tags": [
+            "paddy",
+            "rice",
+            "fertilizer",
+            "fertiliser",
+            "nutrient",
+            "nitrogen",
+            "phosphorus",
+            "potassium",
+            "NPK",
+            "manure"
+        ],
+        "keywords": [
+            "fertilizer for paddy",
+            "fertilizer for rice",
+            "paddy nutrition",
+            "rice nutrient management",
+            "which fertilizer for paddy",
+            "which fertilizer is best for paddy"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-01-01",
+        "language": "English/Malayalam",
+        "content": "Paddy fertilizer management should follow a soil test and the crop stage rather than a universal product or dose. Plan nutrients across the crop cycle, keep nitrogen applications split according to the locally verified recommendation, and consider phosphorus and potassium status, organic matter, water management, and the previous crop. Use well-decomposed organic manure where appropriate, avoid applying fertilizer to saturated runoff-prone fields, and confirm the product, rate, and timing with the Kerala Agricultural University recommendation or local Krishi Bhavan before application.",
+        "malayalam_content": "നെല്ലിന് വളപ്രയോഗം മണ്ണ് പരിശോധനയും വിളയുടെ വളർച്ചാഘട്ടവും അടിസ്ഥാനമാക്കിയാകണം; എല്ലാവർക്കും ഒരേ വളമോ അളവോ ശരിയല്ല. നൈട്രജൻ പ്രാദേശിക നിർദേശപ്രകാരം ഘട്ടംഘട്ടമായി നൽകുക. ഫോസ്ഫറസ്, പൊട്ടാസ്യം, ജൈവവസ്തു, ജലനിയന്ത്രണം, മുൻവിള എന്നിവ പരിഗണിക്കുക. നന്നായി അഴുകിയ ജൈവവളം ഉപയോഗിക്കാം. വെള്ളം കെട്ടിനിൽക്കുന്നോ ഒഴുകിപ്പോകാൻ സാധ്യതയുള്ളോ വയലിൽ വളം നൽകരുത്. കൃത്യമായ വളവും അളവും സമയവും കൃഷിഭവനിൽ സ്ഥിരീകരിക്കുക.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 11,
+        "title": "Nitrogen Deficiency and Correction in Crop Farming",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops"
+        ],
+        "topic": "nutrient deficiency",
+        "intent": [
+            "NUTRIENT_DEFICIENCY",
+            "FERTILIZER_RECOMMENDATION"
+        ],
+        "subtopic": "nitrogen deficiency",
+        "categories": [
+            "nutrient_deficiency",
+            "fertilizer"
+        ],
+        "tags": [
+            "nitrogen",
+            "deficiency",
+            "urea",
+            "NPK",
+            "leaves yellowing"
+        ],
+        "keywords": [
+            "nitrogen deficiency",
+            "yellowing leaves",
+            "urea dosage",
+            "cowpea cover cropping"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agriculture Department",
+        "source_url": "https://keralaagriculture.gov.in/nitrogen-deficiency",
+        "authority": "Kerala Agriculture Department",
+        "date": "2024-02-10",
+        "language": "English/Malayalam",
+        "content": "Nitrogen is critical for crop vegetative growth. Deficiency causes overall leaf yellowing starting from older leaves, stunted stems, and poor tillering. Correction: 1. Top dress with Urea (approx. 20-30g/sqm for short crops) or ammonium sulfate. 2. Grow leguminous cover crops (cowpeas, green gram) during off-season to lock nitrogen naturally. 3. Apply compost or vermicompost regularly.",
+        "malayalam_content": "നൈട്രജന്റെ കുറവുണ്ടാകുമ്പോൾ ചെടികളുടെ താഴത്തെ ഇലകൾ മഞ്ഞനിറമാകുന്നു. പ്രതിവിധി: 1. മണ്ണിൽ ആവശ്യാനുസരണം യൂറിയ പ്രയോഗിക്കുക. 2. മുതിരയോ പയറോ കൃഷി ചെയ്ത് മണ്ണിൽ ഉഴുതു ചേർക്കുന്നത് നൈട്രജൻ വർദ്ധിപ്പിക്കും. 3. കമ്പോസ്റ്റ് ചേർത്തു കൊടുക്കുക.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 12,
+        "title": "Potassium Deficiency and Correction in Plants",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops"
+        ],
+        "topic": "nutrient deficiency",
+        "intent": [
+            "NUTRIENT_DEFICIENCY",
+            "FERTILIZER_RECOMMENDATION"
+        ],
+        "subtopic": "potassium deficiency",
+        "categories": [
+            "nutrient_deficiency",
+            "fertilizer"
+        ],
+        "tags": [
+            "potassium",
+            "potash",
+            "deficiency",
+            "MOP",
+            "leaf margins drying"
+        ],
+        "keywords": [
+            "potassium deficiency",
+            "marginal leaf scorch",
+            "potash",
+            "wood ash",
+            "MOP"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/potassium-deficiency",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-05-18",
+        "language": "English/Malayalam",
+        "content": "Potassium deficiency causes marginal leaf scorch (leaves drying from edges inward), weak root anchoring, and low resistance to dry weather. Correction: 1. Apply Muriate of Potash (MOP) at recommended split doses. 2. For organic farming, apply wood ash (100-200g per plant) or bury potassium-rich coconut husks in trenches around plant basins.",
+        "malayalam_content": "പൊട്ടാസ്യത്തിന്റെ കുറവ് മൂലം ഇലകളുടെ അരികുകൾ ഉണങ്ങിപ്പോകുന്നു. പ്രതിവിധി: 1. മണ്ണിൽ ആവശ്യത്തിന് മ്യൂറിയേറ്റ് ഓഫ് പൊട്ടാഷ് (MOP) ചേർക്കുക. 2. ജൈവ രീതിയിൽ ചാരം ചെടികളുടെ ചുവട്ടിലിടുക. തെങ്ങിന്റെയും വാഴയുടെയും തടങ്ങളിൽ തേങ്ങാത്തൊണ്ട് അടുക്കുന്നത് പൊട്ടാസ്യം വർദ്ധിപ്പിക്കാൻ സഹായിക്കും.",
+        "domain": "FERTILIZER"
+    },
+    {
+        "id": 13,
+        "title": "Government Crop Insurance and PM-KISAN Scheme in Kerala",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops"
+        ],
+        "topic": "government scheme",
+        "intent": [
+            "GENERAL_FARMING"
+        ],
+        "subtopic": "schemes and subsidies",
+        "categories": [
+            "government_schemes",
+            "crop_insurance"
+        ],
+        "tags": [
+            "government schemes",
+            "crop insurance",
+            "PM KISAN",
+            "subsidy",
+            "krishi bhavan"
+        ],
+        "keywords": [
+            "PM-KISAN",
+            "crop insurance",
+            "krishi bhavan registration",
+            "kerala agriculture portal"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Department of Agriculture Development and Farmers Welfare, Govt of Kerala",
+        "source_url": "https://keralaagriculture.gov.in/schemes",
+        "authority": "Department of Agriculture Development and Farmers Welfare, Govt of Kerala",
+        "date": "2024-03-01",
+        "language": "English/Malayalam",
+        "content": "Farmers in Kerala can access several safety nets: 1. PM-KISAN: Offers direct income support of ₹6,000 per year in three installments to small landholding families. 2. State Crop Insurance Scheme: Covers damage from flood, drought, land-slides, or pest outbreaks. Register at your local Krishi Bhavan within 15 days of planting or apply online via AIMS portal (Kerala Agriculture Department).",
+        "malayalam_content": "കേരളത്തിലെ കൃഷി പദ്ധതികൾ: 1. പി.എം കിസാൻ (PM-KISAN) വഴി വർഷത്തിൽ 6000 രൂപ സഹായധനം ലഭിക്കും. 2. സംസ്ഥാന വിള ഇൻഷുറൻസ് പദ്ധതി വഴി പ്രകൃതിക്ഷോഭം മൂലമുള്ള നഷ്ടങ്ങൾക്ക് പരിഹാരം നേടാം. തദ്ദേശ കൃഷിഭവനിൽ രജിസ്റ്റർ ചെയ്യുക.",
+        "domain": "GENERAL_FARMING"
+    },
+    {
+        "id": 15,
+        "title": "Organic Pest Control via Neem Oil Garlic Emulsion",
+        "crop": "general",
+        "crop_aliases": [
+            "general",
+            "all crops"
+        ],
+        "topic": "organic farming",
+        "intent": [
+            "ORGANIC_FARMING",
+            "PEST_CONTROL",
+            "INPUT_PREPARATION"
+        ],
+        "subtopic": "bio pesticide preparation",
+        "categories": [
+            "organic_farming",
+            "pest_control",
+            "bio_pesticide"
+        ],
+        "tags": [
+            "organic",
+            "pest control",
+            "neem oil",
+            "garlic",
+            "emulsion",
+            "bio pesticide"
+        ],
+        "keywords": [
+            "neem oil emulsion",
+            "garlic extract",
+            "insect repellent",
+            "sucking pests",
+            "how to prepare neem oil emulsion"
+        ],
+        "region": "India",
+        "state": "Kerala",
+        "source_type": "government/university/research",
+        "source_name": "Kerala Agricultural University",
+        "source_url": "https://kau.in/practices/neem-garlic-emulsion",
+        "authority": "Kerala Agricultural University",
+        "date": "2024-04-10",
+        "language": "English/Malayalam",
+        "content": "Neem oil garlic emulsion is a powerful broad-spectrum organic insect repellent. Preparation: Dissolve 60g bar soap in 1 liter hot water to make soap solution. Mix 200ml neem oil with this soap solution by shaking vigorously until emulsified. Grind 200g garlic bulbs into a fine paste and filter its extract. Mix the neem oil emulsion and garlic extract together, then dilute with 9 liters of water (1:50 dilution) to make 10 liters of sprayable solution. Effective against aphids, mealybugs, and caterpillars.",
+        "malayalam_content": "വേപ്പെണ്ണ വെളുത്തുള്ളി മിശ്രിതം തയാറാക്കാൻ: 1. ഒരു ലിറ്റർ ചെറുചൂടുവെള്ളത്തിൽ 60 ഗ്രാം സോപ്പ് ലായനിയാക്കുക. 2. ഇതിലേക്ക് 200 മില്ലി വേപ്പെണ്ണ ഒഴിച്ച് നന്നായി യോജിപ്പിക്കുക (എമൽഷൻ). 3. 200 ഗ്രാം വെളുത്തുള്ളി അരച്ചെടുത്ത നീര് ഈ ലായനിയിലേക്ക് ചേർക്കുക. ഇതിലേക്ക് 9 ലിറ്റർ വെള്ളം ചേർത്ത് ഉപയോഗിക്കാം.",
+        "domain": "PEST_MANAGEMENT"
+    }
 ]

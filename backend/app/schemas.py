@@ -1,6 +1,10 @@
-from pydantic import BaseModel, Field
+from pydantic import BaseModel, Field, ConfigDict
 from typing import List, Optional
 import datetime
+
+# Configure base model with empty protected namespaces
+class AppBaseModel(BaseModel):
+    model_config = ConfigDict(protected_namespaces=())
 
 # --- AUTH SCHEMAS ---
 
@@ -93,6 +97,8 @@ class CropHistoryCreate(BaseModel):
     disease_incidence: Optional[str] = None
     fertilizer_used: Optional[str] = None
     market_price: Optional[float] = None
+    start_date: Optional[datetime.date] = None
+    end_date: Optional[datetime.date] = None
 
 class CropHistoryResponse(BaseModel):
     id: int
@@ -154,7 +160,8 @@ class FarmerResponse(BaseModel):
 # --- RECOMMENDATION & ML SCHEMAS ---
 
 class CropPredictRequest(BaseModel):
-    farm_id: int
+    farm_id: Optional[int] = None
+    plot_id: Optional[int] = None
     nitrogen: float
     phosphorus: float
     potassium: float
@@ -190,6 +197,7 @@ class RecommendedCropItem(BaseModel):
     rotation_score: Optional[float] = None
     profit_score: Optional[float] = None
     rank: Optional[int] = None
+    prediction_id: Optional[int] = None  # Real DB ID for feedback submission
 
 class CropPredictResponse(BaseModel):
     predictions: List[RecommendedCropItem]
@@ -198,6 +206,7 @@ class CropPredictResponse(BaseModel):
     previousCropStatus: Optional[str] = None
     rotationApplied: Optional[bool] = False
     selectedRecommendation: Optional[str] = None
+    top_prediction_id: Optional[int] = None  # DB ID of the #1 ranked recommendation
 
 class FertilizerRequest(BaseModel):
     farm_id: int
@@ -258,23 +267,79 @@ class MarketPriceResponse(BaseModel):
 
 # --- DISEASE SCHEMAS ---
 
+class FertilizerNutrientStatus(BaseModel):
+    N: Optional[str] = None
+    P: Optional[str] = None
+    K: Optional[str] = None
+
+class FertilizerData(BaseModel):
+    available: bool
+    source: Optional[str] = None
+    nutrient_status: Optional[FertilizerNutrientStatus] = None
+    recommendation: Optional[str] = None
+    reason: Optional[str] = None
+    message: Optional[str] = None
+
+class CropIdentificationData(BaseModel):
+    crop: str
+    confidence: float
+    model: str
+
+class DiseaseDetectionData(BaseModel):
+    disease: Optional[str] = "None"
+    confidence: float = 0.0
+    severity: Optional[str] = "None"
+    model: Optional[str] = "YOLO11 Classification"
+    status: Optional[str] = "executed"
+    bounding_box: Optional[List[float]] = None
+    top5: Optional[List[dict]] = None
+
+class ValidationData(BaseModel):
+    crop_disease_match: bool
+    crop_disease_status: Optional[str] = "consistent"
+    prediction_status: str
+    validation_message: Optional[str] = None
+
+class ModelPerformanceDisease(BaseModel):
+    top1_accuracy: Optional[float] = 0.7967
+    top5_accuracy: Optional[float] = 0.9721
+    num_classes: Optional[int] = 86
+    training_epochs: Optional[int] = 50
+    model_file: Optional[str] = "models/disease_classifier/best.pt"
+    precision: Optional[float] = 0.7967
+    recall: Optional[float] = 0.9721
+    map50: Optional[float] = 0.7967
+    map50_95: Optional[float] = 0.9721
+
+class ModelPerformanceCrop(BaseModel):
+    available: bool = False
+
+class ModelPerformanceData(BaseModel):
+    disease: ModelPerformanceDisease
+    crop: ModelPerformanceCrop
+
+class ManagementData(BaseModel):
+    available: bool
+    cause_type: Optional[str] = None
+    immediate_actions: Optional[List[str]] = []
+    cultural_management: Optional[List[str]] = []
+    biological_management: Optional[List[str]] = []
+    chemical_management: Optional[List[str]] = []
+    prevention: Optional[List[str]] = []
+
 class DiseaseRecordResponse(BaseModel):
     id: int
     farm_id: int
-    detected_disease: str
-    confidence: float
-    severity_level: str
-    treatment_plan: str
     image_path: str
-    recovery_time_days: int
-    crop: Optional[str] = "General"
-    model: Optional[str] = "ConvGeM-NeXt"
-    affected_area_ratio: Optional[float] = 0.0
-    affected_percent: Optional[float] = 0.0
-    is_leaf: Optional[bool] = True
-    leaf_confidence: Optional[float] = 1.0
-    classification_status: Optional[str] = "confirmed"
     scanned_at: datetime.datetime
+    
+    crop_identification: CropIdentificationData
+    disease_detection: DiseaseDetectionData
+    validation: ValidationData
+    disease_management: ManagementData
+    nutrient_analysis: Optional[FertilizerNutrientStatus] = None
+    fertilizer_recommendation: FertilizerData
+    model_performance: ModelPerformanceData
 
     class Config:
         from_attributes = True
@@ -322,13 +387,16 @@ class CropCycleCreate(BaseModel):
     expected_yield: float
     expected_profit: float
     expected_revenue: float
+    start_date: Optional[datetime.date] = None
 
 class CropCycleHarvest(BaseModel):
-    actual_yield: float
-    actual_selling_price: float
-    cultivation_cost: float
+    actual_yield: float = Field(..., gt=0, description="Actual harvested yield in kg")
+    actual_selling_price: float = Field(..., ge=0, description="Actual selling price per kg in INR")
+    cultivation_cost: float = Field(..., ge=0, description="Total actual cultivation cost in INR")
     fertilizer_used: Optional[str] = None
     disease_incidence: Optional[str] = None
+    start_date: Optional[datetime.date] = None
+    harvest_date: Optional[datetime.date] = None
 
 class CropCycleResponse(BaseModel):
     id: int
@@ -373,3 +441,16 @@ class ModelVersionResponse(BaseModel):
     class Config:
         from_attributes = True
 
+class ChatFeedbackResponse(BaseModel):
+    id: int
+    farmer_id: int
+    query: str
+    response: str
+    intent: Optional[str] = None
+    crop_entity: Optional[str] = None
+    rating: int
+    comment: Optional[str] = None
+    created_at: datetime.datetime
+
+    class Config:
+        from_attributes = True

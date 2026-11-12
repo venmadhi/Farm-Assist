@@ -1,4 +1,5 @@
 import json
+import datetime
 from fastapi import APIRouter, Depends, HTTPException, status
 from sqlalchemy.orm import Session
 from typing import List, Optional
@@ -17,8 +18,16 @@ def get_crop_recommendation(
     current_farmer: Farmer = Depends(get_current_farmer),
     db: Session = Depends(get_db)
 ):
-    # Get current farmer's primary farm
-    farm = db.query(Farm).filter(Farm.farmer_id == current_farmer.id).first()
+    target_farm_id = request.plot_id or request.farm_id
+    if target_farm_id:
+        farm = db.query(Farm).filter(Farm.id == target_farm_id, Farm.farmer_id == current_farmer.id).first()
+    else:
+        farm = None
+        
+    if not farm:
+        # Fallback to current farmer's primary farm
+        farm = db.query(Farm).filter(Farm.farmer_id == current_farmer.id).first()
+        
     if not farm:
         farm = Farm(
             farmer_id=current_farmer.id,
@@ -35,20 +44,6 @@ def get_crop_recommendation(
         db.commit()
         db.refresh(farm)
 
-    # Save soil test record automatically
-    new_soil = SoilTest(
-        farm_id=farm.id,
-        nitrogen=request.nitrogen,
-        phosphorus=request.phosphorus,
-        potassium=request.potassium,
-        ph=request.ph,
-        organic_carbon=request.organic_carbon or 0.5,
-        boron=request.boron or 0.2,
-        iron=request.iron or 4.5,
-        zinc=request.zinc or 0.6
-    )
-    db.add(new_soil)
-    db.commit()
 
     # Run the machine learning model inference and SHAP explainability
     recommendation_data_list = crop_agent.recommend(
@@ -68,7 +63,27 @@ def get_crop_recommendation(
         season=request.season or "Kharif"
     )
 
+    # 1. Log soil telemetry into Digital Twin history
+    try:
+        tested_soil = SoilTest(
+            farm_id=farm.id,
+            nitrogen=request.nitrogen,
+            phosphorus=request.phosphorus,
+            potassium=request.potassium,
+            ph=request.ph,
+            organic_carbon=request.organic_carbon or 0.85,
+            boron=request.boron or 0.2,
+            iron=request.iron or 4.5,
+            zinc=request.zinc or 0.6,
+            measured_at=datetime.datetime.utcnow()
+        )
+        db.add(tested_soil)
+        db.commit()
+    except Exception as es:
+        print(f"SoilTest logging warning: {es}")
+
     response_items = []
+    top_prediction_db_id = None
     
     # Save the top predictions to CropPrediction table
     for idx, rec in enumerate(recommendation_data_list):
@@ -89,8 +104,9 @@ def get_crop_recommendation(
         db.commit()
         db.refresh(new_prediction)
         
-        # We store prediction ID for the front-end to log feedback on the top recommendation
-        rec_id = new_prediction.id if idx == 0 else 0
+        # Track the top (first) prediction ID for feedback
+        if idx == 0:
+            top_prediction_db_id = new_prediction.id
         
         response_items.append(
             RecommendedCropItem(
@@ -108,11 +124,12 @@ def get_crop_recommendation(
                     phosphorus=rec["shap_contributions"]["phosphorus"],
                     potassium=rec["shap_contributions"]["potassium"],
                     weather=rec["shap_contributions"]["weather"]
-                )
+                ),
+                prediction_id=new_prediction.id
             )
         )
         
-    return CropPredictResponse(predictions=response_items)
+    return CropPredictResponse(predictions=response_items, top_prediction_id=top_prediction_db_id)
 
 @router.post("/feedback", response_model=FeedbackResponse)
 def submit_recommendation_feedback(

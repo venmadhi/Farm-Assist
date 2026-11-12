@@ -17,8 +17,15 @@ def get_crop_market_trends(
     current_farmer = Depends(get_current_farmer),
     db: Session = Depends(get_db)
 ):
+    # Fetch farm area to calculate accurate projected profit
+    farm_area = 1.0
+    from ..models import Farm
+    farm = db.query(Farm).filter(Farm.farmer_id == current_farmer.id).first()
+    if farm and farm.land_area_acres:
+        farm_area = farm.land_area_acres
+
     try:
-        result = market_agent.get_market_forecast(crop=crop, district=district)
+        result = market_agent.get_market_forecast(crop=crop, district=district, farm_area_acres=farm_area)
     except ValueError as e:
         raise HTTPException(status_code=400, detail=str(e))
     

@@ -1,492 +1,1058 @@
 {
-  "apple_scab": {
-    "display_name": "Apple Scab",
-    "crop": "Apple",
-    "cause": "Venturia inaequalis (Fungus)",
-    "symptoms": "Olive-green to brown velvety spots on leaves and fruit. Affected leaves may turn yellow and drop prematurely.",
-    "treatment": "Apply Captan (2g/L) or Mancozeb (2.5g/L) at pink bud stage. Prune infected branches to improve airflow.",
-    "prevention": "Rake and burn fallen leaves in autumn. Plant scab-resistant apple cultivars like Liberty or Enterprise.",
-    "biological": "Spray neem oil or Bacillus subtilis strain QST 713 at early leaf unfolding.",
-    "recovery_days": 21
-  },
-  "apple_black_rot": {
-    "display_name": "Apple Black Rot (Frog-eye Leaf Spot)",
-    "crop": "Apple",
-    "cause": "Botryosphaeria obtusa (Fungus)",
-    "symptoms": "Small purple spots on leaves expanding into 'frog-eye' lesions with brown centers and purple margins.",
-    "treatment": "Spray Thiophanate-methyl (1g/L) or Copper Hydroxide (2g/L). Prune dead wood and mummified fruit.",
-    "prevention": "Remove mummified apples from trees. Maintain healthy trees through proper fertilization and watering.",
-    "biological": "Apply Trichoderma harzianum soil drench and canopy spray.",
-    "recovery_days": 25
-  },
-  "apple_cedar_rust": {
-    "display_name": "Cedar Apple Rust",
-    "crop": "Apple",
-    "cause": "Gymnosporangium juniperi-virginianae (Fungus)",
-    "symptoms": "Bright yellow-orange spots on upper leaf surfaces; tube-like spore structures on leaf underside.",
-    "treatment": "Apply Myclobutanil (0.5g/L) or Propiconazole (1ml/L) from blossom open through petal fall.",
-    "prevention": "Remove nearby eastern red cedar trees within 1-2 miles if feasible. Plant resistant varieties.",
-    "biological": "Sulfur-based fungicides applied before symptom emergence.",
-    "recovery_days": 18
-  },
-  "apple_healthy": {
-    "display_name": "Healthy Apple Leaf",
-    "crop": "Apple",
-    "cause": "Optimal orchard management and disease protection.",
-    "symptoms": "Vibrant green leaf tissue with no visual lesions, rust spots, or fungal growth.",
-    "treatment": "Continue regular monitoring and balanced fertilization.",
-    "prevention": "Maintain proper sanitation, spacing, and pruning routines.",
-    "biological": "Routine bio-stimulant foliar spray.",
-    "recovery_days": 0
-  },
-  "blueberry_healthy": {
-    "display_name": "Healthy Blueberry Leaf",
-    "crop": "Blueberry",
-    "cause": "Optimal soil acidity (pH 4.5-5.5) and irrigation.",
-    "symptoms": "Deep green foliage without chlorosis, spots, or tip burn.",
-    "treatment": "Maintain soil pH with elemental sulfur. Mulch with pine bark.",
-    "prevention": "Avoid waterlogging; ensure acid-rich organic matter.",
-    "biological": "Mycorrhizal fungi root inoculation.",
-    "recovery_days": 0
-  },
-  "cherry_powdery_mildew": {
-    "display_name": "Cherry Powdery Mildew",
-    "crop": "Cherry",
-    "cause": "Podosphaera clandestina (Fungus)",
-    "symptoms": "White powdery fungal growth on leaves causing leaf curling and distorted growth.",
-    "treatment": "Spray Potassium Bicarbonate (3g/L) or Myclobutanil (0.5ml/L) at first sign.",
-    "prevention": "Improve orchard canopy air circulation. Avoid high nitrogen late-season fertilizer.",
-    "biological": "Spray neem seed oil (5ml/L) or Bacillus amyloliquefaciens.",
-    "recovery_days": 14
-  },
-  "cherry_healthy": {
-    "display_name": "Healthy Cherry Leaf",
-    "crop": "Cherry",
-    "cause": "Good canopy management and soil health.",
-    "symptoms": "Uniform green leaf blade with intact margins and no mildew spots.",
-    "treatment": "Regular orchard hygiene and pruning.",
-    "prevention": "Ensure adequate sunlight penetration.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "corn_gray_leaf_spot": {
-    "display_name": "Corn Gray Leaf Spot",
-    "crop": "Corn (Maize)",
-    "cause": "Cercospora zeae-maydis (Fungus)",
-    "symptoms": "Rectangular tan-to-gray lesions restricted by leaf veins running parallel.",
-    "treatment": "Apply Azoxystrobin + Difenoconazole (1ml/L) at VT-R1 tassel stage if disease pressure is high.",
-    "prevention": "Rotate crops with non-host plants (soybean). Tillage to decompose crop residue.",
-    "biological": "Bio-control using Trichoderma viride seed treatment.",
-    "recovery_days": 20
-  },
-  "corn_common_rust": {
-    "display_name": "Corn Common Rust",
-    "crop": "Corn (Maize)",
-    "cause": "Puccinia sorghi (Fungus)",
-    "symptoms": "Small golden-brown to cinnamon-brown pustules scattered over upper and lower leaf surfaces.",
-    "treatment": "Foliar fungicide spray with Pyraclostrobin (1ml/L) if rust appears before silking.",
-    "prevention": "Plant resistant hybrid seed cultivars. Avoid late planting dates.",
-    "biological": "Foliar spray of Pseudomonas fluorescens (20g/L).",
-    "recovery_days": 15
-  },
-  "corn_northern_leaf_blight": {
-    "display_name": "Northern Corn Leaf Blight",
-    "crop": "Corn (Maize)",
-    "cause": "Exserohilum turcicum (Fungus)",
-    "symptoms": "Long cigar-shaped grayish-green to tan lesions on leaves.",
-    "treatment": "Spray Mancozeb (2.5g/L) or Propiconazole (1ml/L) when lower leaf lesions reach 5%.",
-    "prevention": "Use resistant corn hybrids (Ht genes). Rotate out of corn for 1-2 seasons.",
-    "biological": "Bacillus subtilis root and leaf sprays.",
-    "recovery_days": 21
-  },
-  "corn_healthy": {
-    "display_name": "Healthy Corn Leaf",
-    "crop": "Corn (Maize)",
-    "cause": "Balanced NPK fertility and good moisture management.",
-    "symptoms": "Lush dark green leaves without rust pustules or blight streaks.",
-    "treatment": "Maintain split nitrogen application.",
-    "prevention": "Ensure proper field drainage and crop rotation.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "grape_black_rot": {
-    "display_name": "Grape Black Rot",
-    "crop": "Grape",
-    "cause": "Guignardia bidwellii (Fungus)",
-    "symptoms": "Reddish-brown circular leaf spots with tiny black dots (pycnidia) arranged in rings.",
-    "treatment": "Spray Myclobutanil or Mancozeb starting from bud break at 10-14 day intervals.",
-    "prevention": "Prune out mummified berries and dead canes during winter.",
-    "biological": "Copper hydroxide combined with sulfur dust.",
-    "recovery_days": 24
-  },
-  "grape_esca": {
-    "display_name": "Grape Esca (Black Measles)",
-    "crop": "Grape",
-    "cause": "Phaeomoniella chlamydospora & Phaeoacremonium aleophilum",
-    "symptoms": "'Tiger-stripe' chlorotic and necrotic discoloration between leaf veins.",
-    "treatment": "No cure for infected wood; paint pruning wounds with wound sealant containing fungicide.",
-    "prevention": "Avoid pruning during wet weather. Sanitize shears with 70% alcohol.",
-    "biological": "Trichoderma species application to pruning wounds.",
-    "recovery_days": 40
-  },
-  "grape_leaf_blight": {
-    "display_name": "Grape Leaf Blight (Isariopsis Spot)",
-    "crop": "Grape",
-    "cause": "Pseudocercospora vitis (Fungus)",
-    "symptoms": "Irregular dark brown leaf spots with dull green/yellow haloes leading to premature defoliation.",
-    "treatment": "Spray Carbendazim (1g/L) or Copper Oxychloride (3g/L) after harvest and pre-monsoon.",
-    "prevention": "Ensure good trellis canopy ventilation and weed clearance.",
-    "biological": "Pseudomonas fluorescens foliar spray.",
-    "recovery_days": 18
-  },
-  "grape_healthy": {
-    "display_name": "Healthy Grape Leaf",
-    "crop": "Grape",
-    "cause": "Optimal vineyard canopy management and dry microclimate.",
-    "symptoms": "Intact green leaf blade free from tiger-striping or black rot dots.",
-    "treatment": "Maintain trellis training and canopy shoot thinning.",
-    "prevention": "Monitor humidity and apply preventive copper sprays when needed.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "citrus_huanglongbing": {
-    "display_name": "Citrus Greening (Huanglongbing / HLB)",
-    "crop": "Orange / Citrus",
-    "cause": "Candidatus Liberibacter asiaticus (Bacterium transmitted by Asian Citrus Psyllid)",
-    "symptoms": "Asymmetrical blotchy mottle on leaves, yellow shoots, small misshapen bitter fruit.",
-    "treatment": "No cure for HLB. Control vector Asian Citrus Psyllid using Imidacloprid or Thiamethoxam.",
-    "prevention": "Plant certified disease-free nursery stock. Remove severely infected trees immediately.",
-    "biological": "Release Tamarixia radiata parasitoid wasps to reduce psyllid populations.",
-    "recovery_days": 60
-  },
-  "peach_bacterial_spot": {
-    "display_name": "Peach Bacterial Spot",
-    "crop": "Peach",
-    "cause": "Xanthomonas arboricola pv. pruni (Bacterium)",
-    "symptoms": "Small water-soaked leaf spots turning dark purple/black, dropping out to give 'shot-hole' appearance.",
-    "treatment": "Spray Oxytetracycline or Copper Hydroxide at low rates during shuck split.",
-    "prevention": "Avoid excessive nitrogen fertilization. Plant resistant peach varieties.",
-    "biological": "Bacteriophage sprays or Bacillus subtilis formulations.",
-    "recovery_days": 20
-  },
-  "peach_healthy": {
-    "display_name": "Healthy Peach Leaf",
-    "crop": "Peach",
-    "cause": "Good sanitation and balanced nutrition.",
-    "symptoms": "Smooth lance-shaped green leaves without shot-holes or bacterial spots.",
-    "treatment": "Maintain balanced potassium and zinc micro-nutrients.",
-    "prevention": "Avoid overhead sprinkler irrigation.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "pepper_bacterial_spot": {
-    "display_name": "Pepper Bacterial Spot",
-    "crop": "Pepper (Bell)",
-    "cause": "Xanthomonas euvesicatoria (Bacterium)",
-    "symptoms": "Small, water-soaked brown spots on leaves with yellow halos, causing premature leaf drop.",
-    "treatment": "Spray Copper Hydroxide (2g/L) mixed with Mancozeb (2.5g/L) to overcome copper resistance.",
-    "prevention": "Use certified disease-free seeds. Avoid overhead irrigation and handling wet plants.",
-    "biological": "Foliar application of Bacillus subtilis or Pseudomonas fluorescens.",
-    "recovery_days": 18
-  },
-  "pepper_leaf_spot": {
-    "display_name": "Pepper Leaf Spot (Cercospora / Alternaria)",
-    "crop": "Pepper (Bell)",
-    "cause": "Cercospora capsici / Alternaria spp.",
-    "symptoms": "Circular spots with light brown/white centers and dark brown borders on leaves.",
-    "treatment": "Spray Chlorothalonil (2g/L) or Copper Oxychloride (3g/L) at 10-day intervals.",
-    "prevention": "Rotate crops every 2 years. Destroy crop residue post-harvest.",
-    "biological": "Neem cake soil application and bio-fungicide sprays.",
-    "recovery_days": 16
-  },
-  "pepper_cercospora": {
-    "display_name": "Pepper Cercospora Leaf Spot (Frog-Eye)",
-    "crop": "Pepper",
-    "cause": "Cercospora capsici (Fungus)",
-    "symptoms": "Frog-eye spots with grayish-white centers and dark red-brown borders on leaves and stems.",
-    "treatment": "Apply Difenoconazole (1ml/L) or Mancozeb (2.5g/L).",
-    "prevention": "Mulch soil to eliminate rain splash. Spacing plants for rapid leaf drying.",
-    "biological": "Trichoderma harzianum foliar spray.",
-    "recovery_days": 15
-  },
-  "pepper_leaf_curl": {
-    "display_name": "Pepper Leaf Curl Virus",
-    "crop": "Pepper",
-    "cause": "Chilli leaf curl virus (transmitted by Whiteflies)",
-    "symptoms": "Upward curling of leaves, puckering, reduced leaf size, stunting of plants.",
-    "treatment": "Control vector Whiteflies using Imidacloprid (0.5ml/L) or Acetamiprid (0.2g/L).",
-    "prevention": "Use yellow sticky traps (10-12/acre). Install 40-mesh insect-proof netting in nurseries.",
-    "biological": "Spray Neem oil 10,000 ppm (3ml/L) or Verticillium lecanii.",
-    "recovery_days": 30
-  },
-  "pepper_phytophthora_blight": {
-    "display_name": "Pepper Phytophthora Foliar Blight",
-    "crop": "Pepper",
-    "cause": "Phytophthora capsici (Foliar stage)",
-    "symptoms": "Dark green water-soaked spots rapidly expanding into dull brown necrotic foliar lesions.",
-    "treatment": "Drench and spray Metalaxyl + Mancozeb (2g/L) or Potassium Phosphonate (3ml/L).",
-    "prevention": "Improve field drainage, raise planting beds, avoid standing water.",
-    "biological": "Soil drenching with Trichoderma viride fortified organic compost.",
-    "recovery_days": 25
-  },
-  "pepper_yellowing": {
-    "display_name": "Pepper Yellowing Disease / Nutrient Chlorosis",
-    "crop": "Pepper",
-    "cause": "Nitrogen/Magnesium deficiency or viral chlorosis",
-    "symptoms": "Generalized yellowing of lower or upper leaves between leaf veins.",
-    "treatment": "Apply Magnesium Sulfate (5g/L) foliar spray and balanced NPK 19-19-19.",
-    "prevention": "Regular soil testing and balanced fertigation.",
-    "biological": "Pentanick organic amino acid and sea-weed extract spray.",
-    "recovery_days": 12
-  },
-  "pepper_healthy": {
-    "display_name": "Healthy Pepper Leaf",
-    "crop": "Pepper (Bell)",
-    "cause": "Optimal soil nutrients, moisture control, and pest exclusion.",
-    "symptoms": "Lush dark green leaves without curling, yellowing spots, or water-soaked lesions.",
-    "treatment": "Maintain balanced NPK fertigation and routine pest scouting.",
-    "prevention": "Ensure good drainage and yellow sticky traps for vector control.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "potato_early_blight": {
-    "display_name": "Potato Early Blight",
-    "crop": "Potato",
-    "cause": "Alternaria solani (Fungus)",
-    "symptoms": "Concentric rings (target board pattern) on older lower leaves, surrounded by a yellow halo.",
-    "treatment": "Spray Mancozeb (2.5g/L) or Chlorothalonil (2g/L) upon initial detection.",
-    "prevention": "Destroy crop debris after harvest. Avoid overhead sprinkler irrigation.",
-    "biological": "Bacillus subtilis or Trichoderma viride applications.",
-    "recovery_days": 15
-  },
-  "potato_late_blight": {
-    "display_name": "Potato Late Blight",
-    "crop": "Potato",
-    "cause": "Phytophthora infestans (Oomycete)",
-    "symptoms": "Water-soaked dark lesions on leaf tips and margins; white mildew fuzzy growth on underside in humid weather.",
-    "treatment": "Spray Cymoxanil + Mancozeb (2g/L) or Dimethomorph (1g/L) immediately.",
-    "prevention": "Use certified seed tubers. Destroy volunteer potato plants.",
-    "biological": "Copper oxychloride + Neem oil combination spray.",
-    "recovery_days": 21
-  },
-  "potato_healthy": {
-    "display_name": "Healthy Potato Leaf",
-    "crop": "Potato",
-    "cause": "Proper hilling, clean seeds, and moisture management.",
-    "symptoms": "Uniform compound green leaves with crisp margins and no water-soaked blights.",
-    "treatment": "Continue scheduled hilling and balanced fertilization.",
-    "prevention": "Prevent waterlogging around hills.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "raspberry_healthy": {
-    "display_name": "Healthy Raspberry Leaf",
-    "crop": "Raspberry",
-    "cause": "Good cane pruning and soil organic matter.",
-    "symptoms": "Vibrant serrated green leaves with no rust or spot lesions.",
-    "treatment": "Routine cane pruning and weed control.",
-    "prevention": "Maintain air movement through cane rows.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "soybean_healthy": {
-    "display_name": "Healthy Soybean Leaf",
-    "crop": "Soybean",
-    "cause": "Effective Rhizobium nodulation and pest control.",
-    "symptoms": "Trifoliate deep green leaves free from rust pustules or bacterial pustules.",
-    "treatment": "Maintain phosphorus and potassium nutrition.",
-    "prevention": "Crop rotation with corn or small grains.",
-    "biological": "Rhizobium japonicum inoculant.",
-    "recovery_days": 0
-  },
-  "squash_powdery_mildew": {
-    "display_name": "Squash Powdery Mildew",
-    "crop": "Squash / Cucurbits",
-    "cause": "Podosphaera xanthii / Erysiphe cichoracearum",
-    "symptoms": "White talcum-like powdery spots spreading across upper leaf surfaces, leading to leaf yellowing.",
-    "treatment": "Spray Potassium Bicarbonate (4g/L) or Wettable Sulfur (3g/L).",
-    "prevention": "Plant resistant cucurbit varieties. Ensure adequate plant spacing.",
-    "biological": "Spray neem oil 1% solution or milk whey dilution (1:9).",
-    "recovery_days": 12
-  },
-  "strawberry_leaf_scorch": {
-    "display_name": "Strawberry Leaf Scorch",
-    "crop": "Strawberry",
-    "cause": "Diplocarpon earlianum (Fungus)",
-    "symptoms": "Numerous purplish spots on leaves that enlarge and turn dark brown; leaf margins look scorched.",
-    "treatment": "Apply Captan (2g/L) or Copper Hydroxide (2g/L) early in spring.",
-    "prevention": "Renovate strawberry beds annually. Remove old infected foliage.",
-    "biological": "Bacillus subtilis foliar spray.",
-    "recovery_days": 16
-  },
-  "strawberry_healthy": {
-    "display_name": "Healthy Strawberry Leaf",
-    "crop": "Strawberry",
-    "cause": "Clean runner planting and drip irrigation.",
-    "symptoms": "Tri-lobed shiny green leaves without purple scorch patches.",
-    "treatment": "Mulch with clean straw to protect berries and foliage.",
-    "prevention": "Avoid overhead watering.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "tomato_bacterial_spot": {
-    "display_name": "Tomato Bacterial Spot",
-    "crop": "Tomato",
-    "cause": "Xanthomonas perforans / vesicatoria",
-    "symptoms": "Small, dark brown water-soaked lesions on leaves with yellow haloes, leading to leaf drop.",
-    "treatment": "Spray Copper Hydroxide (2g/L) + Mancozeb (2.5g/L) tank mix.",
-    "prevention": "Use certified seed. Stake plants and apply straw mulch to prevent soil splash.",
-    "biological": "Bacteriophage formulation or Pseudomonas fluorescens.",
-    "recovery_days": 18
-  },
-  "tomato_early_blight": {
-    "display_name": "Tomato Early Blight",
-    "crop": "Tomato",
-    "cause": "Alternaria solani (Fungus)",
-    "symptoms": "Concentric rings/target spots on lower leaves, surrounded by yellowing leaf tissue.",
-    "treatment": "Spray Chlorothalonil (2g/L) or Copper Hydroxide (2.5g/L). Remove lower infected leaves.",
-    "prevention": "Mulch soil to prevent rain splash. Rotate tomato crops every 3 years.",
-    "biological": "Trichoderma harzianum soil drench and Bacillus subtilis spray.",
-    "recovery_days": 14
-  },
-  "tomato_late_blight": {
-    "display_name": "Tomato Late Blight",
-    "crop": "Tomato",
-    "cause": "Phytophthora infestans (Oomycete)",
-    "symptoms": "Large brown water-soaked patches on leaves that shrivel quickly; white downy growth on underside.",
-    "treatment": "Spray Metalaxyl + Mancozeb (2.5g/L) or Dimethomorph (1g/L) at first sign.",
-    "prevention": "Avoid late planting in cool humid seasons. Destroy infected plant refuse.",
-    "biological": "Copper sulfate + lime (Bordeaux mixture 1%).",
-    "recovery_days": 20
-  },
-  "tomato_leaf_mold": {
-    "display_name": "Tomato Leaf Mold",
-    "crop": "Tomato",
-    "cause": "Passalora fulva (Fungus)",
-    "symptoms": "Pale green or yellow spots on upper leaf surface; olive-green to brown velvety mold underneath.",
-    "treatment": "Apply Difenoconazole (1ml/L) or Copper Hydroxide (2g/L).",
-    "prevention": "Reduce greenhouse humidity below 85%. Increase ventilation and plant spacing.",
-    "biological": "Bacillus amyloliquefaciens spray.",
-    "recovery_days": 15
-  },
-  "tomato_septoria_leaf_spot": {
-    "display_name": "Tomato Septoria Leaf Spot",
-    "crop": "Tomato",
-    "cause": "Septoria lycopersici (Fungus)",
-    "symptoms": "Numerous small circular spots with dark brown margins and light gray centers containing black specks.",
-    "treatment": "Spray Chlorothalonil (2g/L) or Mancozeb (2.5g/L) at 7-10 day intervals.",
-    "prevention": "Prune lower branches up to 12 inches from soil. Control solanaceous weeds.",
-    "biological": "Copper octanoate or neem seed extract.",
-    "recovery_days": 16
-  },
-  "tomato_spider_mites": {
-    "display_name": "Tomato Two-Spotted Spider Mites",
-    "crop": "Tomato",
-    "cause": "Tetranychus urticae (Arachnid Pest)",
-    "symptoms": "Yellow stippling/speckling on leaves, fine silken webbing on leaf undersides, leaves turn bronze and dry up.",
-    "treatment": "Spray Abamectin (0.5ml/L) or Spiromesifen (1ml/L). Ensure thorough underside coverage.",
-    "prevention": "Avoid dry dusty conditions; overhead water misting can suppress mite outbreaks.",
-    "biological": "Release predatory mites Phytoseiulus persimilis or spray Neem oil 1500 ppm.",
-    "recovery_days": 10
-  },
-  "tomato_target_spot": {
-    "display_name": "Tomato Target Spot",
-    "crop": "Tomato",
-    "cause": "Corynespora cassiicola (Fungus)",
-    "symptoms": "Small pinpoint brown spots expanding into circular lesions with light brown centers and dark rings.",
-    "treatment": "Spray Azoxystrobin (1ml/L) or Chlorothalonil (2g/L).",
-    "prevention": "Avoid working in fields when foliage is wet. Improve airflow around plants.",
-    "biological": "Bacillus subtilis foliar spray.",
-    "recovery_days": 18
-  },
-  "tomato_yellow_leaf_curl": {
-    "display_name": "Tomato Yellow Leaf Curl Virus (TYLCV)",
-    "crop": "Tomato",
-    "cause": "Tomato yellow leaf curl virus (transmitted by Bemisia tabaci whiteflies)",
-    "symptoms": "Severe cupping/curling of leaves, yellowing leaf margins, extreme plant stunting and flower drop.",
-    "treatment": "Control Whiteflies with Imidacloprid (0.5ml/L) or Thiamethoxam (0.3g/L). Remove infected plants.",
-    "prevention": "Use TYLCV-resistant tomato cultivars (e.g. Tyking, Shiren). Use insect mesh in greenhouses.",
-    "biological": "Yellow sticky cards and bio-insecticide Verticillium lecanii.",
-    "recovery_days": 30
-  },
-  "tomato_mosaic_virus": {
-    "display_name": "Tomato Mosaic Virus (ToMV)",
-    "crop": "Tomato",
-    "cause": "Tobamovirus (Mechanically transmitted via tools/hands)",
-    "symptoms": "Mottled light and dark green mosaic patterns on leaves, leaf distortion, fern-like leaf growth.",
-    "treatment": "No chemical treatment available for viral infection. Remove and destroy infected plants.",
-    "prevention": "Wash hands with milk or trisodium phosphate before handling plants. Sanitize pruning shears.",
-    "biological": "Spray skimmed milk solution (10%) on seedlings to reduce mechanical viral transmission.",
-    "recovery_days": 35
-  },
-  "tomato_healthy": {
-    "display_name": "Healthy Tomato Leaf",
-    "crop": "Tomato",
-    "cause": "Balanced fertigation, staking, and proactive IPM.",
-    "symptoms": "Deep green compound leaves free from spots, target rings, or whitefly virus curling.",
-    "treatment": "Maintain consistent drip irrigation to avoid blossom end rot.",
-    "prevention": "Keep mulching intact and prune suckers cleanly.",
-    "biological": "N/A",
-    "recovery_days": 0
-  },
-  "coconut_bud_rot": {
-    "display_name": "Coconut Bud Rot (Kumbil Azhukal)",
-    "crop": "Coconut",
-    "cause": "Phytophthora palmivora (Oomycete)",
-    "symptoms": "Rotting of the central spear leaf/spindle, yellowing and wilting of outer fronds, foul smell from crown.",
-    "treatment": "Cut and remove infected spindle tissue. Apply 10% Bordeaux paste to cut surface. Pour 1% Bordeaux mixture into crown axils.",
-    "prevention": "Ensure good palm spacing and crown hygiene. Avoid waterlogging around root zone.",
-    "biological": "Apply Trichoderma harzianum coir pith cake in leaf axils before monsoon season.",
-    "recovery_days": 45
-  },
-  "coconut_gray_leaf_spot": {
-    "display_name": "Coconut Gray Leaf Spot",
-    "crop": "Coconut",
-    "cause": "Pestalotiopsis palmarum (Fungus)",
-    "symptoms": "Small yellowish spots becoming grayish-white with dark brown borders; leaf tips dry and present scorched look.",
-    "treatment": "Spray Copper Oxychloride (3g/L) or Mancozeb (2.5g/L) on affected fronds.",
-    "prevention": "Ensure adequate potash (potassium) fertilization to build palm resistance.",
-    "biological": "Foliar spray of Pseudomonas fluorescens (20g/L).",
-    "recovery_days": 30
-  },
-  "coconut_leaf_rot": {
-    "display_name": "Coconut Leaf Rot (Ola Azhukal)",
-    "crop": "Coconut",
-    "cause": "Colletotrichum gloeosporioides / Bipolaris incurvata",
-    "symptoms": "Blackening and water-soaked rotting of leaflet distal ends, distal part of leaflets dry up and break off in wind.",
-    "treatment": "Pour 1% Bordeaux mixture or Contaf (Hexaconazole 2ml/L) into leaf axils after removing rotten parts.",
-    "prevention": "Control Rhinoceros beetle pests which create tissue entry points.",
-    "biological": "Apply organic neem cake (5kg/palm/year) to soil basin.",
-    "recovery_days": 30
-  },
-  "coconut_stem_bleeding": {
-    "display_name": "Coconut Stem Bleeding",
-    "crop": "Coconut",
-    "cause": "Thielaviopsis paradoxa (Fungus)",
-    "symptoms": "Exudation of dark reddish-brown liquid from bark cracks on lower stem, wood beneath becomes soft and black.",
-    "treatment": "Chisel out infected bark tissue up to healthy wood. Apply Coal Tar or 10% Bordeaux paste to dressed area.",
-    "prevention": "Avoid physical damage to stem during harvesting. Ensure proper drainage.",
-    "biological": "Apply Trichoderma viride (50g/palm) mixed with 5kg neem cake to soil basin.",
-    "recovery_days": 60
-  },
-  "coconut_bud_root_dropping": {
-    "display_name": "Coconut Bud / Root Dropping & Rot",
-    "crop": "Coconut",
-    "cause": "Phytophthora / Ganoderma complex",
-    "symptoms": "Dropping of immature buttons and fronds, root decay and wilted crown look.",
-    "treatment": "Root feeding with Metalaxyl (2g in 100ml water) or Hexaconazole (2ml in 100ml water).",
-    "prevention": "Dig isolation trenches (1m deep) around infected palms to halt root contact spread.",
-    "biological": "Soil application of Pseudomonas fluorescens + Trichoderma mixture.",
-    "recovery_days": 50
-  },
-  "coconut_healthy": {
-    "display_name": "Healthy Coconut Leaf",
-    "crop": "Coconut",
-    "cause": "Optimal palm nutrition (NPK + Magnesium), crown clearing, and basin management.",
-    "symptoms": "Vibrant dark green fronds arching cleanly without leaflet blackening or spindle rot.",
-    "treatment": "Apply recommended Kerala AU coconut fertilizer dose (500g N, 320g P2O5, 1200g K2O per palm/year).",
-    "prevention": "Regular crown cleaning before pre-monsoon and post-monsoon.",
-    "biological": "N/A",
-    "recovery_days": 0
-  }
+    "apple_scab": {
+        "crop": "Apple",
+        "disease": "Apple Scab",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Olive-green to brown velvety spots on leaves and fruit",
+            "Affected leaves may turn yellow and drop prematurely."
+        ],
+        "cultural_management": [
+            "Prune infected branches to improve airflow."
+        ],
+        "biological_management": [
+            "Spray neem oil or Bacillus subtilis strain QST 713 at early leaf unfolding."
+        ],
+        "chemical_management": [
+            "Apply Captan (2g/L) or Mancozeb (2.5g/L) at pink bud stage"
+        ],
+        "prevention": [
+            "Rake and burn fallen leaves in autumn",
+            "Plant scab-resistant apple cultivars like Liberty or Enterprise."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "apple_black_rot": {
+        "crop": "Apple",
+        "disease": "Apple Black Rot (Frog-eye Leaf Spot)",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Small purple spots on leaves expanding into 'frog-eye' lesions with brown centers and purple margins."
+        ],
+        "cultural_management": [
+            "Prune dead wood and mummified fruit."
+        ],
+        "biological_management": [
+            "Apply Trichoderma harzianum soil drench and canopy spray."
+        ],
+        "chemical_management": [
+            "Spray Thiophanate-methyl (1g/L) or Copper Hydroxide (2g/L)"
+        ],
+        "prevention": [
+            "Remove mummified apples from trees",
+            "Maintain healthy trees through proper fertilization and watering."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "apple_cedar_rust": {
+        "crop": "Apple",
+        "disease": "Cedar Apple Rust",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Bright yellow-orange spots on upper leaf surfaces; tube-like spore structures on leaf underside."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Sulfur-based fungicides applied before symptom emergence."
+        ],
+        "chemical_management": [
+            "Apply Myclobutanil (0.5g/L) or Propiconazole (1ml/L) from blossom open through petal fall."
+        ],
+        "prevention": [
+            "Remove nearby eastern red cedar trees within 1-2 miles if feasible",
+            "Plant resistant varieties."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "apple_healthy": {
+        "crop": "Apple",
+        "disease": "Healthy Apple Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Vibrant green leaf tissue with no visual lesions, rust spots, or fungal growth."
+        ],
+        "cultural_management": [
+            "Continue regular monitoring and balanced fertilization."
+        ],
+        "biological_management": [
+            "Routine bio-stimulant foliar spray."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Maintain proper sanitation, spacing, and pruning routines."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "blueberry_healthy": {
+        "crop": "Blueberry",
+        "disease": "Healthy Blueberry Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Deep green foliage without chlorosis, spots, or tip burn."
+        ],
+        "cultural_management": [
+            "Maintain soil pH with elemental sulfur",
+            "Mulch with pine bark."
+        ],
+        "biological_management": [
+            "Mycorrhizal fungi root inoculation."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Avoid waterlogging; ensure acid-rich organic matter."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "cherry_powdery_mildew": {
+        "crop": "Cherry",
+        "disease": "Cherry Powdery Mildew",
+        "cause_type": "fungal",
+        "symptoms": [
+            "White powdery fungal growth on leaves causing leaf curling and distorted growth."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Spray neem seed oil (5ml/L) or Bacillus amyloliquefaciens."
+        ],
+        "chemical_management": [
+            "Spray Potassium Bicarbonate (3g/L) or Myclobutanil (0.5ml/L) at first sign."
+        ],
+        "prevention": [
+            "Improve orchard canopy air circulation",
+            "Avoid high nitrogen late-season fertilizer."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "cherry_healthy": {
+        "crop": "Cherry",
+        "disease": "Healthy Cherry Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Uniform green leaf blade with intact margins and no mildew spots."
+        ],
+        "cultural_management": [
+            "Regular orchard hygiene and pruning."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Ensure adequate sunlight penetration."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "corn_gray_leaf_spot": {
+        "crop": "Corn (Maize)",
+        "disease": "Corn Gray Leaf Spot",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Rectangular tan-to-gray lesions restricted by leaf veins running parallel."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bio-control using Trichoderma viride seed treatment."
+        ],
+        "chemical_management": [
+            "Apply Azoxystrobin + Difenoconazole (1ml/L) at VT-R1 tassel stage if disease pressure is high."
+        ],
+        "prevention": [
+            "Rotate crops with non-host plants (soybean)",
+            "Tillage to decompose crop residue."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "corn_common_rust": {
+        "crop": "Corn (Maize)",
+        "disease": "Corn Common Rust",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Small golden-brown to cinnamon-brown pustules scattered over upper and lower leaf surfaces."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Foliar spray of Pseudomonas fluorescens (20g/L)."
+        ],
+        "chemical_management": [
+            "Foliar fungicide spray with Pyraclostrobin (1ml/L) if rust appears before silking."
+        ],
+        "prevention": [
+            "Plant resistant hybrid seed cultivars",
+            "Avoid late planting dates."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "corn_northern_leaf_blight": {
+        "crop": "Corn (Maize)",
+        "disease": "Northern Corn Leaf Blight",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Long cigar-shaped grayish-green to tan lesions on leaves."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacillus subtilis root and leaf sprays."
+        ],
+        "chemical_management": [
+            "Spray Mancozeb (2.5g/L) or Propiconazole (1ml/L) when lower leaf lesions reach 5%."
+        ],
+        "prevention": [
+            "Use resistant corn hybrids (Ht genes)",
+            "Rotate out of corn for 1-2 seasons."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "corn_healthy": {
+        "crop": "Corn (Maize)",
+        "disease": "Healthy Corn Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Lush dark green leaves without rust pustules or blight streaks."
+        ],
+        "cultural_management": [
+            "Maintain split nitrogen application."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Ensure proper field drainage and crop rotation."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "grape_black_rot": {
+        "crop": "Grape",
+        "disease": "Grape Black Rot",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Reddish-brown circular leaf spots with tiny black dots (pycnidia) arranged in rings."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Copper hydroxide combined with sulfur dust."
+        ],
+        "chemical_management": [
+            "Spray Myclobutanil or Mancozeb starting from bud break at 10-14 day intervals."
+        ],
+        "prevention": [
+            "Prune out mummified berries and dead canes during winter."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "grape_esca": {
+        "crop": "Grape",
+        "disease": "Grape Esca (Black Measles)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "'Tiger-stripe' chlorotic and necrotic discoloration between leaf veins."
+        ],
+        "cultural_management": [
+            "No cure for infected wood; paint pruning wounds with wound sealant containing fungicide."
+        ],
+        "biological_management": [
+            "Trichoderma species application to pruning wounds."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Avoid pruning during wet weather",
+            "Sanitize shears with 70% alcohol."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "grape_leaf_blight": {
+        "crop": "Grape",
+        "disease": "Grape Leaf Blight (Isariopsis Spot)",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Irregular dark brown leaf spots with dull green/yellow haloes leading to premature defoliation."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Pseudomonas fluorescens foliar spray."
+        ],
+        "chemical_management": [
+            "Spray Carbendazim (1g/L) or Copper Oxychloride (3g/L) after harvest and pre-monsoon."
+        ],
+        "prevention": [
+            "Ensure good trellis canopy ventilation and weed clearance."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "grape_healthy": {
+        "crop": "Grape",
+        "disease": "Healthy Grape Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Intact green leaf blade free from tiger-striping or black rot dots."
+        ],
+        "cultural_management": [
+            "Maintain trellis training and canopy shoot thinning."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Monitor humidity and apply preventive copper sprays when needed."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "citrus_huanglongbing": {
+        "crop": "Orange / Citrus",
+        "disease": "Citrus Greening (Huanglongbing / HLB)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Asymmetrical blotchy mottle on leaves, yellow shoots, small misshapen bitter fruit."
+        ],
+        "cultural_management": [
+            "No cure for HLB",
+            "Control vector Asian Citrus Psyllid using Imidacloprid or Thiamethoxam."
+        ],
+        "biological_management": [
+            "Release Tamarixia radiata parasitoid wasps to reduce psyllid populations."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Plant certified disease-free nursery stock",
+            "Remove severely infected trees immediately."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "peach_bacterial_spot": {
+        "crop": "Peach",
+        "disease": "Peach Bacterial Spot",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Small water-soaked leaf spots turning dark purple/black, dropping out to give 'shot-hole' appearance."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacteriophage sprays or Bacillus subtilis formulations."
+        ],
+        "chemical_management": [
+            "Spray Oxytetracycline or Copper Hydroxide at low rates during shuck split."
+        ],
+        "prevention": [
+            "Avoid excessive nitrogen fertilization",
+            "Plant resistant peach varieties."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "peach_healthy": {
+        "crop": "Peach",
+        "disease": "Healthy Peach Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Smooth lance-shaped green leaves without shot-holes or bacterial spots."
+        ],
+        "cultural_management": [
+            "Maintain balanced potassium and zinc micro-nutrients."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Avoid overhead sprinkler irrigation."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_bacterial_spot": {
+        "crop": "Pepper (Bell)",
+        "disease": "Pepper Bacterial Spot",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Small, water-soaked brown spots on leaves with yellow halos, causing premature leaf drop."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Foliar application of Bacillus subtilis or Pseudomonas fluorescens."
+        ],
+        "chemical_management": [
+            "Spray Copper Hydroxide (2g/L) mixed with Mancozeb (2.5g/L) to overcome copper resistance."
+        ],
+        "prevention": [
+            "Use certified disease-free seeds",
+            "Avoid overhead irrigation and handling wet plants."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_leaf_spot": {
+        "crop": "Pepper (Bell)",
+        "disease": "Pepper Leaf Spot (Cercospora / Alternaria)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Circular spots with light brown/white centers and dark brown borders on leaves."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Neem cake soil application and bio-fungicide sprays."
+        ],
+        "chemical_management": [
+            "Spray Chlorothalonil (2g/L) or Copper Oxychloride (3g/L) at 10-day intervals."
+        ],
+        "prevention": [
+            "Rotate crops every 2 years",
+            "Destroy crop residue post-harvest."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_cercospora": {
+        "crop": "Pepper",
+        "disease": "Pepper Cercospora Leaf Spot (Frog-Eye)",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Frog-eye spots with grayish-white centers and dark red-brown borders on leaves and stems."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Trichoderma harzianum foliar spray."
+        ],
+        "chemical_management": [
+            "Apply Difenoconazole (1ml/L) or Mancozeb (2.5g/L)."
+        ],
+        "prevention": [
+            "Mulch soil to eliminate rain splash",
+            "Spacing plants for rapid leaf drying."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_leaf_curl": {
+        "crop": "Pepper",
+        "disease": "Pepper Leaf Curl Virus",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Upward curling of leaves, puckering, reduced leaf size, stunting of plants."
+        ],
+        "cultural_management": [
+            "Control vector Whiteflies using Imidacloprid (0.5ml/L) or Acetamiprid (0.2g/L)."
+        ],
+        "biological_management": [
+            "Spray Neem oil 10,000 ppm (3ml/L) or Verticillium lecanii."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Use yellow sticky traps (10-12/acre)",
+            "Install 40-mesh insect-proof netting in nurseries."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_phytophthora_blight": {
+        "crop": "Pepper",
+        "disease": "Pepper Phytophthora Foliar Blight",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Dark green water-soaked spots rapidly expanding into dull brown necrotic foliar lesions."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Soil drenching with Trichoderma viride fortified organic compost."
+        ],
+        "chemical_management": [
+            "Drench and spray Metalaxyl + Mancozeb (2g/L) or Potassium Phosphonate (3ml/L)."
+        ],
+        "prevention": [
+            "Improve field drainage, raise planting beds, avoid standing water."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_yellowing": {
+        "crop": "Pepper",
+        "disease": "Pepper Yellowing Disease / Nutrient Chlorosis",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Generalized yellowing of lower or upper leaves between leaf veins."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Pentanick organic amino acid and sea-weed extract spray."
+        ],
+        "chemical_management": [
+            "Apply Magnesium Sulfate (5g/L) foliar spray and balanced NPK 19-19-19."
+        ],
+        "prevention": [
+            "Regular soil testing and balanced fertigation."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "pepper_healthy": {
+        "crop": "Pepper (Bell)",
+        "disease": "Healthy Pepper Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Lush dark green leaves without curling, yellowing spots, or water-soaked lesions."
+        ],
+        "cultural_management": [
+            "Maintain balanced NPK fertigation and routine pest scouting."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Ensure good drainage and yellow sticky traps for vector control."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "potato_early_blight": {
+        "crop": "Potato",
+        "disease": "Potato Early Blight",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Concentric rings (target board pattern) on older lower leaves, surrounded by a yellow halo."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacillus subtilis or Trichoderma viride applications."
+        ],
+        "chemical_management": [
+            "Spray Mancozeb (2.5g/L) or Chlorothalonil (2g/L) upon initial detection."
+        ],
+        "prevention": [
+            "Destroy crop debris after harvest",
+            "Avoid overhead sprinkler irrigation."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "potato_late_blight": {
+        "crop": "Potato",
+        "disease": "Potato Late Blight",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Water-soaked dark lesions on leaf tips and margins; white mildew fuzzy growth on underside in humid weather."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Copper oxychloride + Neem oil combination spray."
+        ],
+        "chemical_management": [
+            "Spray Cymoxanil + Mancozeb (2g/L) or Dimethomorph (1g/L) immediately."
+        ],
+        "prevention": [
+            "Use certified seed tubers",
+            "Destroy volunteer potato plants."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "potato_healthy": {
+        "crop": "Potato",
+        "disease": "Healthy Potato Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Uniform compound green leaves with crisp margins and no water-soaked blights."
+        ],
+        "cultural_management": [
+            "Continue scheduled hilling and balanced fertilization."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Prevent waterlogging around hills."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "raspberry_healthy": {
+        "crop": "Raspberry",
+        "disease": "Healthy Raspberry Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Vibrant serrated green leaves with no rust or spot lesions."
+        ],
+        "cultural_management": [
+            "Routine cane pruning and weed control."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Maintain air movement through cane rows."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "soybean_healthy": {
+        "crop": "Soybean",
+        "disease": "Healthy Soybean Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Trifoliate deep green leaves free from rust pustules or bacterial pustules."
+        ],
+        "cultural_management": [
+            "Maintain phosphorus and potassium nutrition."
+        ],
+        "biological_management": [
+            "Rhizobium japonicum inoculant."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Crop rotation with corn or small grains."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "squash_powdery_mildew": {
+        "crop": "Squash / Cucurbits",
+        "disease": "Squash Powdery Mildew",
+        "cause_type": "unknown",
+        "symptoms": [
+            "White talcum-like powdery spots spreading across upper leaf surfaces, leading to leaf yellowing."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Spray neem oil 1% solution or milk whey dilution (1:9)."
+        ],
+        "chemical_management": [
+            "Spray Potassium Bicarbonate (4g/L) or Wettable Sulfur (3g/L)."
+        ],
+        "prevention": [
+            "Plant resistant cucurbit varieties",
+            "Ensure adequate plant spacing."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "strawberry_leaf_scorch": {
+        "crop": "Strawberry",
+        "disease": "Strawberry Leaf Scorch",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Numerous purplish spots on leaves that enlarge and turn dark brown; leaf margins look scorched."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacillus subtilis foliar spray."
+        ],
+        "chemical_management": [
+            "Apply Captan (2g/L) or Copper Hydroxide (2g/L) early in spring."
+        ],
+        "prevention": [
+            "Renovate strawberry beds annually",
+            "Remove old infected foliage."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "strawberry_healthy": {
+        "crop": "Strawberry",
+        "disease": "Healthy Strawberry Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Tri-lobed shiny green leaves without purple scorch patches."
+        ],
+        "cultural_management": [
+            "Mulch with clean straw to protect berries and foliage."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Avoid overhead watering."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_bacterial_spot": {
+        "crop": "Tomato",
+        "disease": "Tomato Bacterial Spot",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Small, dark brown water-soaked lesions on leaves with yellow haloes, leading to leaf drop."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacteriophage formulation or Pseudomonas fluorescens."
+        ],
+        "chemical_management": [
+            "Spray Copper Hydroxide (2g/L) + Mancozeb (2.5g/L) tank mix."
+        ],
+        "prevention": [
+            "Use certified seed",
+            "Stake plants and apply straw mulch to prevent soil splash."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_early_blight": {
+        "crop": "Tomato",
+        "disease": "Tomato Early Blight",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Concentric rings/target spots on lower leaves, surrounded by yellowing leaf tissue."
+        ],
+        "cultural_management": [
+            "Remove lower infected leaves."
+        ],
+        "biological_management": [
+            "Trichoderma harzianum soil drench and Bacillus subtilis spray."
+        ],
+        "chemical_management": [
+            "Spray Chlorothalonil (2g/L) or Copper Hydroxide (2.5g/L)"
+        ],
+        "prevention": [
+            "Mulch soil to prevent rain splash",
+            "Rotate tomato crops every 3 years."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_late_blight": {
+        "crop": "Tomato",
+        "disease": "Tomato Late Blight",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Large brown water-soaked patches on leaves that shrivel quickly; white downy growth on underside."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Copper sulfate + lime (Bordeaux mixture 1%)."
+        ],
+        "chemical_management": [
+            "Spray Metalaxyl + Mancozeb (2.5g/L) or Dimethomorph (1g/L) at first sign."
+        ],
+        "prevention": [
+            "Avoid late planting in cool humid seasons",
+            "Destroy infected plant refuse."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_leaf_mold": {
+        "crop": "Tomato",
+        "disease": "Tomato Leaf Mold",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Pale green or yellow spots on upper leaf surface; olive-green to brown velvety mold underneath."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacillus amyloliquefaciens spray."
+        ],
+        "chemical_management": [
+            "Apply Difenoconazole (1ml/L) or Copper Hydroxide (2g/L)."
+        ],
+        "prevention": [
+            "Reduce greenhouse humidity below 85%",
+            "Increase ventilation and plant spacing."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_septoria_leaf_spot": {
+        "crop": "Tomato",
+        "disease": "Tomato Septoria Leaf Spot",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Numerous small circular spots with dark brown margins and light gray centers containing black specks."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Copper octanoate or neem seed extract."
+        ],
+        "chemical_management": [
+            "Spray Chlorothalonil (2g/L) or Mancozeb (2.5g/L) at 7-10 day intervals."
+        ],
+        "prevention": [
+            "Prune lower branches up to 12 inches from soil",
+            "Control solanaceous weeds."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_spider_mites": {
+        "crop": "Tomato",
+        "disease": "Tomato Two-Spotted Spider Mites",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Yellow stippling/speckling on leaves, fine silken webbing on leaf undersides, leaves turn bronze and dry up."
+        ],
+        "cultural_management": [
+            "Ensure thorough underside coverage."
+        ],
+        "biological_management": [
+            "Release predatory mites Phytoseiulus persimilis or spray Neem oil 1500 ppm."
+        ],
+        "chemical_management": [
+            "Spray Abamectin (0.5ml/L) or Spiromesifen (1ml/L)"
+        ],
+        "prevention": [
+            "Avoid dry dusty conditions; overhead water misting can suppress mite outbreaks."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_target_spot": {
+        "crop": "Tomato",
+        "disease": "Tomato Target Spot",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Small pinpoint brown spots expanding into circular lesions with light brown centers and dark rings."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Bacillus subtilis foliar spray."
+        ],
+        "chemical_management": [
+            "Spray Azoxystrobin (1ml/L) or Chlorothalonil (2g/L)."
+        ],
+        "prevention": [
+            "Avoid working in fields when foliage is wet",
+            "Improve airflow around plants."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_yellow_leaf_curl": {
+        "crop": "Tomato",
+        "disease": "Tomato Yellow Leaf Curl Virus (TYLCV)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Severe cupping/curling of leaves, yellowing leaf margins, extreme plant stunting and flower drop."
+        ],
+        "cultural_management": [
+            "Control Whiteflies with Imidacloprid (0.5ml/L) or Thiamethoxam (0.3g/L)",
+            "Remove infected plants."
+        ],
+        "biological_management": [
+            "Yellow sticky cards and bio-insecticide Verticillium lecanii."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Use TYLCV-resistant tomato cultivars (e.g",
+            "Tyking, Shiren)",
+            "Use insect mesh in greenhouses."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_mosaic_virus": {
+        "crop": "Tomato",
+        "disease": "Tomato Mosaic Virus (ToMV)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Mottled light and dark green mosaic patterns on leaves, leaf distortion, fern-like leaf growth."
+        ],
+        "cultural_management": [
+            "No chemical treatment available for viral infection",
+            "Remove and destroy infected plants."
+        ],
+        "biological_management": [
+            "Spray skimmed milk solution (10%) on seedlings to reduce mechanical viral transmission."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Wash hands with milk or trisodium phosphate before handling plants",
+            "Sanitize pruning shears."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "tomato_healthy": {
+        "crop": "Tomato",
+        "disease": "Healthy Tomato Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Deep green compound leaves free from spots, target rings, or whitefly virus curling."
+        ],
+        "cultural_management": [
+            "Maintain consistent drip irrigation to avoid blossom end rot."
+        ],
+        "biological_management": [],
+        "chemical_management": [],
+        "prevention": [
+            "Keep mulching intact and prune suckers cleanly."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "coconut_bud_rot": {
+        "crop": "Coconut",
+        "disease": "Coconut Bud Rot (Kumbil Azhukal)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Rotting of the central spear leaf/spindle, yellowing and wilting of outer fronds, foul smell from crown."
+        ],
+        "cultural_management": [
+            "Cut and remove infected spindle tissue",
+            "Pour 1% Bordeaux mixture into crown axils."
+        ],
+        "biological_management": [
+            "Apply Trichoderma harzianum coir pith cake in leaf axils before monsoon season."
+        ],
+        "chemical_management": [
+            "Apply 10% Bordeaux paste to cut surface"
+        ],
+        "prevention": [
+            "Ensure good palm spacing and crown hygiene",
+            "Avoid waterlogging around root zone."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "coconut_gray_leaf_spot": {
+        "crop": "Coconut",
+        "disease": "Coconut Gray Leaf Spot",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Small yellowish spots becoming grayish-white with dark brown borders; leaf tips dry and present scorched look."
+        ],
+        "cultural_management": [],
+        "biological_management": [
+            "Foliar spray of Pseudomonas fluorescens (20g/L)."
+        ],
+        "chemical_management": [
+            "Spray Copper Oxychloride (3g/L) or Mancozeb (2.5g/L) on affected fronds."
+        ],
+        "prevention": [
+            "Ensure adequate potash (potassium) fertilization to build palm resistance."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "coconut_leaf_rot": {
+        "crop": "Coconut",
+        "disease": "Coconut Leaf Rot (Ola Azhukal)",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Blackening and water-soaked rotting of leaflet distal ends, distal part of leaflets dry up and break off in wind."
+        ],
+        "cultural_management": [
+            "Pour 1% Bordeaux mixture or Contaf (Hexaconazole 2ml/L) into leaf axils after removing rotten parts."
+        ],
+        "biological_management": [
+            "Apply organic neem cake (5kg/palm/year) to soil basin."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Control Rhinoceros beetle pests which create tissue entry points."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "coconut_stem_bleeding": {
+        "crop": "Coconut",
+        "disease": "Coconut Stem Bleeding",
+        "cause_type": "fungal",
+        "symptoms": [
+            "Exudation of dark reddish-brown liquid from bark cracks on lower stem, wood beneath becomes soft and black."
+        ],
+        "cultural_management": [
+            "Chisel out infected bark tissue up to healthy wood"
+        ],
+        "biological_management": [
+            "Apply Trichoderma viride (50g/palm) mixed with 5kg neem cake to soil basin."
+        ],
+        "chemical_management": [
+            "Apply Coal Tar or 10% Bordeaux paste to dressed area."
+        ],
+        "prevention": [
+            "Avoid physical damage to stem during harvesting",
+            "Ensure proper drainage."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "coconut_bud_root_dropping": {
+        "crop": "Coconut",
+        "disease": "Coconut Bud / Root Dropping & Rot",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Dropping of immature buttons and fronds, root decay and wilted crown look."
+        ],
+        "cultural_management": [
+            "Root feeding with Metalaxyl (2g in 100ml water) or Hexaconazole (2ml in 100ml water)."
+        ],
+        "biological_management": [
+            "Soil application of Pseudomonas fluorescens + Trichoderma mixture."
+        ],
+        "chemical_management": [],
+        "prevention": [
+            "Dig isolation trenches (1m deep) around infected palms to halt root contact spread."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    },
+    "coconut_healthy": {
+        "crop": "Coconut",
+        "disease": "Healthy Coconut Leaf",
+        "cause_type": "unknown",
+        "symptoms": [
+            "Vibrant dark green fronds arching cleanly without leaflet blackening or spindle rot."
+        ],
+        "cultural_management": [],
+        "biological_management": [],
+        "chemical_management": [
+            "Apply recommended Kerala AU coconut fertilizer dose (500g N, 320g P2O5, 1200g K2O per palm/year)."
+        ],
+        "prevention": [
+            "Regular crown cleaning before pre-monsoon and post-monsoon."
+        ],
+        "nutrient_note": "Nutrient deficiencies must be diagnosed separately via soil testing.",
+        "source": "Verified Agricultural Knowledge Base",
+        "confidence": "verified"
+    }
 }

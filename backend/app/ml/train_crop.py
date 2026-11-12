@@ -6,6 +6,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier, ExtraTreesClassifier, GradientBoostingClassifier
 from sklearn.preprocessing import LabelEncoder
 from sklearn.metrics import accuracy_score, classification_report
+from sklearn.calibration import CalibratedClassifierCV
 from xgboost import XGBClassifier
 
 def download_and_enrich_dataset():
@@ -216,14 +217,19 @@ def train_crop_model():
             
     print(f"\nWinner: {best_model_name} with Accuracy {best_accuracy * 100:.2f}%")
     
-    # Show classification report for the champion
-    champion_preds = best_model_obj.predict(X_test)
-    print("\nClassification Report (Champion Model):")
+    print("\n--- APPLYING PLATT SCALING (CONFIDENCE CALIBRATION) ---")
+    print(f"Calibrating {best_model_name} using 5-fold cross-validation on training data to improve confidence scores...")
+    calibrated_champion = CalibratedClassifierCV(best_model_obj, method='sigmoid', cv=5)
+    calibrated_champion.fit(X_train, y_train)
+    
+    # Show classification report for the calibrated champion
+    champion_preds = calibrated_champion.predict(X_test)
+    print("\nClassification Report (Calibrated Champion Model):")
     print(classification_report(y_test, champion_preds, target_names=target_le.classes_))
     
     # 5. SAVE CHAMPION MODEL
     model_data = {
-        'model': best_model_obj,
+        'model': calibrated_champion,
         'feature_names': feature_names,
         'encoders': encoders,
         'accuracy': best_accuracy,

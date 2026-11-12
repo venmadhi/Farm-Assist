@@ -1,143 +1,152 @@
-import requests
-from typing import Dict, Any
+import re
+import logging
+from typing import Dict, Any, Optional
+from ..config import settings
+from .gemini_agent import gemini_agent
+
+logger = logging.getLogger(__name__)
 
 class ResponseGenerator:
-    def generate_response(self, rag_data: Dict[str, Any], api_key: str = None) -> str:
-        """
-        Generates a natural-language grounded response using Gemini API or offline fallbacks.
-        Bypasses RAG for conversational intents.
-        """
+    @staticmethod
+    def _context_field(kb_context: str, field_name: str) -> str:
+        prefix = f"{field_name}:"
+        for line in kb_context.splitlines():
+            if line.startswith(prefix):
+                return line[len(prefix):].strip()
+        return ""
+
+    @staticmethod
+    def _verified_context(kb_context: str, intent: str, query: str, crop_entity: Optional[str] = None) -> str:
+        """Filter retrieved context to keep only reference blocks strictly relevant to both crop and intent."""
+        if not kb_context:
+            return ""
+
+        blocks = re.split(r"\n\s*\n", kb_context.strip())
+        verified = []
+
+        for block in blocks:
+            document_crop = ResponseGenerator._context_field(block, "Crop").lower()
+            document_title = ResponseGenerator._context_field(block, "Document Title").lower()
+            document_intent = ResponseGenerator._context_field(block, "Intent").upper()
+            content_lower = block.lower()
+
+            # 1. Crop relevance check
+            crop_matches = True
+            if crop_entity:
+                target_crop = crop_entity.lower()
+                crop_alias_targets = ["rice", "paddy", "nellu"] if target_crop in ["rice", "paddy", "nellu"] else [target_crop]
+                
+                if document_crop and document_crop != "general":
+                    crop_matches = any(alias in document_crop for alias in crop_alias_targets) or any(alias in document_title for alias in crop_alias_targets)
+                elif document_crop == "general":
+                    if intent in ["FERTILIZER_RECOMMENDATION", "MANURE_RECOMMENDATION", "CROP_SUITABILITY", "CROP_SELECTION", "POST_HARVEST"]:
+                        crop_matches = any(alias in content_lower for alias in crop_alias_targets)
+                    else:
+                        crop_matches = True
+            else:
+                crop_matches = (document_crop == "general" or not document_crop)
+
+            # 2. Intent relevance check
+            intent_matches = False
+            
+            intent_mapping = {
+                "WEATHER": ["WEATHER", "CLIMATE"],
+                "HEATWAVE": ["WEATHER", "CLIMATE"],
+                "CROP_CALENDAR": ["CROP_CULTIVATION", "SOWING", "PLANTING"],
+                "CROP_SOWING": ["CROP_CULTIVATION", "SOWING", "PLANTING"],
+                "CROP_RECOMMENDATION": ["CROP_SUITABILITY", "CROP_SELECTION"],
+                "PEST_MANAGEMENT": ["PEST"],
+                "WEED_MANAGEMENT": ["WEED"],
+                "DISEASE": ["DISEASE", "PATHOGEN"],
+                "SOIL_MANAGEMENT": ["SOIL_WATER", "SOIL_TEST"],
+                "SOIL_TYPE": ["SOIL_WATER", "CROP_SUITABILITY"],
+                "SOIL_PH": ["SOIL_PH"],
+                "WATER_MANAGEMENT": ["WATER", "DRAINAGE", "SOIL_WATER"],
+                "IRRIGATION": ["IRRIGATION", "WATER"],
+                "FERTILIZER": ["FERTILIZER", "NUTRIENT", "MANURE", "ORGANIC_FARMING"],
+                "MARKET_PRICE": ["MARKET", "PRICE"],
+                "MARKET_SELLING": ["MARKET", "PRICE"],
+                "MARKET_FORECAST": ["MARKET", "PRICE"],
+                "MSP": ["MSP", "PRICE"],
+                "GOVERNMENT_SCHEME": ["GOVERNMENT", "SCHEME"],
+                "SUBSIDY": ["SUBSIDY", "SCHEME"],
+                "PM_KISAN": ["PM_KISAN", "SCHEME"],
+                "CROP_INSURANCE": ["INSURANCE"],
+                "KCC": ["GOVERNMENT", "SCHEME"],
+                "POST_HARVEST": ["POST_HARVEST"],
+                "STORAGE": ["STORAGE", "POST_HARVEST"],
+                "DRYING": ["DRYING", "POST_HARVEST"],
+                "LIVESTOCK": ["LIVESTOCK", "ANIMAL"],
+                "POULTRY": ["POULTRY", "LIVESTOCK"],
+                "GENERAL_AGRICULTURE": ["GENERAL", "FARMING"]
+            }
+            
+            if intent in intent_mapping:
+                expected_intents = intent_mapping[intent]
+                if any(exp == document_intent or document_intent.startswith(exp + "_") for exp in expected_intents):
+                    intent_matches = True
+            
+            if not intent_matches:
+                if intent == "FERTILIZER":
+                    if "fertilizer" in document_title or "nutrient" in document_title or "വളം" in block or "jeevamrutham" in content_lower:
+                        intent_matches = True
+                elif intent == "WEED_MANAGEMENT":
+                    intent_matches = any(term in content_lower for term in ["weed", "weeds", "kalakal", "കള"])
+                elif intent in ["SOIL_MANAGEMENT", "SOIL_TYPE", "SOIL_PH", "WATER_MANAGEMENT", "IRRIGATION"]:
+                    intent_matches = any(term in content_lower for term in ["soil", "texture", "ph", "drainage", "water", "clay", "acidity", "irrigation", "laterite", "sandy"])
+                elif intent in ["CROP_RECOMMENDATION", "CROP_SOWING", "CROP_CALENDAR"]:
+                    intent_matches = any(term in content_lower for term in ["suitability", "climate", "crop selection", "recommendation", "cultivation", "temperature", "planting", "sowing", "jeevamrutham", "organic"])
+                elif intent in ["POST_HARVEST", "STORAGE", "DRYING"]:
+                    intent_matches = any(term in content_lower for term in ["harvest", "post-harvest", "drying", "storage", "grain", "spoilage", "mold"])
+                elif intent == "PEST_MANAGEMENT":
+                    intent_matches = any(term in content_lower for term in ["pest", "beetle", "borer", "weevil", "aphid", "chellu", "whitefly", "whiteflies", "insect"])
+                elif intent == "DISEASE":
+                    intent_matches = any(term in content_lower for term in ["disease", "wilt", "rot", "sigatoka", "blight", "fungicide", "fungus", "bacteria", "virus"])
+                elif intent in ["WEATHER", "HEATWAVE"]:
+                    intent_matches = any(term in content_lower for term in ["weather", "rain", "monsoon", "climate", "temperature", "heatwave", "drought"])
+                elif intent in ["MARKET_PRICE", "MARKET_SELLING", "MARKET_FORECAST", "MSP"]:
+                    intent_matches = any(term in content_lower for term in ["price", "market", "sell", "mandi", "msp", "rate"])
+                elif intent in ["GOVERNMENT_SCHEME", "SUBSIDY", "PM_KISAN", "CROP_INSURANCE", "KCC"]:
+                    intent_matches = any(term in content_lower for term in ["scheme", "subsidy", "insurance", "loan", "credit", "kisan"])
+                elif intent in ["LIVESTOCK", "POULTRY"]:
+                    intent_matches = any(term in content_lower for term in ["livestock", "goat", "cow", "poultry", "hen", "cattle", "milk", "feed", "vaccination"])
+                else:
+                    intent_matches = True
+
+            if intent == "FERTILIZER" and "jeevamrutham" in document_title and crop_entity and "jeevamrutham" not in query.lower():
+                intent_matches = False
+
+            if crop_matches and intent_matches:
+                verified.append(block)
+
+        return verified[0] if verified else ""
+
+    def generate_response(self, rag_data: Dict[str, Any], api_key: str = None, image_data: Optional[str] = None) -> str:
+        """Generates grounded response using Gemini."""
         intent = rag_data["intent"]
-        lang_pref = rag_data["language_preference"]
         original_query = rag_data["original_query"]
         kb_context = rag_data["kb_context"]
-        farmer_context = rag_data["farmer_context"]
-        conversation_context = rag_data["conversation_context"]
-        realtime_context = rag_data.get("realtime_context", "")
-        bypass_rag = rag_data.get("bypass_rag", False)
+        crop_entity = rag_data.get("crop_entity")
         
-        # 1. HANDLE CONVERSATIONAL INTENTS DIRECTLY (Bypassing RAG)
-        if bypass_rag:
-            if lang_pref == "MALAYALAM":
-                conversational_responses = {
-                    "GREETING": "നമസ്കാരം! ഞാൻ ഫാം അസിസ്റ്റന്റ് ആണ്. കൃഷിയുമായി ബന്ധപ്പെട്ട എന്ത് കാര്യങ്ങളും ചോദിക്കാം. ഇന്ന് ഞാൻ എങ്ങനെയാണ് സഹായിക്കേണ്ടത്?",
-                    "GOODBYE": "ശരി, വീണ്ടും കാണാം! നല്ലൊരു കാർഷിക ദിവസം ആശംസിക്കുന്നു.",
-                    "THANKS": "വളരെ നന്ദി! സഹായിക്കാൻ കഴിഞ്ഞതിൽ സന്തോഷം.",
-                    "CONFIRMATION": "ശരി, മനസ്സിലായി 😊. മറ്റെന്തെങ്കിലും അറിയണമെന്നുണ്ടോ?",
-                    "CASUAL_CONVERSATION": "ഞാൻ സുഖമായിരിക്കുന്നു! നിങ്ങളുടെ കാർഷിക കാര്യങ്ങൾ എങ്ങനെ പോകുന്നു?"
-                }
-            else: # DEFAULT IS ENGLISH
-                conversational_responses = {
-                    "GREETING": "Hello! I'm FarmAssist, your virtual agricultural advisor. You can ask me anything about crops, soil health, fertilizers, market prices, or diseases in Kerala. How can I help you today?",
-                    "GOODBYE": "Goodbye! Have a great farming day. Let me know if you need assistance later.",
-                    "THANKS": "You're welcome! Glad I could help you.",
-                    "CONFIRMATION": "Got it! Understood 😊. What else would you like to discuss?",
-                    "CASUAL_CONVERSATION": "I'm doing great! How is your farming season going? Let me know if you have any questions."
-                }
-            return conversational_responses.get(intent, "Hello! How can I help you today?")
+        # Strictly verify KB context for the specific crop and intent
+        rag_data["kb_context"] = self._verified_context(kb_context, intent, original_query, crop_entity)
 
-        # 2. HANDLE UNKNOWN OR OUT-OF-DOMAIN QUESTIONS
-        if intent == "UNKNOWN":
-            if lang_pref == "MALAYALAM":
-                return (
-                    "ക്ഷമിക്കണം, ഞാൻ ഒരു കാർഷിക സഹായിയായി മാത്രമാണ് രൂപകൽപ്പന ചെയ്തിരിക്കുന്നത്. "
-                    "ദയവായി കൃഷിയുമായി ബന്ധപ്പെട്ട ചോദ്യങ്ങൾ ചോദിക്കുക."
-                )
-            else:
-                return (
-                    "I am sorry, but I am designed primarily as an agricultural decision support assistant. "
-                    "Please ask me queries related to farming, crop health, fertilizers, or market prices in Kerala."
-                )
+        # Delegate response generation entirely to Gemini
+        gemini_api_key = api_key or settings.GEMINI_API_KEY
+        return gemini_agent.generate_response(rag_data, gemini_api_key, image_data)
 
-        # 3. CALL GEMINI API (ONLINE MODE)
-        if api_key:
-            try:
-                system_instructions = (
-                    "You are FarmAssist, a friendly and realistic agricultural assistant for farmers in Kerala.\n"
-                    "Your goal is to answer queries naturally and dynamically based on the contexts provided.\n\n"
-                    "CRITICAL GUIDELINES:\n"
-                    "1. DO NOT output any technical/formatting headers like 'Topic:', 'Article Title:', 'English Content:', 'Knowledge Base Guidelines:' in your response. Speak naturally and directly to the farmer.\n"
-                    "2. Ground all chemical and biological pest treatments/dosages strictly in the provided 'Agri Knowledge Base Context'. Do not hallucinate chemical values.\n"
-                    "3. Personalize your response using the 'Farmer Profile Context' (soil test parameters, location, history) ONLY when relevant to the question. Do not state random profile details if they are unrelated.\n"
-                    "4. Include 'Real-Time Context' (such as current weather or market prices) dynamically if they are provided.\n"
-                    "5. Respect 'Conversation Context History' for pronouns (e.g. if the user says 'leaves are yellow' after saying 'I am growing banana', recognize they mean banana leaves).\n"
-                    "6. LANGUAGE POLICY:\n"
-                    f"   - Respond in English by default. (Target preference: {lang_pref})\n"
-                    f"   - If the target preference is MALAYALAM, translate the response to clear, friendly Malayalam.\n"
-                    "7. If the retrieved context is insufficient to answer the query, advise checking with a local Krishi Bhavan rather than inventing facts."
-                )
-                
-                prompt = (
-                    f"Conversation History:\n{conversation_context}\n\n"
-                    f"Farmer Profile Metrics:\n{farmer_context}\n\n"
-                    f"Agri Knowledge Base Context:\n{kb_context}\n\n"
-                    f"Real-Time Metrics:\n{realtime_context}\n\n"
-                    f"Farmer Query: {original_query}\n\n"
-                    f"Target Language: {lang_pref}\n"
-                    f"Intent: {intent}"
-                )
-                
-                url = f"https://generativelanguage.googleapis.com/v1beta/models/gemini-1.5-flash:generateContent?key={api_key}"
-                payload = {
-                    "contents": [{
-                        "parts": [{
-                            "text": f"System Guidelines:\n{system_instructions}\n\nQuery Payload:\n{prompt}"
-                        }]
-                    }]
-                }
-                
-                response = requests.post(url, json=payload, timeout=12)
-                if response.status_code == 200:
-                    resp_json = response.json()
-                    answer = resp_json['candidates'][0]['content']['parts'][0]['text']
-                    return answer.strip()
-                else:
-                    print(f"Gemini LLM API status error: {response.status_code}. Falling back.")
-            except Exception as e:
-                print(f"Gemini LLM generation failed: {e}. Falling back.")
+    def generate_response_stream(self, rag_data: Dict[str, Any], api_key: str = None, image_data: Optional[str] = None):
+        """Generates grounded response using Gemini (Streaming)."""
+        intent = rag_data["intent"]
+        original_query = rag_data["original_query"]
+        kb_context = rag_data["kb_context"]
+        crop_entity = rag_data.get("crop_entity")
+        
+        # Strictly verify KB context for the specific crop and intent
+        rag_data["kb_context"] = self._verified_context(kb_context, intent, original_query, crop_entity)
 
-        # 4. OFFLINE / FALLBACK MODE (RULE-BASED TEMPLATE GENERATOR)
-        # Synthesize a clean, natural response without headers
-        if kb_context:
-            # Extract basic content
-            lines = kb_context.split('\n')
-            title = "Agricultural Guidelines"
-            content_desc = ""
-            malayalam_desc = ""
-            for idx, line in enumerate(lines):
-                if line.startswith("Document Title:"):
-                    title = line.replace("Document Title:", "").strip()
-                if line.startswith("English Content:"):
-                    content_desc = line.replace("English Content:", "").strip()
-                if line.startswith("Malayalam Content:"):
-                    malayalam_desc = line.replace("Malayalam Content:", "").strip()
-            
-            # Formulate response
-            if lang_pref == "MALAYALAM":
-                ans = f"നിങ്ങളുടെ ചോദ്യത്തിന് കാർഷിക സർവകലാശാല നിർദ്ദേശങ്ങൾ താഴെ നൽകുന്നു:\n\n{malayalam_desc or content_desc}"
-                if realtime_context:
-                    ans = f"{realtime_context}\n\n{ans}"
-                if farmer_context:
-                    ans = f"{ans}\n\n(കുറിപ്പ്: നിങ്ങളുടെ ഫാം പ്രൊഫൈൽ വിവരങ്ങളായ {farmer_context.replace('\n', ', ')} അടിസ്ഥാനമാക്കിയുള്ളതാണ്)."
-                return ans
-            else:
-                ans = f"Based on verified guidelines for {title}:\n\n{content_desc}"
-                if realtime_context:
-                    ans = f"{realtime_context}\n\n{ans}"
-                if farmer_context:
-                    ans = f"{ans}\n\n(Note: This advice is personalized to your profile: {farmer_context.replace('\n', ', ')})."
-                return ans
-
-        # Default empty search response
-        if lang_pref == "MALAYALAM":
-            return (
-                "ക്ഷമിക്കണം, എന്റെ കയ്യിലുള്ള വിവരങ്ങൾ ഉപയോഗിച്ച് ഈ ചോദ്യത്തിന് കൃത്യമായ ഉത്തരം നൽകാൻ കഴിഞ്ഞില്ല. "
-                "ദയവായി തദ്ദേശ കൃഷിഭവൻ സന്ദർശിക്കുക."
-            )
-        else:
-            return (
-                "I couldn't find a matching recommendation in our knowledge base. "
-                "Please verify your query spelling or contact your local Krishi Bhavan."
-            )
+        # Delegate response generation entirely to Gemini
+        gemini_api_key = api_key or settings.GEMINI_API_KEY
+        return gemini_agent.generate_response_stream(rag_data, gemini_api_key, image_data)
 
 response_generator = ResponseGenerator()

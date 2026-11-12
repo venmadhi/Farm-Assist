@@ -1,0 +1,12 @@
+name = "agrigenie-chatbot"
+main = "src/index.js"
+compatibility_date = "2026-09-21"
+
+[ai]
+binding = "AI"
+
+[vars]
+# Set CLOUDFLARE_WORKER_CHAT_URL in the FastAPI .env to this deployed URL.
+
+# Configure only when the Worker is called through the backend:
+# npx wrangler secret put CHATBOT_SHARED_TOKEN

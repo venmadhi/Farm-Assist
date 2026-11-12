@@ -60,5 +60,15 @@ class TestVoiceSystem(unittest.TestCase):
         )
         self.assertEqual(config_forced["lang"], "en-IN")
 
+    def test_tts_text_is_voice_safe(self):
+        config = tts_engine.get_speech_config(
+            text="**First:** Apply 20ml/L. 😊\n- Confirm the label.",
+            detected_language="ENGLISH",
+            preference="AUTO"
+        )
+        self.assertNotIn("**", config["text"])
+        self.assertNotIn("😊", config["text"])
+        self.assertNotIn("-", config["text"])
+
 if __name__ == '__main__':
     unittest.main()

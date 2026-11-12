@@ -1,33 +1,17 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { 
-  MessageSquareCode, 
-  Send, 
-  Mic, 
-  MicOff, 
-  Volume2, 
-  Sparkles, 
-  Key,
-  Info,
-  HelpCircle,
-  Globe
-} from 'lucide-react';
-import { chatbotAPI } from '../utils/api';
+import { MessageSquareCode, Trash2, ArrowLeft } from 'lucide-react';
+import { chatbotAPI, diseaseAPI, twinAPI } from '../utils/api';
+import ChatWelcomeState from '../components/chat/ChatWelcomeState';
+import ChatComposer from '../components/chat/ChatComposer';
+import ChatContextPanel from '../components/chat/ChatContextPanel';
+import MessageBubble from '../components/chat/MessageBubble';
 
 export default function AICompanion() {
-  const [messages, setMessages] = useState([
-    {
-      sender: 'bot',
-      text: "Namaskaram! I am FarmAssist, your agricultural assistant. You can ask me questions about farming in Malayalam or English.\n\nഎനിക്ക് നിങ്ങളെ എങ്ങനെ സഹായിക്കാൻ കഴിയും? (How can I help you today?)",
-      time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-      source: 'System greeting',
-      topic: 'Introduction'
-    }
-  ]);
+  const [messages, setMessages] = useState([]);
   const [inputText, setInputText] = useState('');
-  const [geminiKey, setGeminiKey] = useState(localStorage.getItem('agrigenie_gemini_key') || '');
-  const [showKeyInput, setShowKeyInput] = useState(false);
   const [loading, setLoading] = useState(false);
-  const [selectedLanguage, setSelectedLanguage] = useState('en'); // 'en' or 'ml'
+  const [feedbackMap, setFeedbackMap] = useState({});
+  const [farmerProfile, setFarmerProfile] = useState(null);
   
   // Voice Recording States
   const [isRecording, setIsRecording] = useState(false);
@@ -35,11 +19,17 @@ export default function AICompanion() {
   const messagesEndRef = useRef(null);
 
   useEffect(() => {
+    // Fetch profile for context panel
+    twinAPI.getSummary().then(res => {
+      setFarmerProfile(res.farmer_profile);
+    }).catch(console.error);
+  }, []);
+
+  useEffect(() => {
     scrollToBottom();
   }, [messages, loading]);
 
   useEffect(() => {
-    // Configure Web Speech API recognition
     const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
     if (SpeechRecognition) {
       const rec = new SpeechRecognition();
@@ -47,23 +37,16 @@ export default function AICompanion() {
       rec.interimResults = false;
       rec.lang = 'ml-IN'; 
 
-      rec.onstart = () => {
-        setIsRecording(true);
-      };
-
+      rec.onstart = () => setIsRecording(true);
       rec.onresult = (event) => {
         const transcript = event.results[0][0].transcript;
         setInputText((prev) => prev ? `${prev} ${transcript}` : transcript);
       };
-
       rec.onerror = (e) => {
         console.error('Speech recognition error:', e);
         setIsRecording(false);
       };
-
-      rec.onend = () => {
-        setIsRecording(false);
-      };
+      rec.onend = () => setIsRecording(false);
 
       recognitionRef.current = rec;
     }
@@ -73,263 +56,228 @@ export default function AICompanion() {
     messagesEndRef.current?.scrollIntoView({ behavior: 'smooth' });
   };
 
-  const handleKeySave = (e) => {
-    e.preventDefault();
-    localStorage.setItem('agrigenie_gemini_key', geminiKey);
-    setShowKeyInput(false);
-  };
-
   const toggleRecording = () => {
     if (!recognitionRef.current) {
       alert("Voice speech recognition is not supported in this browser. Please use Google Chrome or Microsoft Edge.");
       return;
     }
-
     if (isRecording) {
       recognitionRef.current.stop();
     } else {
-      // Toggle language based on toggle state
-      recognitionRef.current.lang = selectedLanguage === 'ml' ? 'ml-IN' : 'en-IN';
+      const currentLanguage = localStorage.getItem('agrigenie_chat_language') || 'en';
+      recognitionRef.current.lang = currentLanguage === 'ml' ? 'ml-IN' : 'en-IN';
       recognitionRef.current.start();
     }
   };
 
   const executeChat = async (textToSend) => {
-    // Append User Message
+    if (loading) return;
+    
+    // Add User Message
     const userMsg = {
       sender: 'user',
       text: textToSend,
       time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'})
     };
+    
     setMessages((prev) => [...prev, userMsg]);
     setLoading(true);
 
-    try {
-      const response = await chatbotAPI.chat(textToSend, geminiKey || null);
-      
-      const botMsg = {
+    // Initial placeholder for Bot message while streaming
+    setMessages((prev) => [
+      ...prev, 
+      {
         sender: 'bot',
-        text: response.response,
+        text: '',
         time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-        source: response.source,
-        topic: response.matched_topic
-      };
-      setMessages((prev) => [...prev, botMsg]);
+        isStreaming: true,
+        contextPayload: null
+      }
+    ]);
+
+    let finalQuery = textToSend;
+
+    try {
+      const currentLanguage = localStorage.getItem('agrigenie_chat_language') || 'en';
+      await chatbotAPI.streamChat(
+        finalQuery, 
+        currentLanguage,
+        null,
+        // onContext
+        (contextData) => {
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastIdx = newMessages.length - 1;
+            newMessages[lastIdx] = {
+              ...newMessages[lastIdx],
+              contextPayload: contextData,
+              topic: contextData.intent,
+              source: contextData.sources?.[0] || 'AI Companion'
+            };
+            return newMessages;
+          });
+        },
+        // onToken
+        (token) => {
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastIdx = newMessages.length - 1;
+            newMessages[lastIdx] = {
+              ...newMessages[lastIdx],
+              text: newMessages[lastIdx].text + token
+            };
+            return newMessages;
+          });
+        },
+        // onError
+        (err) => {
+          console.error('Chat error:', err);
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastIdx = newMessages.length - 1;
+            newMessages[lastIdx] = {
+              ...newMessages[lastIdx],
+              isStreaming: false,
+              text: newMessages[lastIdx].text || "Sorry, I am facing connectivity issues. Please try again."
+            };
+            return newMessages;
+          });
+          setLoading(false);
+        },
+        // onComplete
+        () => {
+          setMessages(prev => {
+            const newMessages = [...prev];
+            const lastIdx = newMessages.length - 1;
+            newMessages[lastIdx] = {
+              ...newMessages[lastIdx],
+              isStreaming: false
+            };
+            return newMessages;
+          });
+          setLoading(false);
+        }
+      );
     } catch (err) {
       console.error(err);
-      const errorMsg = {
-        sender: 'bot',
-        text: "Sorry, I am facing connectivity issues. Ensure your backend FastAPI application is running.",
-        time: new Date().toLocaleTimeString([], {hour: '2-digit', minute:'2-digit'}),
-        source: 'Error handler',
-        topic: 'System Connection'
-      };
-      setMessages((prev) => [...prev, errorMsg]);
-    } finally {
       setLoading(false);
     }
   };
 
-  const handleSend = async (e) => {
-    e.preventDefault();
+  const handleSend = (e) => {
+    if (e) e.preventDefault();
     if (!inputText.trim()) return;
     const text = inputText;
     setInputText('');
-    await executeChat(text);
+    executeChat(text);
   };
 
-  const handleSuggestedQuestion = async (question) => {
-    await executeChat(question);
+  const handleSuggestionClick = (query) => {
+    executeChat(query);
   };
 
-  const suggestedQuestions = [
-    { label: 'Jeevamrutham preparation?', val: 'How to prepare Jeevamrutham?' },
-    { label: 'Coconut beetle control?', val: 'How to control Rhinoceros Beetle in coconut palms?' },
-    { label: 'Pepper Quick Wilt preventive?', val: 'How to prevent Quick Wilt in Black Pepper?' },
-  ];
+  const handleClearChat = () => {
+    setMessages([]);
+    setFeedbackMap({});
+  };
+
+  const handleFeedback = async (idx, rating) => {
+    if (feedbackMap[idx]) return;
+    const botMsg = messages[idx];
+    const userMsg = messages[idx - 1]?.sender === 'user' ? messages[idx - 1] : null;
+    if (!userMsg) return;
+
+    try {
+      await chatbotAPI.submitFeedback(
+        userMsg.text,
+        botMsg.text,
+        botMsg.topic || null,
+        null,
+        rating
+      );
+      setFeedbackMap((prev) => ({ ...prev, [idx]: rating }));
+    } catch (err) {
+      console.error('Failed to submit feedback', err);
+    }
+  };
 
   return (
-    <div className="p-8 h-[calc(100vh-64px)] flex flex-col gap-6 bg-slate-50/50">
+    <div className="flex flex-col h-[calc(100vh-64px)] bg-slate-50 relative overflow-hidden">
       
-      {/* Top Advisory Bar */}
-      <div className="bg-white border border-slate-200 rounded-xl p-4 flex flex-wrap items-center justify-between gap-4 shadow-sm">
+      {/* Top Advisory Bar - Mobile Friendly */}
+      <div className="bg-white border-b border-slate-200 px-4 py-3 flex items-center justify-between z-10 shrink-0">
         <div className="flex items-center gap-3">
-          <div className="w-9 h-9 rounded-lg bg-green-50 border border-green-200 flex items-center justify-center">
-            <MessageSquareCode className="w-5 h-5 text-green-600" />
+          <div className="w-8 h-8 rounded-lg bg-green-50 border border-green-200 flex items-center justify-center shrink-0">
+            <MessageSquareCode className="w-4 h-4 text-green-600" />
           </div>
-          <div>
-            <h3 className="font-bold text-slate-800 text-xs">Conversational Farm Assistant</h3>
-            <p className="text-xs text-slate-500">Ask regional farming guidelines in Malayalam or English</p>
+          <div className="hidden sm:block">
+            <h3 className="font-bold text-slate-800 text-xs">FarmAssist AI</h3>
+            <p className="text-[10px] text-slate-500">Your intelligent farming companion</p>
+          </div>
+          <div className="sm:hidden flex items-center gap-2">
+            <span className="font-bold text-slate-800 text-sm">FarmAssist</span>
+            <span className="w-1.5 h-1.5 rounded-full bg-green-500"></span>
           </div>
         </div>
 
-        <div className="flex items-center gap-4">
-          {/* Language Toggle switch */}
-          <div className="flex items-center bg-slate-100 p-0.5 rounded-lg border border-slate-200">
-            <button
-              onClick={() => setSelectedLanguage('en')}
-              className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${
-                selectedLanguage === 'en' ? 'bg-white text-slate-800 shadow-xs' : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              English
-            </button>
-            <button
-              onClick={() => setSelectedLanguage('ml')}
-              className={`px-3 py-1 rounded-md text-[10px] font-bold transition-all ${
-                selectedLanguage === 'ml' ? 'bg-white text-slate-800 shadow-xs' : 'text-slate-500 hover:text-slate-800'
-              }`}
-            >
-              മലയാളം
-            </button>
-          </div>
-
-          <button
-            onClick={() => setShowKeyInput(!showKeyInput)}
-            className="px-3.5 py-1.5 border border-slate-250 bg-white hover:bg-slate-50 text-[10px] font-bold text-slate-700 rounded-lg shadow-xs transition-colors flex items-center gap-1.5"
+        <div className="flex items-center gap-2 sm:gap-4">
+          <button 
+            onClick={handleClearChat}
+            disabled={messages.length === 0}
+            className="p-2 text-slate-400 hover:text-rose-600 rounded-md transition-colors disabled:opacity-50"
+            title="Clear Chat"
           >
-            <Key className="w-3.5 h-3.5 text-green-600" />
-            {geminiKey ? 'Gemini Active' : 'API Key Config'}
+            <Trash2 className="w-4 h-4" />
           </button>
         </div>
       </div>
 
-      {/* API Key Modal Overlay */}
-      {showKeyInput && (
-        <div className="bg-white border border-slate-200 rounded-xl p-5 shadow-md max-w-md mx-auto space-y-3 z-20 absolute top-28 left-0 right-0">
-          <div className="space-y-1">
-            <h4 className="font-bold text-xs text-slate-800">Configure LLM Credentials</h4>
-            <p className="text-xs text-slate-500">Add your Gemini API Key to enable general LLM assistance. Defaults to the offline guideline dictionary if left blank.</p>
-          </div>
-          <form onSubmit={handleKeySave} className="flex gap-2">
-            <input 
-              type="password"
-              placeholder="AIzaSy..."
-              value={geminiKey}
-              onChange={(e) => setGeminiKey(e.target.value)}
-              className="flex-1 bg-white border border-slate-200 rounded-lg px-3 py-1.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-green-600 focus:border-green-600"
-            />
-            <button
-              type="submit"
-              className="bg-green-600 hover:bg-green-700 text-white px-4 py-1.5 rounded-lg text-xs font-semibold transition-colors"
-            >
-              Save
-            </button>
-          </form>
-        </div>
-      )}
-
-      {/* Main Chat Panel */}
-      <div className="flex-1 bg-white border border-slate-200 rounded-xl p-6 flex flex-col justify-between overflow-hidden relative shadow-sm">
-        
-        {/* Messages Body */}
-        <div className="flex-1 overflow-y-auto space-y-4 pr-1 mb-4">
-          {messages.map((msg, idx) => (
-            <div 
-              key={idx} 
-              className={`flex flex-col max-w-[75%] ${msg.sender === 'user' ? 'ml-auto items-end' : 'mr-auto items-start'}`}
-            >
-              {/* Message bubble */}
-              <div className={`p-3.5 rounded-xl text-xs whitespace-pre-wrap leading-relaxed shadow-2xs ${
-                msg.sender === 'user' 
-                  ? 'bg-green-600 text-white font-medium rounded-tr-none' 
-                  : 'bg-slate-55 border border-slate-200 text-slate-800 rounded-tl-none'
-              }`}>
-                {msg.text}
-              </div>
-
-              {/* Message metadata / logs */}
-              <div className="flex items-center gap-1.5 mt-1 text-[9px] text-slate-400 font-bold px-1 select-none">
-                <span>{msg.time}</span>
-                {msg.sender === 'bot' && (
-                  <>
-                    <span>•</span>
-                    <span className="text-green-700 uppercase">{msg.source}</span>
-                    <span>•</span>
-                    <span className="text-slate-500 capitalize">Topic: {msg.topic}</span>
-                  </>
-                )}
-              </div>
-            </div>
-          ))}
-
-          {loading && (
-            <div className="flex flex-col items-start max-w-[75%]">
-              <div className="p-3 bg-slate-55 border border-slate-200 text-slate-500 rounded-xl rounded-tl-none flex items-center gap-1.5 text-xs">
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-bounce"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-bounce [animation-delay:0.2s]"></span>
-                <span className="w-1.5 h-1.5 rounded-full bg-green-500 animate-bounce [animation-delay:0.4s]"></span>
-                <span>Farming advisor is formulating response...</span>
-              </div>
-            </div>
-          )}
-          <div ref={messagesEndRef} />
-        </div>
-
-        {/* Suggested Actions panel */}
-        {messages.length === 1 && (
-          <div className="mb-4 space-y-2 border-t border-slate-100 pt-4">
-            <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">Suggested Questions:</p>
-            <div className="flex flex-wrap gap-2">
-              {suggestedQuestions.map((q, idx) => (
-                <button
-                  key={idx}
-                  onClick={() => handleSuggestedQuestion(q.val)}
-                  className="px-3 py-1.5 bg-slate-50 hover:bg-slate-100 border border-slate-200 text-slate-700 text-xs font-medium rounded-lg transition-colors shadow-2xs"
-                >
-                  {q.label}
-                </button>
-              ))}
-            </div>
-          </div>
-        )}
-
-        {/* Input Bar */}
-        <form onSubmit={handleSend} className="border-t border-slate-150 pt-4 flex gap-3 items-center">
+      <div className="flex flex-1 overflow-hidden">
+        {/* Main Chat Panel */}
+        <div className="flex-1 flex flex-col relative overflow-hidden bg-white/50">
           
-          {/* Voice Input Button */}
-          <button
-            type="button"
-            onClick={toggleRecording}
-            className={`p-3 rounded-lg border transition-all duration-300 relative flex items-center justify-center shrink-0 ${
-              isRecording 
-                ? 'bg-rose-50 text-rose-600 border-rose-200' 
-                : 'bg-slate-50 border-slate-200 text-slate-500 hover:text-green-600 hover:border-slate-300'
-            }`}
-          >
-            {isRecording ? (
-              <>
-                <MicOff className="w-4 h-4 animate-pulse" />
-                <span className="absolute bottom-full mb-2 bg-rose-50 text-[9px] text-rose-700 font-bold px-2 py-0.5 rounded border border-rose-200 whitespace-nowrap">Listening...</span>
-              </>
+          <div className="flex-1 overflow-y-auto px-2 sm:px-6 pt-6 pb-2">
+            {messages.length === 0 ? (
+              <ChatWelcomeState onSuggestionClick={handleSuggestionClick} />
             ) : (
-              <>
-                <Mic className="w-4 h-4" />
-              </>
+              messages.map((msg, idx) => (
+                <MessageBubble 
+                  key={idx} 
+                  msg={msg} 
+                  idx={idx} 
+                  isLast={idx === messages.length - 1}
+                  onFeedback={handleFeedback}
+                  feedbackState={feedbackMap[idx]}
+                />
+              ))
             )}
-          </button>
+            
+            {loading && messages.length > 0 && messages[messages.length - 1].sender === 'user' && (
+              <div className="flex gap-3 max-w-[80%] mb-4 mr-auto animate-in fade-in">
+                <div className="w-8 h-8 rounded-full bg-slate-100 flex items-center justify-center shrink-0 border border-slate-200 mt-1">
+                  <span className="w-1.5 h-1.5 bg-slate-400 rounded-full animate-bounce"></span>
+                </div>
+                <div className="px-4 py-3 rounded-2xl text-[13px] bg-white border border-slate-200 text-slate-500 rounded-tl-none">
+                  Understanding your question...
+                </div>
+              </div>
+            )}
+            
+            <div ref={messagesEndRef} />
+          </div>
 
-          <input 
-            type="text"
-            value={inputText}
-            onChange={(e) => setInputText(e.target.value)}
-            placeholder={isRecording ? "Listening to your voice..." : "Ask your farm companion advisor..."}
-            disabled={isRecording}
-            className="flex-1 bg-white border border-slate-200 rounded-lg px-4 py-2.5 text-xs text-slate-800 focus:outline-none focus:ring-1 focus:ring-green-600 focus:border-green-600 disabled:opacity-50"
+          <ChatComposer 
+            inputText={inputText}
+            setInputText={setInputText}
+            handleSend={handleSend}
+            loading={loading}
+            isRecording={isRecording}
+            toggleRecording={toggleRecording}
           />
+        </div>
 
-          <button
-            type="submit"
-            disabled={!inputText.trim()}
-            className={`p-2.5 rounded-lg font-bold transition-all flex items-center justify-center shrink-0 ${
-              inputText.trim() 
-                ? 'bg-green-600 hover:bg-green-700 text-white shadow-xs' 
-                : 'bg-slate-50 text-slate-400 border border-slate-200 cursor-not-allowed'
-            }`}
-          >
-            <Send className="w-4 h-4" />
-          </button>
-        </form>
+        {/* Side Context Panel */}
+        <ChatContextPanel farmerProfile={farmerProfile} />
       </div>
     </div>
   );

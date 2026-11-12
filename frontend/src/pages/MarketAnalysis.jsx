@@ -40,7 +40,13 @@ export default function MarketAnalysis() {
       setData(response);
     } catch (err) {
       console.error(err);
-      setError('Failed to fetch market trends. Ensure backend is running.');
+      if (!err.response) {
+        setError('Cannot connect to market server. Is the backend running?');
+      } else if (err.response.status === 404) {
+        setError('Market endpoint was not found.');
+      } else {
+        setError(err.response?.data?.detail || 'Market server encountered an error.');
+      }
     } finally {
       setLoading(false);
     }
@@ -73,8 +79,8 @@ export default function MarketAnalysis() {
       {/* Query Bar */}
       <div className="bg-white border border-slate-200 rounded-xl p-6 flex flex-wrap items-center justify-between gap-6 shadow-sm">
         <div className="space-y-1">
-          <h3 className="font-bold text-slate-800 text-sm">Agmarknet Price Forecasting</h3>
-          <p className="text-xs text-slate-500 font-sans">Analyze commodity prices and forecast margins per acre using XGBoost models</p>
+          <h3 className="font-bold text-slate-800 text-sm">Market Price Intelligence</h3>
+          <p className="text-xs text-slate-500 font-sans">Analyze current commodity prices and forecast expected margins per acre.</p>
         </div>
         
         <div className="flex gap-4">
@@ -88,11 +94,8 @@ export default function MarketAnalysis() {
               <option value="rice">Nel (Rice/Paddy)</option>
               <option value="coconut">Thengu (Coconut)</option>
               <option value="banana">Vazha (Banana)</option>
-              <option value="pepper">Kurumulaku (Black Pepper)</option>
-              <option value="rubber">Rubber</option>
-              <option value="cardamom">Elam (Cardamom)</option>
-              <option value="coffee">Kappi (Coffee)</option>
-              <option value="tea">Teyila (Tea)</option>
+              <option value="ginger">Inji (Ginger)</option>
+              <option value="turmeric">Manjal (Turmeric)</option>
             </select>
           </div>
           <div>
@@ -142,18 +145,18 @@ export default function MarketAnalysis() {
               <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-2 shadow-sm">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">7-Day Forecast</p>
                 <h4 className="text-xl font-bold text-slate-900">₹{data.price_forecast_7d} <span className="text-[10px] text-slate-500">/ kg</span></h4>
-                <span className="text-[9px] text-slate-550 font-medium block border-t border-slate-50 pt-1.5 mt-1.5">Short-term drift</span>
+                <span className="text-[9px] text-slate-550 font-medium block border-t border-slate-50 pt-1.5 mt-1.5">Estimated short-term price</span>
               </div>
 
               <div className="bg-white border border-slate-200 rounded-xl p-4 space-y-2 shadow-sm">
                 <p className="text-[10px] font-bold text-slate-500 uppercase tracking-wider">30-Day Forecast</p>
                 <h4 className="text-xl font-bold text-slate-900">₹{data.price_forecast_30d} <span className="text-[10px] text-slate-500">/ kg</span></h4>
-                <span className="text-[9px] text-slate-550 font-medium block border-t border-slate-50 pt-1.5 mt-1.5">XGBoost model run</span>
+                <span className="text-[9px] text-slate-550 font-medium block border-t border-slate-50 pt-1.5 mt-1.5">Estimated long-term price</span>
               </div>
 
               <div className="bg-green-600 text-white rounded-xl p-4 space-y-2 shadow-sm">
                 <p className="text-[10px] font-bold text-white/80 uppercase tracking-wider">Expected Net Profit</p>
-                <h4 className="text-xl font-bold">₹{data.projected_profit.toLocaleString()} <span className="text-[10px] text-white/70">/ ac</span></h4>
+                <h4 className="text-xl font-bold">₹{data.projected_profit.toLocaleString()} <span className="text-[10px] text-white/70">/ acre</span></h4>
                 <p className="text-[9px] text-white/90 flex items-center gap-1 border-t border-green-500/50 pt-1.5 mt-1.5">
                   <Coins className="w-3 h-3" />
                   Cultivation Cost: ₹{data.investment_cost.toLocaleString()}
@@ -164,8 +167,8 @@ export default function MarketAnalysis() {
             {/* Price Chart with Forecast Curve */}
             <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-4 shadow-sm">
               <div>
-                <h4 className="font-bold text-slate-800 text-xs">Commodity Price Curve & Forecast (Agmarknet)</h4>
-                <p className="text-xs text-slate-500 font-sans">Historical values matched with ML 7-day and 30-day projection coordinates</p>
+                <h4 className="font-bold text-slate-800 text-xs">Commodity Price Curve & Forecast</h4>
+                <p className="text-xs text-slate-500 font-sans">Historical trends matched with AI 7-day and 30-day projection coordinates</p>
               </div>
 
               <div className="h-64 w-full text-xs">
@@ -196,7 +199,7 @@ export default function MarketAnalysis() {
             <div className="bg-white border border-slate-200 rounded-xl p-6 space-y-6 shadow-sm">
               <div>
                 <h4 className="font-bold text-slate-800 text-xs">Harvest Marketing Window</h4>
-                <p className="text-xs text-slate-500">ML-derived peak sales window matching seasonal price waves</p>
+                <p className="text-xs text-slate-500">AI-derived peak sales window matching seasonal price waves</p>
               </div>
 
               <div className="bg-amber-50 border border-amber-100 rounded-lg p-4 flex gap-3 text-amber-900">

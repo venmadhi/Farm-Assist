@@ -1,11 +1,17 @@
 import React from 'react';
 
-export default function StatCard({ title, value, icon: Icon, description, trend, trendColor }) {
+export default function StatCard({ title, value, icon: Icon, description, trend, trendColor, trendDirection }) {
   // Translate trend properties to clean, modern style
   const getTrendStyle = () => {
     if (trendColor === 'green') return 'text-green-600';
     if (trendColor === 'red') return 'text-rose-600';
     return 'text-slate-500';
+  };
+
+  const getArrow = () => {
+    if (trendDirection === 'up') return '↑';
+    if (trendDirection === 'down') return '↓';
+    return '';
   };
 
   return (
@@ -25,7 +31,7 @@ export default function StatCard({ title, value, icon: Icon, description, trend,
       <div className="mt-auto">
         {trend && (
           <p className={`text-xs font-bold flex items-center gap-1 ${getTrendStyle()}`}>
-            {trend.startsWith('+') || trend.includes('Up') || trend.includes('Stable') || trend.includes('Good') || trend.includes('Improved') ? '↑' : '↓'} {trend}
+            {getArrow()} {trend}
           </p>
         )}
       </div>

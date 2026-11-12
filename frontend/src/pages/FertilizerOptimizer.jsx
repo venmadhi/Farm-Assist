@@ -241,8 +241,8 @@ export default function FertilizerOptimizer() {
                           {item.stage}
                         </span>
                         <h5 className="font-bold text-slate-850 text-xs mt-1">{item.fertilizer_name}</h5>
-                        <p className="text-xs text-slate-600">
-                          Recommended dosage: <strong>{item.amount_grams_per_sqm} g/m²</strong> (approx. {round(item.amount_grams_per_sqm * 4, 1)} kg per cent)
+                        <p className="text-gray-700">
+                          Recommended dosage: <strong>{item.amount_grams_per_sqm} g/m²</strong> (approx. {round(item.amount_grams_per_sqm * 4.047, 1)} kg per acre)
                         </p>
                       </div>
 

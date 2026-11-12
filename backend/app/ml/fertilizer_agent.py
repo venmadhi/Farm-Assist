@@ -128,9 +128,30 @@ class FertilizerAgent:
             print(f"SHAP explanation calculation failed: {e}")
             
         # 4. AGRONOMIC SCHEDULING & SAFE ORGANIC LAYER
-        n_status = "Optimal" if n > 60 else "Deficient"
-        p_status = "Optimal" if p > 35 else "Deficient"
-        k_status = "Optimal" if k > 80 else "Deficient"
+        CROP_THRESHOLDS = {
+            "paddy": {"n": 60, "p": 35, "k": 30, "ph_min": 5.5, "ph_max": 6.5},
+            "coconut": {"n": 40, "p": 20, "k": 80, "ph_min": 5.5, "ph_max": 7.0},
+            "banana": {"n": 80, "p": 40, "k": 100, "ph_min": 6.0, "ph_max": 7.5},
+            "pepper": {"n": 45, "p": 30, "k": 50, "ph_min": 5.5, "ph_max": 6.5},
+            "rubber": {"n": 30, "p": 15, "k": 35, "ph_min": 4.5, "ph_max": 5.5},
+            "cardamom": {"n": 50, "p": 30, "k": 60, "ph_min": 5.0, "ph_max": 6.5},
+            "default": {"n": 50, "p": 30, "k": 50, "ph_min": 5.5, "ph_max": 7.0},
+        }
+        
+        req = CROP_THRESHOLDS.get(crop, CROP_THRESHOLDS["default"])
+        
+        n_status = "Optimal" if n >= req["n"] else "Deficient"
+        p_status = "Optimal" if p >= req["p"] else "Deficient"
+        k_status = "Optimal" if k >= req["k"] else "Deficient"
+        
+        # Override ML prediction if logically inconsistent with agronomic reality
+        zero_k_fertilizers = ["Urea", "DAP", "28-28", "20-20"]
+        zero_p_fertilizers = ["Urea"]
+        
+        if k_status == "Deficient" and recommended_fertilizer in zero_k_fertilizers:
+            recommended_fertilizer += " + Muriate of Potash (MOP)"
+        elif p_status == "Deficient" and recommended_fertilizer in zero_p_fertilizers:
+            recommended_fertilizer += " + Super Phosphate"
         
         # Calculate dosage based on agronomic deficits
         deficit = max(0, 150.0 - (n + p + k))
@@ -158,9 +179,9 @@ class FertilizerAgent:
         ]
         
         tips = []
-        if ph < 5.5:
+        if ph < req["ph_min"]:
             tips.append(f"Soil pH ({ph:.1f}) is highly acidic. Apply agricultural Lime or Dolomite at 150g/sqm to boost availability of phosphorus.")
-        elif ph > 7.5:
+        elif ph > req["ph_max"]:
             tips.append(f"Soil pH ({ph:.1f}) is alkaline. Apply organic gypsum to balance soil pH.")
             
         if n_status == "Deficient":

@@ -1,0 +1,5 @@
+{
+  "name": "agrigenie-chatbot-worker",
+  "private": true,
+  "type": "module"
+}

@@ -14,9 +14,11 @@ try:
     import torch.nn.functional as F
     from torchvision import transforms
     TORCH_AVAILABLE = True
-except ImportError:
+except Exception:
     TORCH_AVAILABLE = False
     torch = None
+    F = None
+    transforms = None
 
 from .leaf_validator import LeafValidator
 from . import inference_config as CFG
@@ -33,10 +35,10 @@ TREATMENT_DB_PATH = ML_DIR / "treatment_recommendations.json"
 
 try:
     from ml.convgem_next import ConvGeMNeXt, build_convgemnext
-except ImportError:
+except Exception:
     try:
         from ..ml.convgem_next import ConvGeMNeXt, build_convgemnext
-    except ImportError:
+    except Exception:
         ConvGeMNeXt = None
         build_convgemnext = None
 
@@ -64,15 +66,17 @@ class DiseaseAgent:
         # --- Inference transform MUST match training val transform ---
         # Training used: get_val_transform(224) = Resize(256) + CenterCrop(224) + Normalize
         # Checkpoint config confirms input_resolution [224, 224] after CenterCrop
-        self.transform = transforms.Compose([
-            transforms.Resize(256),
-            transforms.CenterCrop(224),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )
-        ])
+        self.transform = None
+        if transforms is not None:
+            self.transform = transforms.Compose([
+                transforms.Resize(256),
+                transforms.CenterCrop(224),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    mean=[0.485, 0.456, 0.406],
+                    std=[0.229, 0.224, 0.225]
+                )
+            ])
 
         self._load_treatment_db()
         self._load_or_init_model()

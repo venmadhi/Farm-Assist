@@ -28,11 +28,17 @@ backend/test_download.csv
 Thumbs.db
 .idea/
 .vscode/
+.pytest_cache/
 
-# Large Datasets and Archives
+# Large Datasets, Training Runs, Uploads, and Archives
 data/raw/
 data/processed/
 data/rejected/
+datasets/
+backend/ml/datasets/
+runs/
+backend/runs/
+backend/static/uploads/
 *.zip
 *.tar
 *.tar.gz

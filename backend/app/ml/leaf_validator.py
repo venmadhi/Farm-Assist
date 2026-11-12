@@ -3,10 +3,18 @@ import logging
 import numpy as np
 import cv2
 from PIL import Image
-import torch
-import torch.nn.functional as F
-import torchvision.transforms as transforms
-import torchvision.models as models
+try:
+    import torch
+    import torch.nn.functional as F
+    import torchvision.transforms as transforms
+    import torchvision.models as models
+    TORCH_AVAILABLE = True
+except Exception:
+    torch = None
+    F = None
+    transforms = None
+    models = None
+    TORCH_AVAILABLE = False
 
 logger = logging.getLogger(__name__)
 
@@ -53,20 +61,25 @@ class LeafValidator:
     Decoupled from disease classification.
     """
     def __init__(self, device: str = "cpu"):
-        self.device = torch.device(device)
+        self.device = torch.device(device) if TORCH_AVAILABLE else device
         self.model = None
         self.categories = []
-        self.transform = transforms.Compose([
-            transforms.Resize((224, 224)),
-            transforms.ToTensor(),
-            transforms.Normalize(
-                mean=[0.485, 0.456, 0.406],
-                std=[0.229, 0.224, 0.225]
-            )
-        ])
+        self.transform = None
+        if transforms is not None:
+            self.transform = transforms.Compose([
+                transforms.Resize((224, 224)),
+                transforms.ToTensor(),
+                transforms.Normalize(
+                    mean=[0.485, 0.456, 0.406],
+                    std=[0.229, 0.224, 0.225]
+                )
+            ])
         self._init_model()
 
     def _init_model(self):
+        if not TORCH_AVAILABLE or models is None:
+            logger.warning("[LeafValidator] PyTorch unavailable; using image heuristics only.")
+            return
         try:
             weights = models.MobileNet_V3_Small_Weights.DEFAULT
             self.categories = weights.meta.get("categories", [])
@@ -77,7 +90,7 @@ class LeafValidator:
             logger.warning(f"[LeafValidator] Failed to initialize MobileNetV3 deep vision model: {e}")
             self.model = None
 
-    def validate_leaf(self, file_path: str, threshold: float = 0.50) -> dict:
+    def validate_leaf(self, image_or_path, threshold: float = 0.50) -> dict:
         """
         Determines whether the image contains a plant leaf.
         Returns:
@@ -90,7 +103,13 @@ class LeafValidator:
         """
         try:
             # 1. Organic Foliage Texture & Color Analysis
-            img_bgr = cv2.imread(file_path)
+            if isinstance(image_or_path, Image.Image):
+                pil_img = image_or_path.convert("RGB")
+                img_bgr = cv2.cvtColor(np.array(pil_img), cv2.COLOR_RGB2BGR)
+            else:
+                img_bgr = cv2.imread(image_or_path)
+                pil_img = Image.open(image_or_path).convert("RGB") if self.model is not None else None
+
             if img_bgr is None:
                 return {
                     "is_leaf": False,
@@ -133,7 +152,6 @@ class LeafValidator:
             is_explicit_non_leaf = False
 
             if self.model is not None:
-                pil_img = Image.open(file_path).convert("RGB")
                 tensor_img = self.transform(pil_img).unsqueeze(0).to(self.device)
                 
                 with torch.no_grad():

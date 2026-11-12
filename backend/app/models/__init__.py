@@ -1,7 +1,7 @@
 import datetime
 from sqlalchemy import Column, Integer, String, Float, Boolean, DateTime, ForeignKey, Text
 from sqlalchemy.orm import relationship
-from .database import Base
+from ..database import Base
 
 class Farmer(Base):
     __tablename__ = "farmers"
@@ -79,6 +79,7 @@ class CropHistory(Base):
     fertilizer_used = Column(String(255), nullable=True)
     market_price = Column(Float, nullable=True)
     harvest_date = Column(DateTime, default=datetime.datetime.utcnow)
+    start_date = Column(DateTime, nullable=True)
 
     farm = relationship("Farm", back_populates="crop_histories")
 
@@ -107,7 +108,7 @@ class DiseaseRecord(Base):
     farm_id = Column(Integer, ForeignKey("farms.id", ondelete="CASCADE"), nullable=False)
     image_path = Column(String(500), nullable=False)
     detected_disease = Column(String(255), nullable=False)
-    confidence = Column(Float, nullable=False)
+    confidence = Column(Float, nullable=False) # Maps to disease_confidence
     severity_level = Column(String(100), nullable=False)
     treatment_plan = Column(Text, nullable=False)
     recovery_time_days = Column(Integer, default=14)
@@ -119,6 +120,20 @@ class DiseaseRecord(Base):
     leaf_confidence = Column(Float, nullable=True, default=1.0)
     classification_status = Column(String(100), nullable=True, default="confirmed")
     scanned_at = Column(DateTime, default=datetime.datetime.utcnow)
+    
+    # New specific fields for architecture fix
+    crop_confidence = Column(Float, nullable=True)
+    crop_model = Column(String(100), nullable=True)
+    disease_model = Column(String(100), nullable=True)
+    crop_disease_match = Column(Boolean, nullable=True)
+    model_version = Column(String(100), nullable=True)
+
+    # New fields for Disease-Aware Fertilizer Upgrade
+    nutrient_status = Column(Text, nullable=True)
+    fertilizer_recommendation = Column(Text, nullable=True)
+    disease_management_recommendation = Column(Text, nullable=True)
+    source = Column(String(255), nullable=True)
+    soil_values_used = Column(Text, nullable=True)
 
     farm = relationship("Farm", back_populates="disease_records")
 
@@ -245,6 +260,13 @@ class CropCycle(Base):
     fertilizer_used = Column(String(255), nullable=True)
     disease_incidence = Column(String(255), nullable=True)
     
+    # Cultivation History - Soil readings at planting
+    soil_nitrogen = Column(Float, nullable=True)
+    soil_phosphorus = Column(Float, nullable=True)
+    soil_potassium = Column(Float, nullable=True)
+    soil_ph = Column(Float, nullable=True)
+    soil_organic_carbon = Column(Float, nullable=True)
+    
     status = Column(String(50), default="ACTIVE") # ACTIVE, HARVESTED
     created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
@@ -264,5 +286,18 @@ class ModelVersion(Base):
     validation_metric_value = Column(Float, nullable=False)
     test_metric_value = Column(Float, nullable=True)
     is_active = Column(Boolean, default=False)
+
+class ChatFeedback(Base):
+    __tablename__ = "chat_feedback"
+
+    id = Column(Integer, primary_key=True, index=True)
+    farmer_id = Column(Integer, ForeignKey("farmers.id", ondelete="CASCADE"), nullable=False)
+    query = Column(String(500), nullable=False)
+    response = Column(Text, nullable=False)
+    intent = Column(String(100), nullable=True)
+    crop_entity = Column(String(100), nullable=True)
+    rating = Column(Integer, nullable=False) # 1 for thumbs up, -1 for thumbs down
+    comment = Column(Text, nullable=True)
+    created_at = Column(DateTime, default=datetime.datetime.utcnow)
 
 

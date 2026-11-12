@@ -79,15 +79,8 @@ def register(farmer_in: FarmerRegister, db: Session = Depends(get_db)):
 @router.post("/login", response_model=Token)
 def login(login_in: FarmerLogin, db: Session = Depends(get_db)):
     phone_clean = login_in.phone_number.strip()
-    print(f"DEBUG LOGIN INPUT - Phone: '{phone_clean}' (len: {len(phone_clean)}), Password: '{login_in.password}'")
     farmer = db.query(Farmer).filter(Farmer.phone_number == phone_clean).first()
-    if farmer:
-        print(f"DEBUG LOGIN - Found farmer with ID: {farmer.id}, Hashed password in DB: '{farmer.password_hash}'")
-        match = verify_password(login_in.password, farmer.password_hash)
-        print(f"DEBUG LOGIN - Password match result: {match}")
-    else:
-        print(f"DEBUG LOGIN - No farmer found in database with phone number '{login_in.phone_number}'")
-        
+
     if not farmer or not verify_password(login_in.password, farmer.password_hash):
         raise HTTPException(
             status_code=status.HTTP_401_UNAUTHORIZED,

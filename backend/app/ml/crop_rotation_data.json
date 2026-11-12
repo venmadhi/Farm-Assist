@@ -1,0 +1,25 @@
+{
+  "crops": {
+    "paddy": { "family": "Poaceae", "good_followers": ["blackgram", "mungbean", "lentil", "chickpea", "pigeonpeas"], "bad_followers": ["paddy", "rice", "wheat"], "heavy_feeder": true },
+    "rice": { "family": "Poaceae", "good_followers": ["blackgram", "mungbean", "lentil", "chickpea", "pigeonpeas"], "bad_followers": ["paddy", "rice", "wheat"], "heavy_feeder": true },
+    "coconut": { "family": "Arecaceae", "good_followers": ["pepper", "banana", "blackgram"], "bad_followers": [], "heavy_feeder": true },
+    "banana": { "family": "Musaceae", "good_followers": ["blackgram", "mungbean"], "bad_followers": ["banana", "plantain"], "heavy_feeder": true },
+    "pepper": { "family": "Piperaceae", "good_followers": ["blackgram"], "bad_followers": ["pepper"], "heavy_feeder": false },
+    "rubber": { "family": "Euphorbiaceae", "good_followers": ["blackgram"], "bad_followers": [], "heavy_feeder": true },
+    "cardamom": { "family": "Zingiberaceae", "good_followers": [], "bad_followers": ["cardamom"], "heavy_feeder": true },
+    "coffee": { "family": "Rubiaceae", "good_followers": [], "bad_followers": ["coffee"], "heavy_feeder": true },
+    "tea": { "family": "Theaceae", "good_followers": [], "bad_followers": ["tea"], "heavy_feeder": true },
+    "tomato": { "family": "Solanaceae", "good_followers": ["paddy", "blackgram"], "bad_followers": ["tomato", "potato", "pepper", "brinjal"], "heavy_feeder": true },
+    "lentil": { "family": "Fabaceae", "good_followers": ["paddy", "rice", "wheat", "tomato"], "bad_followers": ["lentil", "blackgram"], "heavy_feeder": false, "nitrogen_fixer": true },
+    "blackgram": { "family": "Fabaceae", "good_followers": ["paddy", "rice", "banana", "coconut"], "bad_followers": ["lentil", "blackgram"], "heavy_feeder": false, "nitrogen_fixer": true },
+    "mungbean": { "family": "Fabaceae", "good_followers": ["paddy", "rice", "banana", "coconut"], "bad_followers": ["lentil", "blackgram"], "heavy_feeder": false, "nitrogen_fixer": true },
+    "chickpea": { "family": "Fabaceae", "good_followers": ["paddy", "rice"], "bad_followers": ["lentil", "blackgram"], "heavy_feeder": false, "nitrogen_fixer": true },
+    "pigeonpeas": { "family": "Fabaceae", "good_followers": ["paddy", "rice"], "bad_followers": ["lentil", "blackgram"], "heavy_feeder": false, "nitrogen_fixer": true }
+  },
+  "config": {
+    "same_crop_penalty": 0.3,
+    "same_family_penalty": 0.5,
+    "good_follower_boost": 1.4,
+    "neutral_weight": 1.0
+  }
+}
